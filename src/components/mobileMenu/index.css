@@ -1,0 +1,39 @@
+.mobileMenu{
+  position: fixed;
+  bottom: 10px;
+  width: 90vw;
+  max-width: 600px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-color: transparent;
+  box-shadow: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 100;
+  font-size: 12px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mobileMenu .navOption{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 3px;
+}
+.mobileMenu .navOption svg{
+  width: 30px;
+  height: 30px;
+}
+/* Animation */
+.mobileMenu.blackBackground {
+  background-color: black;
+  box-shadow: 0 0 10px black;
+  transition: background-color 0.8s ease;
+}
