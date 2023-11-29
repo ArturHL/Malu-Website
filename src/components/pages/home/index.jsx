@@ -16,7 +16,7 @@ function HomePage() {
       <section className='promoSlider'>
         <h2 className='title'>¡Promociones!</h2>
         <div className='promoContainer'>
-          <img src='/assets/Screenshot 2023-11-29 011326.png' alt='promo' />
+          <img src='/Screenshot 2023-11-29 011326.png' alt='promo' />
         </div>
       </section>
       <section className='menuSection'>
