@@ -38,7 +38,7 @@ function Navbar() {
   return (
     <>
       <nav className='nav'>
-        <img src="public/Logo 2017.png" alt="" />
+        <img src="/assets/Logo 2017.png" alt="" />
         <div className='shopMenuSection'>
           {/* <MdOutlineShoppingBag /> */}
           <div className='btnMenuNav' onClick={toggleMenu}>
