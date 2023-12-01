@@ -7,7 +7,7 @@ import { LuSoup } from "react-icons/lu";
 import { FaBookBookmark } from "react-icons/fa6";
 import { FaMotorcycle } from "react-icons/fa";
 import { PiPhoneFill } from "react-icons/pi";
-import { IoLocationSharp } from "react-icons/io5";
+// import { IoLocationSharp } from "react-icons/io5";
 import { FaCalendarAlt } from "react-icons/fa";
 
 function Navbar() {
@@ -38,7 +38,7 @@ function Navbar() {
   return (
     <>
       <nav className='nav'>
-        <img src="/Logo 2017.png" alt="" />
+        <img src="/Logo 2017.png" alt="" className='logo'/>
         <div className='shopMenuSection'>
           {/* <MdOutlineShoppingBag /> */}
           <div className='btnMenuNav' onClick={toggleMenu}>
@@ -55,7 +55,7 @@ function Navbar() {
           <li><FaMotorcycle/>Domicilio</li>
           <li><FaBookBookmark/>Reservas</li>
           <li><PiPhoneFill/>Contactanos</li>
-          <li><IoLocationSharp/>Ubicaciones</li>
+          {/* <li><IoLocationSharp/>Ubicaciones</li> */}
           <li><FaCalendarAlt/>Eventos</li>
         </ul>
       </menu>
