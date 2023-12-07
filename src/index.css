@@ -14,3 +14,7 @@
   box-sizing: border-box;
   font-family: 'DM Sans', sans-serif;
 }
+body{
+  width: 80vw !important;
+  overflow-x: hidden !important;
+}

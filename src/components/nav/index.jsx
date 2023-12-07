@@ -47,6 +47,17 @@ function Navbar() {
             <IoRemove className='menuItem menuItem3'/>
           </div>
         </div>
+        <div className='menuDesktop'>
+          <ul>
+            <li>Perfil</li>
+            <li>Menu</li>
+            <li>Domicilio</li>
+            <li>Reservas</li>
+            <li>Contactanos</li>
+            {/* <li><IoLocationSharp/>Ubicaciones</li> */}
+            <li>Eventos</li>
+          </ul>
+        </div>
       </nav>
       <menu className='dropDownMenu inactive'>
         <ul>

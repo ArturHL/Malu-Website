@@ -12,14 +12,48 @@
   width: 30px;
   height: auto;
 }
+.nav .menuDesktop{
+  display: none;
+}
 .nav .shopMenuSection{
-  display: flex;
-  justify-content: end;
-  align-items: center;
   width: 80px;
   font-size: 12px;
   font-weight: bold;
   margin-left: 5px;
+}
+@media screen and (min-width: 768px) {
+  .shopMenuSection{
+    display: none;
+  }
+  .nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+  }
+  .nav .menuDesktop{
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .nav .menuDesktop ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    list-style: none;
+    overflow: auto;
+    height: 60px;
+    padding: 10px;
+  }
+  .nav .menuDesktop ul li{
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    transition: all 0.15s ease-in-out;
+    font-family: 'Pacifico', cursive;
+    text-decoration: underline #fcc929;
+  }
 }
 .nav .btnMenuNav{
   z-index: 110;
