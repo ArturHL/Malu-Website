@@ -3,6 +3,7 @@ import './index.css'
 import { PiUserCircleDuotone } from "react-icons/pi";
 import { PiPhoneFill } from "react-icons/pi";
 import { FaWhatsapp } from "react-icons/fa";
+import MenuCard from '../../menuCard/index.jsx';
 
 function HomePage() {
   return (
@@ -24,34 +25,24 @@ function HomePage() {
       <section className='menuSection'>
         <h2 className='title'>Menú</h2>
         <div className='menuContainer'>
-          <div className='menuCard'>
-            <img src='https://gastromexi.com/wp-content/uploads/2018/06/pozolerojo-1000x658.jpg' alt='menu' />
-            <div className='infoContainer'>
-              <h2>Pozole Rojo <span className='price'>$89</span></h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, voluptates.
-              </p>
-            </div>
-            <div className='callToAction'>
-              <button>Compra en 1 Click</button>
-              <button>Agregar al Carrito</button>
-            </div>
-          </div>
-          <div className='menuCard'>
-            <img src='https://www.vvsupremo.com/wp-content/uploads/2020/02/Deep-Fried-Cheese-Quesadillas.jpg' alt='menu' />
-            <div className='infoContainer'>
-              <h2>Quesadilla Sencilla <span className='price'>$37</span></h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, voluptates.
-              </p>
-            </div>
-            <div className='callToAction'>
-              <button>Compra en 1 Click</button>
-              <button>Agregar al Carrito</button>
-            </div>
-          </div>
+          <MenuCard 
+            title="Tacos de Carne Asada"
+            description="Deliciosos tacos de carne asada con guacamole y salsa picante."
+            price="$10"
+            imageUrl="https://phantom-marca-us.unidadeditorial.es/38cc156b436b56320c082691810ca038/resize/828/f/jpg/assets/multimedia/imagenes/2022/09/16/16632876379191.jpg"
+          />
+          <MenuCard 
+            title="Enchiladas Verdes"
+            description="Enchiladas rellenas de pollo bañadas en salsa verde y queso fundido."
+            price="$8"
+            imageUrl="https://phantom-marca-us.unidadeditorial.es/38cc156b436b56320c082691810ca038/resize/828/f/jpg/assets/multimedia/imagenes/2022/09/16/16632876379191.jpg"
+          />
+          <MenuCard 
+            title="Chiles Rellenos"
+            description="Chiles poblanos rellenos de queso y bañados en salsa de tomate."
+            price="$12"
+            imageUrl="https://phantom-marca-us.unidadeditorial.es/38cc156b436b56320c082691810ca038/resize/828/f/jpg/assets/multimedia/imagenes/2022/09/16/16632876379191.jpg"
+          />
         </div>
         <p className='redirection'>Puedes ver nuestro menu completo <span>Aqui</span></p>
       </section>
