@@ -1,0 +1,75 @@
+/* FILEPATH: /home/arturo_gomita/js/maluWebsite/src/components/pages/profile/index.css */
+
+.profile-card {
+  text-align: center;
+}
+
+.profile-card img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.section p {
+  font-size: 16px;
+}
+
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-method img {
+  width: 30px;
+  height: 30px;
+}
+
+.payment-method p {
+  font-size: 14px;
+}
+
+.payment-method button {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.payment-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-preview img {
+  width: 30px;
+  height: 30px;
+}
+
+.payment-preview p {
+  font-size: 14px;
+}
+
+.section button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+.section button:last-child {
+  margin-right: 0;
+}
