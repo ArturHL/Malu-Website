@@ -20,6 +20,7 @@
   font-size: 12px;
   font-weight: bold;
   margin-left: 5px;
+  z-index: 110;
 }
 @media screen and (min-width: 768px) {
   .shopMenuSection{
@@ -94,6 +95,7 @@
   align-items: center;
   list-style: none;
   gap: 20px;
+  max-width: 345px;
 }
 .dropDownMenu ul li{
   width: 100px;
