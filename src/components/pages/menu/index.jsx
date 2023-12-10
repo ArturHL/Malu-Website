@@ -8,7 +8,7 @@ const MenuPage = () => {
     <>
       <h2 className='title'>Que se te antoja?</h2>
       <section className='menuSection'>
-        <CategoryCard title={"Pozole"} url={"/public/receta-pozole-sin-carne.jpeg"}/>
+        <CategoryCard title={"Pozole"} url={"/receta-pozole-sin-carne.jpeg"}/>
         <CategoryCard title={"Sopas"} url={"https://upload.wikimedia.org/wikipedia/commons/9/9a/Tortilla_Soup.jpg"}/>
         <CategoryCard title={"Gorditas"} url={"https://cdn2.cocinadelirante.com/sites/default/files/images/2023/07/como-hacer-gorditas-chicharron.jpg"}/>
         <CategoryCard title={"Tostadas"} url={"https://3.bp.blogspot.com/-uVryl8s7Cnc/WzCWAb6nXRI/AAAAAAAAMgY/24i-sz4VKZUTWLLgTwwBFAq0Dvt5ys7mACK4BGAYYCw/s1600/P1170232.JPG"}/>
