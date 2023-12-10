@@ -6,6 +6,7 @@ import MenuPage from './components/pages/menu'
 import HomePage from './components/pages/home'
 import ProfilePage from './components/pages/profile'
 import ContactPage from './components/pages/contact'
+import Footer from './components/footer'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       {/* <BookPage /> */}
       {/* <MobileMenu /> */}
       {/* LangComponent */}
+      <Footer />
     </>
   )
 }
