@@ -13,8 +13,8 @@ function App() {
       <Navbar />
       {/* <div className='navSize'></div> */}
       {/* <HomePage /> */}
-      <ProfilePage />
-      {/* <MenuPage /> */}
+      {/* <ProfilePage /> */}
+      <MenuPage />
       {/* <EventPage /> */}
       {/* <ContactPage /> */}
       {/* <BookPage /> */}

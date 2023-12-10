@@ -10,6 +10,7 @@
 
   --yellow: #fcc929;
   --black: #000000;
+  --specialFont: 'Pacifico', cursive;
 }
 *{
   padding: 0;
