@@ -14,8 +14,8 @@ const MenuCard = ({ title, price, description, imageUrl }) => {
             </p>
           </div>
           <div className='callToAction'>
-            <button>Compra en 1 Click</button>
-            <button>Agregar al Carrito</button>
+            <button className='buttonA'>Compra en 1 Click</button>
+            <button className='buttonB'>Agregar al Carrito</button>
           </div>
         </div>
       </div>

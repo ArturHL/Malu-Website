@@ -7,6 +7,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --yellow: #fcc929;
+  --black: #000000;
 }
 *{
   padding: 0;
