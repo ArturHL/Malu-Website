@@ -15,10 +15,10 @@ function App() {
       {/* <div className='navSize'></div> */}
       {/* <HomePage /> */}
       {/* <ProfilePage /> */}
-      <MenuPage />
+      {/* <MenuPage /> */}
       {/* <EventPage /> */}
       {/* <ContactPage /> */}
-      {/* <BookPage /> */}
+      <BookPage />
       {/* <MobileMenu /> */}
       {/* LangComponent */}
       <Footer />

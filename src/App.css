@@ -13,7 +13,7 @@
 }
 .redirection{
   padding: 20px 10px 20px 10px;
-  width: 100vw;
+  width: 100%;
 }
 .redirection span{
   color: var(--yellow);

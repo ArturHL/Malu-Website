@@ -2,8 +2,8 @@ import './index.css';
 
 const EventPage = () => {
   return (
-    <div>
-      <h1>Taquizas y Banquetes</h1>
+    <div className='eventsContainer'>
+      <h1 className='title'>Taquizas y Banquetes</h1>
       <section>
         <h2>Descripción</h2>
         <p>Aquí puedes encontrar toda la información relevante sobre nuestras taquizas y banquetes.</p>
