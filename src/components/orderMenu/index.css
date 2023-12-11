@@ -1,0 +1,42 @@
+.orderMenu{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 110px;
+  background-color: white;
+  text-align: center;
+  z-index: 20;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+}
+.orderMenu > svg{
+  width: 30px;
+  height: 30px;
+}
+.orderMenu > div{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  align-items: center;
+}
+.orderMenu > div > div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.orderMenu > div > button{
+  width: 40%;
+  height: 50px;
+  max-width: 300px;
+  border-radius: 10px;
+}
+.orderMenu > div > div > p{
+  font-size: 22px;
+  font-weight: 700;
+}
+.orderMenu > div > div > svg{
+  width: 45px;
+  height: 45px;
+}

@@ -7,6 +7,7 @@ import HomePage from './components/pages/home'
 import ProfilePage from './components/pages/profile'
 import ContactPage from './components/pages/contact'
 import Footer from './components/footer'
+import OrderMenu from './components/orderMenu'
 
 function App() {
   return (
@@ -15,11 +16,11 @@ function App() {
       {/* <div className='navSize'></div> */}
       {/* <HomePage /> */}
       {/* <ProfilePage /> */}
-      {/* <MenuPage /> */}
+      <MenuPage />
       {/* <EventPage /> */}
       {/* <ContactPage /> */}
-      <BookPage />
-      {/* <MobileMenu /> */}
+      {/* <BookPage /> */}
+      <OrderMenu />
       {/* LangComponent */}
       <Footer />
     </>
