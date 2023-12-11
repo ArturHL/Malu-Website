@@ -40,3 +40,14 @@
   width: 45px;
   height: 45px;
 }
+
+/* Products */
+.productsMenu{
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  width: 100vw;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-110px);
+  z-index: 20;
+}
