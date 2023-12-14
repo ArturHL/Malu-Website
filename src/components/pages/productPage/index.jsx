@@ -1,5 +1,6 @@
 import CategoryCard from '../../categoryCard';
 import ProductCard from '../../productCard';
+import { IoIosArrowUp } from "react-icons/io";
 import './index.css'
 
 const ProductPage = () => {
@@ -12,7 +13,7 @@ const ProductPage = () => {
       <ProductCard title='Pozole Ch Maciza' price={69} imageUrl='/receta-pozole-sin-carne.jpeg' units={0}/>
       <ProductCard title='Pozole Gde Pollo' price={89} imageUrl='/receta-pozole-sin-carne.jpeg' units={0}/>
       <ProductCard title='Pozole Ch Pollo' price={69} imageUrl='/receta-pozole-sin-carne.jpeg' units={0}/>
-      <p className='redirection'><span> {'<-'} </span>Volver</p>
+      <p className='goBack'><IoIosArrowUp />Volver</p>
     </section>
   );
 };

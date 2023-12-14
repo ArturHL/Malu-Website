@@ -14,6 +14,8 @@
 .redirection{
   padding: 20px 10px 20px 10px;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 .redirection span{
   color: var(--yellow);
