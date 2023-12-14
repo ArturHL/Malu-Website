@@ -1,0 +1,11 @@
+.productMenuSection{
+  width: 100vw;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.productMenuSection > section{
+  width: 100%;
+  margin-bottom: 20px;
+}

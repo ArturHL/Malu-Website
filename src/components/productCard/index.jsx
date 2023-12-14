@@ -1,7 +1,7 @@
 import './index.css'
 import PropTypes from 'prop-types'
 
-const ProductCard = ({ title, price, imageUrl }) => {
+const ProductCard = ({ title, price, imageUrl, units}) => {
   return (
     <div className='productCard'>
       <div className='productInfo'>
@@ -13,7 +13,7 @@ const ProductCard = ({ title, price, imageUrl }) => {
       </div>
       <div className='productController'>
         <button> - </button>
-        <p>1</p>
+        <p>{units}</p>
         <button> + </button>
       </div>
     </div>
@@ -24,6 +24,7 @@ ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
+  units: PropTypes.number.isRequired
 }
 
 export default ProductCard;
