@@ -1,13 +1,14 @@
 import './index.css'
 
 // import { MdOutlineShoppingBag } from "react-icons/md";
+// import { IoLocationSharp } from "react-icons/io5";
 import { IoRemove } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
-import { LuSoup } from "react-icons/lu";
+import { FaUser } from "react-icons/fa";
+import { MdRestaurant } from "react-icons/md";
 import { FaBookBookmark } from "react-icons/fa6";
 import { PiPhoneFill } from "react-icons/pi";
-// import { IoLocationSharp } from "react-icons/io5";
 import { FaCalendarAlt } from "react-icons/fa";
+import { GoHomeFill } from "react-icons/go";
 
 function Navbar() {
   function toggleMenu() {
@@ -37,7 +38,7 @@ function Navbar() {
   return (
     <>
       <nav className='nav'>
-        <img src="/Logo 2017.png" alt="" className='logo'/>
+        <a href="/"><img src="/Logo 2017.png" alt="" className='logo'/></a>
         <div className='shopMenuSection'>
           {/* <MdOutlineShoppingBag /> */}
           <div className='btnMenuNav' onClick={toggleMenu}>
@@ -48,35 +49,29 @@ function Navbar() {
         </div>
         <div className='menuDesktop'>
           <ul>
-            <li>Perfil</li>
-            <li>Menu</li>
-            <li>Reservas</li>
-            {/* <li><IoLocationSharp/>Ubicaciones</li> */}
-            <li>Eventos</li>
-            <li>Contactanos</li>
+            <a href="/"><li>Home</li></a>
+            <a href="/profile"><li>Perfil</li></a>
+            <a href="/menu"><li>Menu</li></a>
+            <a href="/reserves"><li>Reservas</li></a>
+            {/* <a href=""></a><li><IoLocationSharp/>Ubicaciones</li> */}
+            <a href="/events"><li>Eventos</li></a>
+            <a href="/contact"><li>Contactanos</li></a>
           </ul>
         </div>
       </nav>
       <menu className='dropDownMenu inactive'>
         <ul>
-          <li><FaRegUser/>Perfil</li>
-          <li><LuSoup/>Menu</li>
-          <li><FaBookBookmark/>Reservas</li>
-          {/* <li><IoLocationSharp/>Ubicaciones</li> */}
-          <li><FaCalendarAlt/>Eventos</li>
-          <li><PiPhoneFill/>Contactanos</li>
+          <a href="/"><li><GoHomeFill />Home</li></a>
+          <a href="/profile"><li><FaUser />Perfil</li></a>
+          <a href="/menu"><li><MdRestaurant />Menu</li></a>
+          <a href="/reserves"><li><FaBookBookmark/>Reservas</li></a>
+          {/* <a href=""></a><li><IoLocationSharp/>Ubicaciones</li> */}
+          <a href="/events"><li><FaCalendarAlt/>Eventos</li></a>
+          <a href="/contact"><li><PiPhoneFill/>Contactanos</li></a>
         </ul>
       </menu>
     </>
   )
 }
-export default Navbar
 
-// MenuSection
-// - Profile
-// - Menu
-// - Delivery
-// - Book a table
-// - Contact
-// - Location
-// - Events
+export default Navbar

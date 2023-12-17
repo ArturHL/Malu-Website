@@ -5,9 +5,9 @@ const Footer = () => {
     <footer className='footer'>
       <img src="/Logo 2017.png" alt="" className='logo'/>
       <div className='footerLinks'>
-        <a href="">Inicio</a>
-        <a href="">Menu</a>
-        <a href="">Contacto</a>
+        <a href="/">Inicio</a>
+        <a href="/menu">Menu</a>
+        <a href="/contact">Contacto</a>
       </div>
       <div className='appsLinks'>
         <div className='linksSection'>
