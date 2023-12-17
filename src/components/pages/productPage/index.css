@@ -9,11 +9,11 @@
   width: 100%;
   margin-bottom: 20px;
 }
-.productMenuSection .goBack{
+.goBack{
   width: 100%;
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: self-start;
   padding: 20px;
 }
 .productMenuSection p svg{

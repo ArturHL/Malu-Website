@@ -6,19 +6,19 @@ import MenuPage from './components/pages/menu'
 import HomePage from './components/pages/home'
 import ProfilePage from './components/pages/profile'
 import ContactPage from './components/pages/contact'
-import Footer from './components/footer'
 import OrderMenu from './components/orderMenu'
 import ProductPage from './components/pages/productPage'
+import Footer from './components/footer'
 
 function App() {
   return (
     <>
       <Navbar />
       {/* <div className='navSize'></div> */}
-      {/* <HomePage /> */}
+      <HomePage />
       {/* <ProfilePage /> */}
       {/* <MenuPage /> */}
-      <ProductPage />
+      {/* <ProductPage /> */}
       {/* <EventPage /> */}
       {/* <ContactPage /> */}
       {/* <BookPage /> */}

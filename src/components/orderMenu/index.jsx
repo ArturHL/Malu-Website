@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { IoIosArrowUp } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
+import { FaRegTrashAlt } from "react-icons/fa";
 import ProductCard from '../productCard';
 
 function OrderMenu() {
@@ -46,7 +47,7 @@ function OrderMenu() {
           <IoIosArrowUp onClick={()=>{translate(); rotateIcon()}} className='iconDropMenu'/>
           <ProductCard title='Pozole Surtido' price='89' imageUrl='/receta-pozole-sin-carne.jpeg'/>  
           <ProductCard title='Pozole Surtido' price='89' imageUrl='/receta-pozole-sin-carne.jpeg'/>
-          {/* Agregar un boton de eliminar todos */}
+          <p className='goBack'><FaRegTrashAlt />Borrar Todos</p>
         </section>
       </section>
     </>
