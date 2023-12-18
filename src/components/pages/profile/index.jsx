@@ -20,6 +20,22 @@ const ProfilePage = () => {
       </div>
 
       <div className="section">
+        <h3>Direcciones de Envio</h3>
+        <div className='delivery-address'>
+          <div className='address'>
+            <p>Calle 15 Ext. 1 Int. 1</p> <button className='buttonB'>Eliminar</button>
+          </div>
+                    <div className='address'>
+            <p>Calle 15 Ext. 1 Int. 1</p> <button className='buttonB'>Eliminar</button>
+          </div>
+                    <div className='address'>
+            <p>Calle 15 Ext. 1 Int. 1</p> <button className='buttonB'>Eliminar</button>
+          </div>
+        </div>
+        <button className='buttonA'>Agregar Direccion de Envio</button>
+      </div>
+
+      <div className="section">
         <h3>Métodos de Pago</h3>
         <div className="payment-methods">
           <div className="payment-method">
