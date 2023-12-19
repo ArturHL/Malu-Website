@@ -10,6 +10,7 @@ const ProfilePage = () => {
 
       <div className="section dataSection">
         <h3>Datos De la Cuenta</h3>
+        <p>Telefono: 55 5555 5555 <label className='labelEdit'>Editar</label></p>
         <p>Correo: correo@example.com <label className='labelEdit'>Editar</label></p>
         <p>Contraseña: ******** <label className='labelEdit'>Editar</label></p>
       </div>

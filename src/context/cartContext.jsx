@@ -8,6 +8,7 @@ export function CartProvider ({children}) {
 
   function addToCart(item) {
     const index = findProductIndex(item.id)
+    console.log(index, 'index');
     if(index >= 0) {
       const newCart = structuredClone(cart)
       newCart[index].quantity++

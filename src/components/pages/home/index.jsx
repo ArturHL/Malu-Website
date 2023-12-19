@@ -1,10 +1,12 @@
 import './index.css'
 
 import { PiUserCircleDuotone } from "react-icons/pi";
-import MenuCard from '../../menuCard/index.jsx';
 import ContactCard from '../../contactCard/index.jsx';
 
+import useVariableRenderMenu from '../../../hooks/useVariableRenderMenu';
+
 function HomePage() {
+  const {variableRender} = useVariableRenderMenu();
   return (
     <>
       <section className='principalSection'>
@@ -24,24 +26,7 @@ function HomePage() {
       <section className='menuSection'>
         <h2 className='title'>Menú</h2>
         <div className='menuContainer'>
-          <MenuCard 
-            title="Tacos de Carne Asada"
-            description="Deliciosos tacos de carne asada con guacamole y salsa picante."
-            price="$10"
-            imageUrl="https://phantom-marca-us.unidadeditorial.es/38cc156b436b56320c082691810ca038/resize/828/f/jpg/assets/multimedia/imagenes/2022/09/16/16632876379191.jpg"
-          />
-          <MenuCard 
-            title="Enchiladas Verdes"
-            description="Enchiladas rellenas de pollo bañadas en salsa verde y queso fundido."
-            price="$8"
-            imageUrl="https://phantom-marca-us.unidadeditorial.es/38cc156b436b56320c082691810ca038/resize/828/f/jpg/assets/multimedia/imagenes/2022/09/16/16632876379191.jpg"
-          />
-          <MenuCard 
-            title="Chiles Rellenos"
-            description="Chiles poblanos rellenos de queso y bañados en salsa de tomate."
-            price="$12"
-            imageUrl="https://phantom-marca-us.unidadeditorial.es/38cc156b436b56320c082691810ca038/resize/828/f/jpg/assets/multimedia/imagenes/2022/09/16/16632876379191.jpg"
-          />
+          {variableRender()}
         </div>
         <p className='redirection'>Puedes ver nuestro menu completo <span>Aqui</span></p>
       </section>

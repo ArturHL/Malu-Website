@@ -74,6 +74,20 @@
   justify-content: space-around;
   align-items: center;
 }
+@media screen and (min-width: 1024px) {
+  .menuSection .menuContainer{
+    flex-wrap: nowrap;
+    overflow: auto;
+    justify-content: flex-start;
+  }
+}
+@media screen and (min-width: 1960px) {
+  .menuSection .menuContainer {
+    flex-wrap: nowrap;
+    overflow: auto;
+    justify-content: center;
+  }
+}
 
 /* Reviews Section */
 .reviewsSection{

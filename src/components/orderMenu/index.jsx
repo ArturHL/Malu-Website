@@ -10,11 +10,11 @@ import useAnimateOrder from '../../hooks/useAnimateOrder';
 
 function OrderMenu() {
   const {translate, rotateIcon} = useAnimateOrder(false);
-  const {cart, addToCart, removeFromCart, clearCart} = useContext(CartContext);
+  const {cart, clearCart} = useContext(CartContext);
 
   function priceTotal() {
     let total = 0;
-    cart.forEach(product => total += product.price);
+    cart.forEach(product => total += parseFloat(product.price));
     return total;
   }
   return (
@@ -23,7 +23,7 @@ function OrderMenu() {
         <div>
           <div>
             <FaCartShopping />
-            <p>MX${priceTotal()}.00</p>
+            <p>MX${priceTotal()}</p>
           </div>
           <button className='buttonA'>Pagar</button>
         </div>
@@ -33,10 +33,10 @@ function OrderMenu() {
           <IoIosArrowUp onClick={()=>{translate('productsMenu'); rotateIcon('iconDropMenu')}} className='iconDropMenu'/>
           {
             cart.length > 0
-              ? cart.map((product, index) => <ProductCard key={index} title={product.title} price={product.price} imageUrl={product.imageUrl} />)
+              ? cart.map((product, index) => <ProductCard key={index} id={product.id} name={product.name} price={product.price} image={product.image} quantity={product.quantity}/>)
               : <p>No hay productos en tu carrito</p>
           }
-          <p className='goBack' style={cart.length > 0 ? {display: 'flex'} : {display: 'none'}}><FaRegTrashAlt />Borrar Todos</p>
+          <p className='goBack' style={cart.length > 0 ? {display: 'flex'} : {display: 'none'}} onClick={clearCart}><FaRegTrashAlt />Borrar Todos</p>
         </section>
       </section>
     </>
