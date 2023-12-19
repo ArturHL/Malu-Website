@@ -1,6 +1,6 @@
 import './index.css'
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CartContext } from '../../context/cartContext';
 import { IoIosArrowUp } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
@@ -10,13 +10,9 @@ import useAnimateOrder from '../../hooks/useAnimateOrder';
 
 function OrderMenu() {
   const {translate, rotateIcon} = useAnimateOrder(false);
-  const {cart, clearCart} = useContext(CartContext);
-
-  function priceTotal() {
-    let total = 0;
-    cart.forEach(product => total += parseFloat(product.price));
-    return total;
-  }
+  const {cart, clearCart, priceTotal} = useContext(CartContext);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {translate('productsMenu', true); cart.length == 0 ? translate('productsMenu', false) : null}, [cart.length]);
   return (
     <>
       <section className='orderMenu' style={cart.length > 0 ? {display: 'block'} : {display: 'none'}}>
@@ -30,7 +26,7 @@ function OrderMenu() {
       </section>
       <section className='orderMenu2' style={cart.length > 0 ? {display: 'block'} : {display: 'none'}}>
         <section className='productsMenu'>
-          <IoIosArrowUp onClick={()=>{translate('productsMenu'); rotateIcon('iconDropMenu')}} className='iconDropMenu'/>
+          <IoIosArrowUp onClick={()=>{translate('productsMenu', false); rotateIcon('iconDropMenu')}} className='iconDropMenu'/>
           {
             cart.length > 0
               ? cart.map((product, index) => <ProductCard key={index} id={product.id} name={product.name} price={product.price} image={product.image} quantity={product.quantity}/>)

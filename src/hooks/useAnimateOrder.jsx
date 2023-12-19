@@ -3,10 +3,15 @@ import { useState } from 'react';
 export default function useAnimateOrder() {
   const [menuActive, setMenuActive] = useState(false);
 
-  function translate(menuClass) {
+  function translate(menuClass, adjust) {
     const isActive = menuActive;
     const menu = document.querySelector(`.${menuClass}`);
     const px = menu.getBoundingClientRect().height - 30;
+    if (adjust) {
+      menu.style.transform = `translateY(-${px}px)`;
+      setMenuActive(true);
+      return
+    }
     if (isActive) {
       menu.style.transform = `translateY(0px)`;
       setMenuActive(false);

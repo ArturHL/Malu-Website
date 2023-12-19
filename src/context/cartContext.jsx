@@ -36,12 +36,18 @@ export function CartProvider ({children}) {
     return cart.findIndex(item => item.id === id)
   }
 
+  function priceTotal() {
+    let total = 0;
+    cart.forEach(product => total += parseFloat(product.price * product.quantity));
+    return total;
+  }
   return(
     <CartContext.Provider value={{
       cart,
       addToCart,
       removeFromCart,
-      clearCart
+      clearCart,
+      priceTotal
     }}>
       {children}
     </CartContext.Provider>
