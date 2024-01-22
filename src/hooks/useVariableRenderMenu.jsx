@@ -12,7 +12,6 @@ const useVariableRenderMenu = () => {
   });
   function variableRender() {
     if (window.innerWidth <= 767) {
-      console.log('mobile');
       return (products.slice(0,2).map((product) => { return <MenuCard 
             key={product.id}
             id={product.id}
@@ -25,7 +24,6 @@ const useVariableRenderMenu = () => {
           />}))
     }
     if (window.innerWidth > 767 && window.innerWidth <= 1023) {
-      console.log('tablet');
       return (products.slice(0,4).map((product) => { return <MenuCard 
             key={product.id}
             id={product.id}
@@ -38,7 +36,6 @@ const useVariableRenderMenu = () => {
           />}))
     }
     if (window.innerWidth > 1023) {
-      console.log('desktop');
       return (products.slice(0,6).map((product) => { return <MenuCard 
             key={product.id}
             id={product.id}

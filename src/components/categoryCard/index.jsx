@@ -2,6 +2,9 @@ import './index.css'
 import PropTypes from 'prop-types'
 
 const CategoryCard = ({title, url}) => {
+  function location() {
+    window.location.href = `/category`
+  } 
   const style = {
     content: '""',
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("${url}")`,
@@ -16,7 +19,7 @@ const CategoryCard = ({title, url}) => {
     transition: 'all 0.3s ease-in-out',
   }
   return (
-    <section className='categoryCard'>
+    <section className='categoryCard' onClick={location}>
       <div style={style}></div>
       <h3>{title}</h3>
     </section>

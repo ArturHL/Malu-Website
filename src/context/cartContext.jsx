@@ -1,12 +1,16 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { SesionContext } from './sesionContext';
 
 export const CartContext = createContext();
 
 export function CartProvider ({children}) {
   const [cart, setCart] = useState([])
+  const { loginRedirect } = useContext(SesionContext);
 
   function addToCart(item) {
+    loginRedirect();
     const index = findProductIndex(item.id)
     console.log(index, 'index');
     if(index >= 0) {
@@ -41,6 +45,7 @@ export function CartProvider ({children}) {
     cart.forEach(product => total += parseFloat(product.price * product.quantity));
     return total;
   }
+
   return(
     <CartContext.Provider value={{
       cart,

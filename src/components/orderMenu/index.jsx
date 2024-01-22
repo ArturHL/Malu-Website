@@ -13,6 +13,10 @@ function OrderMenu() {
   const {cart, clearCart, priceTotal} = useContext(CartContext);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {translate('productsMenu', true); cart.length == 0 ? translate('productsMenu', false) : null}, [cart.length]);
+
+  function payCart (cart) {
+    console.log(cart);
+  }
   return (
     <>
       <section className='orderMenu' style={cart.length > 0 ? {display: 'block'} : {display: 'none'}}>
@@ -21,7 +25,7 @@ function OrderMenu() {
             <FaCartShopping />
             <p>MX${priceTotal()}</p>
           </div>
-          <button className='buttonA'>Pagar</button>
+          <button className='buttonA' onClick={()=>{payCart(cart)}}>Pagar</button>
         </div>
       </section>
       <section className='orderMenu2' style={cart.length > 0 ? {display: 'block'} : {display: 'none'}}>
@@ -29,7 +33,7 @@ function OrderMenu() {
           <IoIosArrowUp onClick={()=>{translate('productsMenu', false); rotateIcon('iconDropMenu')}} className='iconDropMenu'/>
           {
             cart.length > 0
-              ? cart.map((product, index) => <ProductCard key={index} id={product.id} name={product.name} price={product.price} image={product.image} quantity={product.quantity}/>)
+              ? cart.map((product, index) => <ProductCard key={index} id={product.id} name={product.name} price={product.price} image={product.image}/>)
               : <p>No hay productos en tu carrito</p>
           }
           <p className='goBack' style={cart.length > 0 ? {display: 'flex'} : {display: 'none'}} onClick={clearCart}><FaRegTrashAlt />Borrar Todos</p>

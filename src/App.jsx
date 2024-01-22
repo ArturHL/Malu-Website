@@ -9,29 +9,36 @@ import ProfilePage from './components/pages/profile'
 import ContactPage from './components/pages/contact'
 import ProductPage from './components/pages/productPage'
 import Footer from './components/footer'
-
+import Login from './components/pages/login'
 import OrderMenu from './components/orderMenu'
+
 import { CartProvider } from './context/cartContext'
+import { SesionProvider } from './context/sesionContext'
+
 
 function App() {
   const [path, setPath] = useState(window.location.pathname)
+
+  sessionStorage.setItem('sesion', false)
+  sessionStorage.setItem('user', {})
+  
   return (
     <>
-      <Navbar />
-      {/* <div className='navSize'></div> */}
-      <CartProvider>
-        {path === '/' && <HomePage />}
-        {path === '/profile' && <ProfilePage />}
-        {path === '/menu' && <MenuPage />}
-        {path === '/category' && <ProductPage />}
-        {path === '/events' && <EventPage />}
-        {path === '/contact' && <ContactPage />}
-        {path === '/reserves' && <BookPage />}
-        <OrderMenu />
-      </CartProvider>
-      {/* <OrderMenu /> */}
-      {/* LangComponent */}
-      <Footer />
+      <SesionProvider>
+        <Navbar />
+        <CartProvider>
+          {path === '/' && <HomePage />}
+          {path === '/profile' && <ProfilePage />}
+          {path === '/menu' && <MenuPage />}
+          {path === '/category' && <ProductPage />}
+          {path === '/events' && <EventPage />}
+          {path === '/contact' && <ContactPage />}
+          {path === '/reserves' && <BookPage />}
+          {path === '/login' && <Login />}
+          <OrderMenu />
+        </CartProvider>
+        <Footer />
+      </SesionProvider>
     </>
   )
 }

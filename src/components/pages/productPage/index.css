@@ -16,7 +16,7 @@
   align-items: self-start;
   padding: 20px;
 }
-.productMenuSection p svg{
+.goBack svg{
   transform: rotate(270deg);
   width: 25px;
   height: 25px;

@@ -28,16 +28,51 @@ const categories = [
 
 // Datos de ejemplo para los clientes
 const clients = [
-  new Client(1, 'Alejandro González', 'alejandro@example.com', '555-1234', 'pass123', [
-    { street: 'Av. Reforma 123', city: 'Ciudad de México', country: 'México' },
-  ], [
-    { type: 'tarjeta crédito', number: '**** **** **** 4321', expiration: '01/25' },
-  ]),
-  new Client(2, 'María Ramirez', 'maria@example.com', '555-5678', 'segura123', [
-    { street: 'Calle Juárez 456', city: 'Guadalajara', country: 'México' },
-  ], [
-    { type: 'tarjeta débito', number: '**** **** **** 8765', expiration: '03/24' },
-  ]),
+  new Client(
+    1,
+    "Alejandro González",
+    "alejandro@example.com",
+    "555-1234",
+    "pass123",
+    [
+      {
+        street: "Av. Reforma 123",
+        city: "Ciudad de México",
+        country: "México",
+      },
+    ],
+    [
+      {
+        type: "tarjeta crédito",
+        number: "**** **** **** 4321",
+        expiration: "01/25",
+      },
+    ]
+  ),
+  new Client(
+    2,
+    "María Ramirez",
+    "maria@example.com",
+    "555-5678",
+    "segura123",
+    [{ street: "Calle Juárez 456", city: "Guadalajara", country: "México" }],
+    [
+      {
+        type: "tarjeta débito",
+        number: "**** **** **** 8765",
+        expiration: "03/24",
+      },
+    ]
+  ),
+  new Client(
+    3,
+    "Arturo Hernandez",
+    "arturo@example.com",
+    "55-5678-1234",
+    "S404b815",
+    [],
+    []
+  ),
   // Agregar más clientes (hasta 10) con datos ficticios aquí
 ];
 

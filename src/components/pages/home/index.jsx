@@ -28,7 +28,7 @@ function HomePage() {
         <div className='menuContainer'>
           {variableRender()}
         </div>
-        <p className='redirection'>Puedes ver nuestro menu completo <span>Aqui</span></p>
+        <p className='redirection'>Puedes ver nuestro menu completo <a href="/menu"><span>Aqui</span></a></p>
       </section>
       <section className='reviewsSection'>
         <h2 className='title'>Lo que dicen nuestros clientes</h2>
