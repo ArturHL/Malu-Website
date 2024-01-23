@@ -19,8 +19,10 @@ import { SesionProvider } from './context/sesionContext'
 function App() {
   const [path, setPath] = useState(window.location.pathname)
 
-  sessionStorage.setItem('sesion', false)
-  sessionStorage.setItem('user', {})
+  if(sessionStorage.getItem('sesion') !== false && sessionStorage.getItem('sesion') !== 'true') {
+    sessionStorage.setItem('sesion', false)
+    sessionStorage.setItem('user', JSON.stringify({}))
+  }
   
   return (
     <>

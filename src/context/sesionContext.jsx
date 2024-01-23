@@ -6,22 +6,25 @@ import Client from '../models/client';
 export const SesionContext = createContext();
 
 export function SesionProvider ({children}) {
-  const [sesion, setSesion] = useState(sessionStorage.getItem('sesion'))
-  const [user, setUser] = useState(sessionStorage.getItem('user'))
+  const [sesion, setSesion] = useState(JSON.parse(sessionStorage.getItem('sesion')))
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')))
   const [errors, setErrors] = useState([])
 
   function login(userEmail, password) {
     clients.forEach(client => {
-      console.log(client);
       if(client.email === userEmail && client.password === password) {
-        console.log('loginPass');
+        const user = client
+        sessionStorage.setItem('sesion', true)
+        sessionStorage.setItem('user', JSON.stringify(user))
         setSesion(true)
-        setUser(client)
+        setUser(user)
       }
     })
   }
 
   function logout() {
+    sessionStorage.setItem('sesion', false)
+    sessionStorage.setItem('user', JSON.stringify({}))
     setSesion(false)
     setUser({})
   }
@@ -66,7 +69,7 @@ export function SesionProvider ({children}) {
   useEffect(() => {
     sessionStorage.setItem('sesion', sesion)
     sessionStorage.setItem('user', JSON.stringify(user))
-  }, [])
+  }, [sesion, user])
 
   return(
     <SesionContext.Provider value={{
