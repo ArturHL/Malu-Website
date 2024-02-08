@@ -3,9 +3,9 @@ export default class Client {
     this.id = id;
     this.name = name;
     this.email = email;
-    this.address = []; // Deberia ser un array de objetos
     this.phone = phone;
-    this.payMethods = []; // Deberia ser un array de objetos
     this.password = password;
+    this.payMethods = []; // Deberia ser un array de objetos
+    this.address = []; // Deberia ser un array de objetos
   }
 }

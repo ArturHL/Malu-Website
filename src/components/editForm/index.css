@@ -1,0 +1,30 @@
+.editForm{
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 300px !important;
+}
+.backGround{
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  max-width: 100vw;
+}
+
+.returnMenu{
+  width: 30px;
+  height: 30px;
+  align-self: self-end;
+  margin: 0px 5px;
+}

@@ -34,20 +34,20 @@ const clients = [
     "alejandro@example.com",
     "555-1234",
     "pass123",
-    [
-      {
-        street: "Av. Reforma 123",
-        city: "Ciudad de México",
-        country: "México",
-      },
-    ],
-    [
-      {
-        type: "tarjeta crédito",
-        number: "**** **** **** 4321",
-        expiration: "01/25",
-      },
-    ]
+    // [
+    //   {
+    //     street: "Av. Reforma 123",
+    //     city: "Ciudad de México",
+    //     country: "México",
+    //   },
+    // ],
+    // [
+    //   {
+    //     type: "MasterCard",
+    //     number: "**** **** **** 4321",
+    //     expiration: "01/25",
+    //   },
+    // ]
   ),
   new Client(
     2,
@@ -55,23 +55,41 @@ const clients = [
     "maria@example.com",
     "555-5678",
     "segura123",
-    [{ street: "Calle Juárez 456", city: "Guadalajara", country: "México" }],
-    [
-      {
-        type: "tarjeta débito",
-        number: "**** **** **** 8765",
-        expiration: "03/24",
-      },
-    ]
+    // [
+    //   { 
+    //     street: "Calle Juárez 456", 
+    //     city: "Guadalajara",
+    //     country: "México" 
+    //   }
+    // ],
+    // [
+    //   {
+    //     type: "Visa",
+    //     number: "**** **** **** 8765",
+    //     expiration: "03/24",
+    //   },
+    // ]
   ),
   new Client(
     3,
     "Arturo Hernandez",
     "arturo@example.com",
     "55-5678-1234",
-    "S404b815",
-    [],
-    []
+    "S404b815."
+    // [
+    //   {
+    //     street: "Av. Insurgentes 789",
+    //     city: "Monterrey",
+    //     country: "México",
+    //   },
+    // ],
+    // [
+    //   {
+    //     type: "American Express",
+    //     number: "**** **** **** 9876",
+    //     expiration: "02/23",
+    //   },
+    // ]
   ),
   // Agregar más clientes (hasta 10) con datos ficticios aquí
 ];
