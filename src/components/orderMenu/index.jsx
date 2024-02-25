@@ -25,7 +25,9 @@ function OrderMenu() {
             <FaCartShopping />
             <p>MX${priceTotal()}</p>
           </div>
-          <button className='buttonA' onClick={()=>{payCart(cart)}}>Pagar</button>
+          <button className='buttonA' onClick={()=>{payCart(cart)}}>
+            <a href="/checkout">Pagar</a>
+          </button>
         </div>
       </section>
       <section className='orderMenu2' style={cart.length > 0 ? {display: 'block'} : {display: 'none'}}>

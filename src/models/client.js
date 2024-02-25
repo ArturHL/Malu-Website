@@ -5,7 +5,15 @@ export default class Client {
     this.email = email;
     this.phone = phone;
     this.password = password;
-    this.payMethods = []; // Deberia ser un array de objetos
-    this.address = []; // Deberia ser un array de objetos
+    this.profileImage = '';
+    this.address = [
+      // {street: 'Calle 15 Ext. 1 Int. 1', postalCode: '12345', city: 'CDMX', state: 'CDMX', country: 'México'},
+    ];
+    this.payMethods = [
+      // {type: 'visa', number: '1234', expiration: '12/23'},
+    ]; 
+    this.orders = [
+      // orders
+    ];
   }
 }

@@ -14,6 +14,8 @@ import OrderMenu from './components/orderMenu'
 
 import { CartProvider } from './context/cartContext'
 import { SesionProvider } from './context/sesionContext'
+import LoadingPage from './components/pages/loading'
+import Checkout from './components/pages/checkOut'
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
       <SesionProvider>
         <Navbar />
         <CartProvider>
+          <LoadingPage />
           {path === '/' && <HomePage />}
           {path === '/profile' && <ProfilePage />}
           {path === '/menu' && <MenuPage />}
@@ -37,6 +40,7 @@ function App() {
           {path === '/contact' && <ContactPage />}
           {path === '/reserves' && <BookPage />}
           {path === '/login' && <Login />}
+          {path === '/checkout' && <Checkout />}
           <OrderMenu />
         </CartProvider>
         <Footer />

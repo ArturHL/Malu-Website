@@ -65,6 +65,11 @@ const InputForm = ({type}) => {
               <input className='input' type='date' onChange={handleInputText}/>
               </>)
     }
+    if (inputType === 'code') {
+      return (<>
+              <input className='input' type='text' placeholder='Codigo de Regalo' onChange={handleInputText}/>
+              </>)
+    } 
   }
 
   useEffect(() => {setInputV(inputText)}, [inputText])

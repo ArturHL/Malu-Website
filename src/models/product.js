@@ -7,6 +7,5 @@ export default class Product {
     this.stock = stock;
     this.category = category;
     this.image = image;
-    this.quantity = 1;
   }
 }
