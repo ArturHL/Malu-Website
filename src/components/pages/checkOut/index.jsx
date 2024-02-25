@@ -158,15 +158,20 @@ const Checkout = () => {
       succesfullPaymentPage()
       return (
         <>
-          <section className='paying'>
+          <section className='paying inactive'>
             <img src="/Logo 2017.png" alt="" className='logo' />
             <h2>Estamos procesando tu pago...</h2>
           </section>
-          <section className='succesfullPayment inactive'>
+          <section className='succesfullPayment'>
             <img src="/Logo 2017.png" alt="" className='logo' />
-            <h2>Compra Realizada</h2>
-            <p>Gracias por tu compra</p>
-            <button className='buttonA'>Volver a la tienda</button>
+            <div>
+              <h2 className='title'>Compra Realizada</h2>
+              <p>Gracias por tu compra</p>
+            </div>
+            <img src="/public/mariachi.png" alt="" />
+            <button className='buttonA'>
+              <a href="/">Volver a la tienda</a>
+            </button>
           </section>
         </>
       )

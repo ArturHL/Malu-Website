@@ -1,3 +1,27 @@
 .eventsContainer{
   padding: 20px;
 }
+.eventsContainer section{
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0px 0px 15px #00000031;
+}
+.eventSubMenu{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid #0000001e; */
+  padding: 20px;
+  border-radius: 10px;
+  gap: 20px;
+}
+
+.eventSubMenu h2{
+  font-size: 30px
+}
+.eventSubMenu a{
+  width: 100%;
+}

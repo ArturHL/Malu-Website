@@ -40,26 +40,3 @@
   align-items: center;
   gap: 10px;
 }
-
-.contactInfo .whatsAppChat {
-  background-color: #25d366;
-  padding: 10px;
-  border-radius: 10px;
-  color: white;
-  font-weight: 700;
-  font-size: 18px;
-  text-decoration: none;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 5px;
-}
-
-.contactInfo .whatsAppChat svg {
-  width: 30px;
-  height: 30px;
-}
-
-.contactInfo .whatsAppChat:hover {
-  background-color: #128c7e;
-}

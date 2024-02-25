@@ -2,7 +2,7 @@ import './index.css';
 import PropTypes from 'prop-types';
 
 import { PiPhoneFill } from "react-icons/pi";
-import { FaWhatsapp } from "react-icons/fa";
+import WhatsAppBtn from '../whatsAppBtn';
 
 const ContactCard = ({locationEmbebbed, locationName, adress, phone1, phone2, whastappNumber}) => {
   return (
@@ -21,8 +21,7 @@ const ContactCard = ({locationEmbebbed, locationName, adress, phone1, phone2, wh
           <p className='contactOption'>
             <PiPhoneFill/> Tel: {phone2}
           </p>
-          {/* https://wa.me/1XXXXXXXXXX */}
-          <a className='whatsAppChat' href={`https://wa.me/${whastappNumber}`}><FaWhatsapp/> Chatea con Nosotros</a>
+          <WhatsAppBtn phone={whastappNumber} text='Chatea con nosotros'/>
       </div>
       </div>
     </div>

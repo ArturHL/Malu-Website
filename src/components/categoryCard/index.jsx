@@ -1,8 +1,9 @@
 import './index.css'
 import PropTypes from 'prop-types'
 
-const CategoryCard = ({title, url}) => {
+const CategoryCard = ({title, url, click}) => {
   function location() {
+    if (!click) return
     window.location.href = `/category`
   } 
   const style = {
@@ -28,7 +29,8 @@ const CategoryCard = ({title, url}) => {
 
 CategoryCard.propTypes = {
   title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  click: PropTypes.bool.isRequired,
 }
 
 export default CategoryCard
