@@ -55,14 +55,14 @@ const ProfilePage = () => {
           <div className="section">
             <h3>Direcciones de Envio</h3>
             <div className='delivery-address'>
-              {user.address.map((index, address) => {
+              {/* {user.address.map((index, address) => {
                 console.log(index, address);
                 return (
                   <div className='address' key={index}>
                     <p>{`${address.street}`}</p> <button className='buttonB'>Eliminar</button>
                   </div>
                 )
-              })}
+              })} */}
               {/*<div className='address'>
                   <p>Calle 15 Ext. 1 Int. 1</p> <button className='buttonB'>Eliminar</button>
                  </div> */}
@@ -73,7 +73,7 @@ const ProfilePage = () => {
           <div className="section">
             <h3>Métodos de Pago</h3>
             <div className="payment-methods">
-              {user.payMethods.map((index, payMethod) => {
+              {/* {user.payMethods.map((index, payMethod) => {
                 console.log(index, payMethod);
                 return (
                   <div className="payment-method" key={index}>
@@ -82,7 +82,7 @@ const ProfilePage = () => {
                     <button className='buttonB'>Eliminar</button>
                   </div>
                 )
-              })}
+              })} */}
               {/* <div className="payment-method">
                 <img src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg" alt="Credit Card" />
                 <p>**** **** **** 1234</p>

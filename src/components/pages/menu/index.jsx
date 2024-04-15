@@ -19,7 +19,7 @@ const MenuPage = () => {
           <p>Cargando...</p> 
           : 
           category.map((category, index) => (
-            <CategoryCard key={index} title={category.name} url={category.url}/>
+            <CategoryCard key={index} click={true} id={category.id} title={category.name} url={category.image}/>
           ))
         }
       </section>

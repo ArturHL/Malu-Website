@@ -1,13 +1,30 @@
+import { useState } from 'react';
+import { getUserByEmail, saveNewUser } from '../api/userMethods';
+
 export default function useUser() {
-  const [user, setUser] = useState(null);
+  const [userDB, setUserDB] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   async function logIn(email, password) {
-    // Code to log in a user
+    setIsLoading(true);
+    const user = await getUserByEmail(email);
+    if (user.password === password) {
+      setUserDB(user);
+    } else {
+      setUserDB(null);
+    }
+    setIsLoading(false);
   }
 
-  async function signUp(email, password) {
-    // Code to sign up a user
+  async function signUp(newUser) {
+    setIsLoading(true);
+    const user = await saveNewUser(newUser);
+    if (user) {
+      setUserDB(user);
+    } else {
+      setUserDB(null);
+    }
+    setIsLoading(false);
   }
 
   async function updateUser(user) {
@@ -74,4 +91,24 @@ export default function useUser() {
     // Code to cancel a reserve
   }
   
+  return {
+    userDB,
+    isLoading,
+    logIn,
+    signUp,
+    updateUser,
+    deleteUser,
+    getAddressesByUserId,
+    createAddress,
+    deleteAddress,
+    getPaymentsByUserId,
+    createPayment,
+    deletePayment,
+    getOrdersByUserId,
+    createOrder,
+    cancelOrder,
+    getReservesByUserId,
+    createReserve,
+    cancelReserve,
+  };
 }

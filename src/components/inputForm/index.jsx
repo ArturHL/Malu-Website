@@ -32,42 +32,42 @@ const InputForm = ({type}) => {
     if (inputType === 'confirmPassword') {
       return (<>
               <label className='label'>Confirmar Contraseña</label>
-              <input className='input passwordComfirm' type='password' placeholder='********' onChange={handleInputText}/>
+              <input className='input confirmPassword' type='password' placeholder='********' onChange={handleInputText}/>
               </>)
     } 
     if (inputType === 'phone') {
       return (<>
               <label className='label'>Telefono</label>
-              <input className='input' type='text' placeholder='55 1234 5678' onChange={handleInputText}/>
+              <input className='input phone' type='text' placeholder='55 1234 5678' onChange={handleInputText}/>
               </>)
     } 
     if (inputType === 'name') {
       return (<>
               <label className='label'>Nombre</label>
-              <input className='input' type='text' placeholder='Arturo Hernandez' onChange={handleInputText}/>
+              <input className='input name' type='text' placeholder='Arturo Hernandez' onChange={handleInputText}/>
               </>)
     } 
     if (inputType === 'range1-20') {
       return (<>
               <label className='label'>Cuantas personas?</label>
-              <input className='input' type='text' placeholder='1 - 20' onChange={handleInputText}/>
+              <input className='input range1' type='text' placeholder='1 - 20' onChange={handleInputText}/>
               </>)
     } 
     if (inputType === 'range30-60') {
       return (<>
               <label className='label'>Cuantas personas?</label>
-              <input className='input' type='text' placeholder='30 - 60'onChange={handleInputText}/>
+              <input className='input range2' type='text' placeholder='30 - 60'onChange={handleInputText}/>
               </>)
     } 
     if (inputType === 'date') {
       return (<>
               <label className='label'>Fecha</label>
-              <input className='input' type='date' onChange={handleInputText}/>
+              <input className='input date' type='date' onChange={handleInputText}/>
               </>)
     }
     if (inputType === 'code') {
       return (<>
-              <input className='input' type='text' placeholder='Codigo de Regalo' onChange={handleInputText}/>
+              <input className='input code' type='text' placeholder='Codigo de Regalo' onChange={handleInputText}/>
               </>)
     } 
   }

@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { clients } from '../api/fakeData';
-import Client from '../models/client';
+import useUser from '../hooks/useUser';
 
 export const SesionContext = createContext();
 
@@ -9,17 +8,20 @@ export function SesionProvider ({children}) {
   const [sesion, setSesion] = useState(JSON.parse(sessionStorage.getItem('sesion')))
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')))
   const [errors, setErrors] = useState([])
+  const {userDB, logIn, signUp} = useUser()
 
-  function login(userEmail, password) {
-    clients.forEach(client => {
-      if(client.email === userEmail && client.password === password) {
-        const user = client
-        sessionStorage.setItem('sesion', true)
-        sessionStorage.setItem('user', JSON.stringify(user))
-        setSesion(true)
-        setUser(user)
-      }
-    })
+  async function login(userEmail, password) {
+    await logIn(userEmail, password)
+    if (userDB !== null) {
+      sessionStorage.setItem('sesion', true)
+      sessionStorage.setItem('user', JSON.stringify(userDB))
+      setSesion(true)
+      setUser(userDB)
+      return true
+    } else {
+      window.alert('Usuario o contraseña incorrectos')
+      return false
+    }
   }
 
   function logout() {
@@ -40,9 +42,24 @@ export function SesionProvider ({children}) {
     }
   }
 
-  function register(id, name, email, phone, password) {
-    const newUser = new Client(id, name, email, phone, password)
-    console.log(newUser);
+  async function register(name, email, phone, password) {
+    const newUser = {
+      name: name,
+      email: email,
+      phone: phone,
+      password: password
+    }
+    await signUp(newUser) 
+    if (userDB !== null) {
+      sessionStorage.setItem('sesion', true)
+      sessionStorage.setItem('user', JSON.stringify(userDB))
+      setSesion(true)
+      setUser(userDB)
+      return true
+    } else {
+      window.alert('Error al registrar el usuario')
+      return false
+    }
   }
 
   function setNewError() {
@@ -50,12 +67,10 @@ export function SesionProvider ({children}) {
     const listErrors = []
     listErrors.push('error')
     setErrors(listErrors)
-    console.log(errors);
   }
 
   function clearErrors() {
     setErrors([])
-    console.log(errors);
   }
 
   function isFormError() {

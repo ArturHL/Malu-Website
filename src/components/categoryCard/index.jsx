@@ -1,9 +1,11 @@
 import './index.css'
 import PropTypes from 'prop-types'
 
-const CategoryCard = ({title, url, click}) => {
+const CategoryCard = ({id, title, url, click}) => {
   function location() {
     if (!click) return
+    sessionStorage.setItem('category', JSON.stringify({id, title, url}));
+    console.log(sessionStorage.getItem('category'));
     window.location.href = `/category`
   } 
   const style = {

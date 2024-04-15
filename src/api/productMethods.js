@@ -20,7 +20,7 @@ async function getProductById(productId) {
 
 async function getProductByCategoryId(categoryId) {
   try {
-    const response = await fetch(`${url}/category/${categoryId}`);
+    const response = await fetch(`${url}/categoryId/${categoryId}`);
     return response.json();
   } catch (error) {
     console.error(error);

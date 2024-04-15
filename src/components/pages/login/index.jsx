@@ -10,9 +10,9 @@ import InputForm from '../../inputForm';
 const Login = () => {
   const [form, setForm] = useState('login')
 
-  const { login, isFormError } = useContext(SesionContext);
+  const { login, isFormError, register } = useContext(SesionContext);
 
-  function loginUser() {
+  async function loginUser() {
     document.querySelector(".formLogin").addEventListener("submit", function(event) {
     event.preventDefault()});
     if(isFormError()) {
@@ -23,8 +23,31 @@ const Login = () => {
     const mail = document.querySelector('.mail')
     const password = document.querySelector('.password')
 
-    login(mail.value, password.value)
-    location.href = '/profile'
+    const redirection = await login(mail.value, password.value)
+    redirection ? location.href = '/profile' : console.log('error')
+  }
+
+  async function registerUser() {
+    document.querySelector(".formRegister").addEventListener("submit", function(event) {
+    event.preventDefault()});
+    if(isFormError()) {
+      console.log('error');
+      return 
+    }
+
+    const name = document.querySelector('.name')
+    const mail = document.querySelector('.mail')
+    const phone = document.querySelector('.phone')
+    const password = document.querySelector('.password')
+    const confirmPassword = document.querySelector('.confirmPassword')
+
+    if(password.value !== confirmPassword.value) {
+      console.log('Las contraseñas no coinciden')
+      return
+    }
+
+    const redirection = await register(name.value, mail.value, phone.value, password.value)
+    redirection ? location.href = '/profile' : console.log('error')
   }
 
   return (
@@ -49,7 +72,7 @@ const Login = () => {
               <InputForm type='password'/>
               <InputForm type='confirmPassword'/>
               </div>
-              <button className='buttonA' onClick={()=>{console.log('click')}}>Registrarse</button>
+              <button className='buttonA' onClick={registerUser}>Registrarse</button>
             </form>
           )
         }

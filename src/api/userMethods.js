@@ -6,21 +6,23 @@ async function getUserByEmail(email) {
     return response.json();
   } catch (error) {
     console.error(error);
+    return false;
   }
 }
 
 async function saveNewUser(user) {
   try {
-    const response = await fetch(url, {
+    await fetch(`${url}/save`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(user),
     });
-    return response.json();
+    return true;
   } catch (error) {
     console.error(error);
+    return false;
   }
 }
 
