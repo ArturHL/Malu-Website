@@ -8,10 +8,12 @@ export function SesionProvider ({children}) {
   const [sesion, setSesion] = useState(JSON.parse(sessionStorage.getItem('sesion')))
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')))
   const [errors, setErrors] = useState([])
-  const {userDB, logIn, signUp} = useUser()
+  const {logIn, signUp, updateUser} = useUser()
+
+  // User Actions
 
   async function login(userEmail, password) {
-    await logIn(userEmail, password)
+    const userDB = await logIn(userEmail, password)
     if (userDB !== null) {
       sessionStorage.setItem('sesion', true)
       sessionStorage.setItem('user', JSON.stringify(userDB))
@@ -31,17 +33,6 @@ export function SesionProvider ({children}) {
     setUser({})
   }
 
-  function isUserLogged() {
-    return {sesion, user}
-  }
-
-  function loginRedirect() {
-    if(!sesion) {
-      window.alert('Debes iniciar sesión para continuar')
-      window.location.href = '/login'
-    }
-  }
-
   async function register(name, email, phone, password) {
     const newUser = {
       name: name,
@@ -49,7 +40,7 @@ export function SesionProvider ({children}) {
       phone: phone,
       password: password
     }
-    await signUp(newUser) 
+    const userDB = await signUp(newUser) 
     if (userDB !== null) {
       sessionStorage.setItem('sesion', true)
       sessionStorage.setItem('user', JSON.stringify(userDB))
@@ -59,6 +50,29 @@ export function SesionProvider ({children}) {
     } else {
       window.alert('Error al registrar el usuario')
       return false
+    }
+  }
+
+  async function updateUserData(id, user) {
+    const updatedUser = await updateUser(id, user)
+    if (updatedUser) {
+      setUser(updatedUser)
+      return true
+    } else {
+      return false
+    }
+  }
+
+  // App Logic
+
+  function isUserLogged() {
+    return {sesion, user}
+  }
+
+  function loginRedirect() {
+    if(!sesion) {
+      window.alert('Debes iniciar sesión para continuar')
+      window.location.href = '/login'
     }
   }
 
@@ -95,7 +109,8 @@ export function SesionProvider ({children}) {
       register, 
       setNewError,
       clearErrors,
-      isFormError
+      isFormError,
+      updateUserData
     }}>
       {children}
     </SesionContext.Provider>

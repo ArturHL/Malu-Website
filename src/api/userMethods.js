@@ -29,7 +29,7 @@ async function saveNewUser(user) {
 async function updateUserById(userId, user) {
   try {
     const response = await fetch(`${url}/${userId}`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },

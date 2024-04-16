@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { getUserByEmail, saveNewUser } from '../api/userMethods';
+import { getUserByEmail, saveNewUser, updateUserById } from '../api/userMethods';
+import { getAllAddressesByUser } from '../api/addressMethods';
 
 export default function useUser() {
   const [userDB, setUserDB] = useState(null);
@@ -10,10 +11,13 @@ export default function useUser() {
     const user = await getUserByEmail(email);
     if (user.password === password) {
       setUserDB(user);
+      setIsLoading(false);
+      return userDB;
     } else {
       setUserDB(null);
+      setIsLoading(false);
+      return userDB;
     }
-    setIsLoading(false);
   }
 
   async function signUp(newUser) {
@@ -21,14 +25,27 @@ export default function useUser() {
     const user = await saveNewUser(newUser);
     if (user) {
       setUserDB(user);
+      setIsLoading(false);
+      return userDB;
     } else {
       setUserDB(null);
+      setIsLoading(false);
+      return userDB;
     }
-    setIsLoading(false);
   }
 
-  async function updateUser(user) {
-    // Code to update a user
+  async function updateUser(id, user) {
+    setIsLoading(true);
+    const updatedUser = await updateUserById(id, user);
+    if (updatedUser) {
+      setUserDB(updatedUser);
+      setIsLoading(false);
+      return userDB;
+    } else {
+      setUserDB(null);
+      setIsLoading(false);
+      return userDB;
+    }
   }
 
   async function deleteUser(id) {
@@ -38,15 +55,24 @@ export default function useUser() {
   // Address methods //
 
   async function getAddressesByUserId(userId) {
-    // Code to get addresses by user id
+    setIsLoading(true);
+    const addresses = await getAllAddressesByUser(userId);
+    setIsLoading(false);
+    return addresses;
   }
 
   async function createAddress(address) {
-    // Code to create an address
+    setIsLoading(true);
+    const newAddress = await createAddress(address);
+    setIsLoading(false);
+    return newAddress;
   }
 
   async function deleteAddress(id) {
-    // Code to delete an address
+    setIsLoading(true);
+    const deletedAddress = await deleteAddress(id);
+    setIsLoading(false);
+    return deletedAddress;
   }
 
   // Payment methods //

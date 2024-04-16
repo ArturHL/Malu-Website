@@ -64,4 +64,4 @@ async function deleteAddress(addressId) {
   }
 }
 
-export { getAllAddresses, getAllAddressesByUser, getAddressById, createAddress, updateAddress, deleteAddress };
+export { getAllAddressesByUser, getAddressById, createAddress, updateAddress, deleteAddress };

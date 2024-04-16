@@ -2,10 +2,12 @@ import './index.css';
 
 import { useContext, useState } from 'react';
 import { SesionContext } from '../../../context/sesionContext';
+import { MdCancelPresentation } from "react-icons/md";
 import EditForm from '../../editForm';
+import InputForm from '../../inputForm';
 
 const ProfilePage = () => {
-  const { loginRedirect, logout, isUserLogged } = useContext(SesionContext);
+  const { logout, isUserLogged, loginRedirect } = useContext(SesionContext);
   const { sesion, user } = isUserLogged();
   const [activeEdit, setActiveEdit] = useState('none');
 
@@ -67,7 +69,8 @@ const ProfilePage = () => {
                   <p>Calle 15 Ext. 1 Int. 1</p> <button className='buttonB'>Eliminar</button>
                  </div> */}
             </div>
-            <button className='buttonA'>Agregar Direccion de Envio</button>
+            <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('address')}}>Agregar Direccion de Envio</button>
+            <EditForm type='address' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
           </div>
 
           <div className="section">
@@ -89,7 +92,8 @@ const ProfilePage = () => {
                 <button className='buttonB'>Eliminar</button>
               </div> */}
             </div>
-            <button className='buttonA'>Agregar Método de Pago</button>
+            <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('payment')}}>Agregar Método de Pago</button>
+            <EditForm type='payment' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
           </div>
 
           <div className="section">
