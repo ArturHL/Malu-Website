@@ -10,6 +10,7 @@ import { SesionContext } from '../../context/sesionContext';
 
 const EditForm = ({ type, activeEdit, setActiveEdit }) => {
   const { updateUserData } = useContext(SesionContext);
+  const { createNewAddress, createNewPayment } = useUser();
 
   function inputType (type) {
     switch (type) {
@@ -28,10 +29,7 @@ const EditForm = ({ type, activeEdit, setActiveEdit }) => {
     }
   }
 
-  async function update(type) {
-    document.querySelector('.editForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-    });
+  async function updateUserInfo(type) {
 
     const user = JSON.parse(sessionStorage.getItem('user'));
 
@@ -64,38 +62,65 @@ const EditForm = ({ type, activeEdit, setActiveEdit }) => {
     location.reload();
   }
 
-  async function saveNewAddress() {
-    // const user = JSON.parse(sessionStorage.getItem('user'));
-    // const address = document.querySelector('.addressInput').value;
+  async function saveAddress() {
+    const user = JSON.parse(sessionStorage.getItem('user'));
 
-    // user.address.push(address);
+    const address = {
+      idUser: user.id,
+      street: `${document.querySelector('.street').value} ${document.querySelector('.numExt').value}`,
+      number: document.querySelector('.numInt').value,
+      postalCode: document.querySelector('.postalCode').value,
+      city: document.querySelector('.city').value,
+      state: document.querySelector('.state').value
+    }
 
-    // sessionStorage.setItem('user', JSON.stringify(user));
+    const isOk = await createNewAddress(address);
 
-    // const newUser = {
-    //   address: user.address
-    // }
+    if (isOk) {
+      window.alert('Error al guardar la direccion');
+      return;
+    } else {
+      location.reload();
+    }
 
-    // await updateUserData(user.id, newUser);
-
-    // location.reload();
   }
 
   async function saveNewPayment() {
-    // const user = JSON.parse(sessionStorage.getItem('user'));
-    // const payment = document.querySelector('.paymentInput').value;
+    const user = JSON.parse(sessionStorage.getItem('user'));
 
-    // user.payMethods.push(payment);
+    const payment = {
+      idUser: user.id,
+      type: document.querySelector('.type').value,
+      number: document.querySelector('.cardNumber').value,
+      expirationDate: document.querySelector('.expiration').value,
+      cvv: document.querySelector('.cvv').value,
+    }
 
-    // sessionStorage.setItem('user', JSON.stringify(user));
+   const isOk = await createNewPayment(payment);
 
-    // const newUser = {
-    //   payMethods: user.payMethods
-    // }
+    if (!isOk) {
+      window.alert('Error al guardar el metodo de pago');
+      return;
+    } else {
+      location.reload();
+    }
+  }
 
-    // await updateUserData(user.id, newUser);
-
-    // location.reload();
+  async function handleSaveFunction(type) {
+    document.querySelector('.editForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+    switch (type) {
+      case 'address':
+        await saveAddress();
+        break;
+      case 'payment':
+        await saveNewPayment();
+        break;
+      default:
+        await updateUserInfo(type);
+        break;
+    }
   }
 
   return (
@@ -103,7 +128,7 @@ const EditForm = ({ type, activeEdit, setActiveEdit }) => {
       <form className='editForm'>
         <MdCancelPresentation className='returnMenu' onClick={()=>{setActiveEdit('none')}}/>
         {inputType(type)}
-        <button type="submit" className='buttonA' onClick={()=>{update(type)}}>Guardar</button>
+        <button type="submit" className='buttonA' onClick={()=>{handleSaveFunction(type)}}>Guardar</button>
       </form> 
     </section>
   );

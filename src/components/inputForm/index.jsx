@@ -74,29 +74,29 @@ const InputForm = ({type}) => {
     if (inputType === 'addressInput') {
       return (<>
               <label className='label'>Calle</label>
-              <input className='input addressInput' type='text' placeholder='Av. Universidad' onChange={handleInputText}/>
+              <input className='input street' type='text' placeholder='Av. Universidad' onChange={handleInputText}/>
               <label className='label'>Numero Ext.</label>
-              <input className='input addressInput' type='text' placeholder='1555' onChange={handleInputText}/>
+              <input className='input numExt' type='text' placeholder='1555' onChange={handleInputText}/>
               <label className='label'>Numero Int.</label>
-              <input className='input addressInput' type='text' placeholder='1' onChange={handleInputText}/>
+              <input className='input numInt' type='text' placeholder='A-Z | 202' onChange={handleInputText}/>
               <label className='label'>Codigo Postal</label>
-              <input className='input addressInput' type='text' placeholder='12345' onChange={handleInputText}/>
+              <input className='input postalCode' type='text' placeholder='12345' onChange={handleInputText}/>
               <label className='label'>Ciudad</label>
-              <input className='input addressInput' type='text' placeholder='Ciudad de Mexico' onChange={handleInputText}/>
+              <input className='input city' type='text' placeholder='Ciudad de Mexico' onChange={handleInputText}/>
               <label className='label'>Estado</label>
-              <input className='input addressInput' type='text' placeholder='CDMX' onChange={handleInputText}/>
+              <input className='input state' type='text' placeholder='CDMX' onChange={handleInputText}/>
               </>)
     }
     if (inputType === 'payment') {
       return (<>
               <label className='label'>Numero de Tarjeta</label>
-              <input className='input card' type='text' placeholder='**** **** **** 1234' onChange={handleInputText}/>
+              <input className='input cardNumber' type='text' placeholder='**** **** **** 1234' onChange={handleInputText}/>
               <label className='label'>Fecha de Expiracion</label>
-              <input className='input card' type='text' placeholder='MM/AA' onChange={handleInputText}/>
+              <input className='input expiration' type='month' placeholder='MM/AA' onChange={handleInputText}/>
               <label className='label'>Codigo de Seguridad</label>
-              <input className='input card' type='text' placeholder='123' onChange={handleInputText}/>
+              <input className='input cvv' type='text' placeholder='123' onChange={handleInputText}/>
               <label className='label'>Tipo</label>
-              <input className='input card' type='text' placeholder='Visa / Mastercard / AMEX' onChange={handleInputText}/>
+              <input className='input type' type='text' placeholder='Visa / Mastercard / AMEX' onChange={handleInputText}/>
               </>)
     }
   }

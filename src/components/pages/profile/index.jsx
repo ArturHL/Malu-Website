@@ -1,15 +1,15 @@
 import './index.css';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SesionContext } from '../../../context/sesionContext';
-import { MdCancelPresentation } from "react-icons/md";
 import EditForm from '../../editForm';
-import InputForm from '../../inputForm';
+import useUser from '../../../hooks/useUser';  
 
 const ProfilePage = () => {
   const { logout, isUserLogged, loginRedirect } = useContext(SesionContext);
   const { sesion, user } = isUserLogged();
-  const [activeEdit, setActiveEdit] = useState('none');
+  const [ activeEdit, setActiveEdit ] = useState('none');
+  const { getAddressesByUserId, deleteUserAddress, getPaymentsByUserId, deleteUserPayment, isLoading, addresses, payments } = useUser();
 
   function activeEditForm(form) {
     if (form === 'none') {
@@ -28,6 +28,8 @@ const ProfilePage = () => {
       setActiveEdit('password');
     }
   }
+
+  useEffect(() => {getAddressesByUserId(user.id); getPaymentsByUserId(user.id)}, [])
 
   return (
     <>
@@ -57,17 +59,15 @@ const ProfilePage = () => {
           <div className="section">
             <h3>Direcciones de Envio</h3>
             <div className='delivery-address'>
-              {/* {user.address.map((index, address) => {
-                console.log(index, address);
-                return (
-                  <div className='address' key={index}>
-                    <p>{`${address.street}`}</p> <button className='buttonB'>Eliminar</button>
-                  </div>
-                )
-              })} */}
-              {/*<div className='address'>
-                  <p>Calle 15 Ext. 1 Int. 1</p> <button className='buttonB'>Eliminar</button>
-                 </div> */}
+              {
+                isLoading ? <p>Cargando...</p> : addresses.map((address, index) => {
+                  return (
+                    <div className='address' key={index}>
+                      <p>{`${address.street} Int. ${address.number}`}</p> <button className='buttonB' onClick={()=>{deleteUserAddress(address.id)}}>Eliminar</button>
+                    </div>
+                  )
+                })
+              }
             </div>
             <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('address')}}>Agregar Direccion de Envio</button>
             <EditForm type='address' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
@@ -91,6 +91,17 @@ const ProfilePage = () => {
                 <p>**** **** **** 1234</p>
                 <button className='buttonB'>Eliminar</button>
               </div> */}
+              {
+                isLoading ? <p>Cargando...</p> : payments.map((payMethod, index) => {
+                  return (
+                    <div className="payment-method" key={index}>
+                      <img src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg" alt="Credit Card" />
+                      <p>**** **** **** {payMethod.number}</p>
+                      <button className='buttonB' onClick={()=>{deleteUserPayment(payMethod.id)}}>Eliminar</button>
+                    </div>
+                  )
+                })
+              }
             </div>
             <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('payment')}}>Agregar Método de Pago</button>
             <EditForm type='payment' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />

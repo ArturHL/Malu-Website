@@ -8,7 +8,7 @@ export function SesionProvider ({children}) {
   const [sesion, setSesion] = useState(JSON.parse(sessionStorage.getItem('sesion')))
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')))
   const [errors, setErrors] = useState([])
-  const {logIn, signUp, updateUser} = useUser()
+  const {logIn, signUp, updateUser}= useUser()
 
   // User Actions
 
@@ -110,7 +110,7 @@ export function SesionProvider ({children}) {
       setNewError,
       clearErrors,
       isFormError,
-      updateUserData
+      updateUserData,
     }}>
       {children}
     </SesionContext.Provider>

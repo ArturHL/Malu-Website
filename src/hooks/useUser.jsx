@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { getUserByEmail, saveNewUser, updateUserById } from '../api/userMethods';
-import { getAllAddressesByUser } from '../api/addressMethods';
+import { getAllAddressesByUser, createAddress, deleteAddress} from '../api/addressMethods';
+import { getAllPayMethodsByUserId, createPayMethod, deletePayMethod } from '../api/paymentMethods';
 
 export default function useUser() {
   const [userDB, setUserDB] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [addresses, setAddresses] = useState([]);
+  const [payments, setPayments] = useState([]);
 
   async function logIn(email, password) {
     setIsLoading(true);
@@ -57,36 +60,45 @@ export default function useUser() {
   async function getAddressesByUserId(userId) {
     setIsLoading(true);
     const addresses = await getAllAddressesByUser(userId);
+    setAddresses(addresses);
     setIsLoading(false);
-    return addresses;
   }
 
-  async function createAddress(address) {
+  async function createNewAddress(address) {
     setIsLoading(true);
     const newAddress = await createAddress(address);
     setIsLoading(false);
     return newAddress;
   }
 
-  async function deleteAddress(id) {
+  async function deleteUserAddress(id) {
     setIsLoading(true);
-    const deletedAddress = await deleteAddress(id);
+    await deleteAddress(id);
+    setAddresses(addresses.filter((address) => address.id !== id));
     setIsLoading(false);
-    return deletedAddress;
   }
 
   // Payment methods //
 
   async function getPaymentsByUserId(userId) {
-    // Code to get payments by user id
+    setIsLoading(true);
+    const payments = await getAllPayMethodsByUserId(userId);
+    setPayments(payments);
+    setIsLoading(false);
   }
 
-  async function createPayment(payment) {
-    // Code to create a payment
+  async function createNewPayment(payment) {
+    setIsLoading(true);
+    const newPayment = await createPayMethod(payment);
+    setIsLoading(false);
+    return newPayment;
   }
 
-  async function deletePayment(id) {
-    // Code to delete a payment
+  async function deleteUserPayment(id) {
+    setIsLoading(true);
+    await deletePayMethod(id);
+    setPayments(payments.filter((payment) => payment.id !== id));
+    setIsLoading(false);
   }
 
   // Order methods //
@@ -120,16 +132,18 @@ export default function useUser() {
   return {
     userDB,
     isLoading,
+    addresses,
+    payments,
     logIn,
     signUp,
     updateUser,
     deleteUser,
     getAddressesByUserId,
-    createAddress,
-    deleteAddress,
+    createNewAddress,
+    deleteUserAddress,
     getPaymentsByUserId,
-    createPayment,
-    deletePayment,
+    createNewPayment,
+    deleteUserPayment,
     getOrdersByUserId,
     createOrder,
     cancelOrder,
