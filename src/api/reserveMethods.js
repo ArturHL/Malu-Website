@@ -1,17 +1,5 @@
 const url = 'http://localhost:8080/booking';
 
-// Function to get all reservations
-async function getAllReservations() {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-}
-
 // Function to get reservations by user ID
 async function getReservationsByUserId(userId) {
   try {
@@ -42,20 +30,6 @@ async function saveReservation(reservation) {
   }
 }
 
-// Function to delete a reservation by ID
-async function deleteReservationById(reservationId) {
-  try {
-    const response = await fetch(`${url}/${reservationId}`, {
-      method: 'DELETE'
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-}
-
 // Function to update a reservation by ID
 async function updateReservationById(reservationId, updatedReservation) {
   try {
@@ -73,3 +47,5 @@ async function updateReservationById(reservationId, updatedReservation) {
     throw error;
   }
 }
+
+export { getReservationsByUserId, saveReservation, updateReservationById };

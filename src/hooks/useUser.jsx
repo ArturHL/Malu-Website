@@ -2,12 +2,16 @@ import { useState } from 'react';
 import { getUserByEmail, saveNewUser, updateUserById } from '../api/userMethods';
 import { getAllAddressesByUser, createAddress, deleteAddress} from '../api/addressMethods';
 import { getAllPayMethodsByUserId, createPayMethod, deletePayMethod } from '../api/paymentMethods';
+import { getOrderByUserId, saveOrder, updateStatusById } from '../api/orders/orderMethods';
+import { getReservationsByUserId, saveReservation, updateReservationById } from '../api/reserveMethods';
 
 export default function useUser() {
   const [userDB, setUserDB] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [addresses, setAddresses] = useState([]);
   const [payments, setPayments] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [reserves, setReserves] = useState([]);
 
   async function logIn(email, password) {
     setIsLoading(true);
@@ -88,6 +92,8 @@ export default function useUser() {
   }
 
   async function createNewPayment(payment) {
+    // Retorna 500 Internal Server Error (arreglar manejo de fechas en el backend)
+    console.log(payment);
     setIsLoading(true);
     const newPayment = await createPayMethod(payment);
     setIsLoading(false);
@@ -104,29 +110,49 @@ export default function useUser() {
   // Order methods //
 
   async function getOrdersByUserId(userId) {
-    // Code to get orders by user id
+    setIsLoading(true);
+    const orders = await getOrderByUserId(userId);
+    setOrders(orders);
+    setIsLoading(false);
   }
 
   async function createOrder(order) {
-    // Code to create an order
+    // function incomplete
+    setIsLoading(true);
+    const newOrder = await saveOrder(order);
+    setIsLoading(false);
+    return newOrder;
   }
 
   async function cancelOrder(id) {
-    // Code to cancel an order
+    setIsLoading(true);
+    const order = await updateStatusById(id, 'cancelled');
+    setIsLoading(false);
+    return order;
   }
 
   // Reserve Methods //
 
   async function getReservesByUserId(userId) {
-    // Code to get reserves by user id
+    setIsLoading(true);
+    const reserves = await getReservationsByUserId(userId);
+    setReserves(reserves);
+    setIsLoading(false);
   }
 
   async function createReserve(reserve) {
-    // Code to create a reserve
+    setIsLoading(true);
+    const newReserve = await saveReservation(reserve);
+    setIsLoading(false);
+    return newReserve;
   }
 
   async function cancelReserve(id) {
-    // Code to cancel a reserve
+    // function incomplete
+    setIsLoading(true);
+    const reserve = await updateReservationById(id, 'cancelled');
+    setIsLoading(false);
+    return reserve;
   }
   
   return {
@@ -134,6 +160,8 @@ export default function useUser() {
     isLoading,
     addresses,
     payments,
+    orders,
+    reserves,
     logIn,
     signUp,
     updateUser,

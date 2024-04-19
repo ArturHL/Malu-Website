@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import useUser from '../../hooks/useUser';
 
 import { MdCancelPresentation } from "react-icons/md";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SesionContext } from '../../context/sesionContext';
 
 const EditForm = ({ type, activeEdit, setActiveEdit }) => {
   const { updateUserData } = useContext(SesionContext);
-  const { createNewAddress, createNewPayment } = useUser();
+  const { createNewAddress, createNewPayment, getOrdersByUserId, orders, isLoading } = useUser();
 
   function inputType (type) {
     switch (type) {
@@ -26,6 +26,8 @@ const EditForm = ({ type, activeEdit, setActiveEdit }) => {
         return <InputForm type='addressInput'/>;
       case 'payment':
         return <InputForm type='payment'/>;
+      case 'orders':
+        return renderOrders();
     }
   }
 
@@ -121,6 +123,27 @@ const EditForm = ({ type, activeEdit, setActiveEdit }) => {
         await updateUserInfo(type);
         break;
     }
+  }
+
+  async function renderOrders() {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    // useEffect(async () => {await getOrdersByUserId(user.id);}, []);
+    return (
+      <div className='orders'>
+        {
+          isLoading ? <p>Cargando...</p> : orders.map((order, index) => {
+            return (
+              <div className='order' key={index}>
+                <p>{`Pedido #${order.id}`}</p>
+                <p>{`Fecha: ${order.date}`}</p>
+                <p>{`Total: $${order.total}`}</p>
+                <p>{`Estado: ${order.status}`}</p>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
   }
 
   return (

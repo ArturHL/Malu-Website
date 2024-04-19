@@ -9,15 +9,6 @@ async function getAllOrders() {
   }
 }
 
-async function getOrderById(orderId) {
-  try {
-    const response = await fetch(`${url}/${orderId}`);
-    return response.json();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 async function getOrderByUserId(userId) {
   try {
     const response = await fetch(`${url}/user/${userId}`);
@@ -57,4 +48,4 @@ async function updateStatusById(orderId, status) {
   }
 }
 
-export { getAllOrders, getOrderById, getOrderByUserId, saveOrder, updateStatusById };
+export { getAllOrders, getOrderByUserId, saveOrder, updateStatusById };

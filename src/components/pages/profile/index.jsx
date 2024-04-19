@@ -53,6 +53,8 @@ const ProfilePage = () => {
 
           <div className="section">
             <button className='buttonB'>Ver Historial de Pedidos</button>
+            {/* Infinite loop */}
+            {/* <EditForm type='orders' activeEdit={activeEdit} setActiveEdit={setActiveEdit}/> */}
             <button className='buttonA'><a href="/menu">Realizar Nuevo Pedido</a></button>
           </div>
 
@@ -73,24 +75,9 @@ const ProfilePage = () => {
             <EditForm type='address' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
           </div>
 
-          <div className="section">
+          {/* <div className="section">
             <h3>Métodos de Pago</h3>
             <div className="payment-methods">
-              {/* {user.payMethods.map((index, payMethod) => {
-                console.log(index, payMethod);
-                return (
-                  <div className="payment-method" key={index}>
-                    <img src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg" alt="Credit Card" />
-                    <p>**** **** **** 1234</p>
-                    <button className='buttonB'>Eliminar</button>
-                  </div>
-                )
-              })} */}
-              {/* <div className="payment-method">
-                <img src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg" alt="Credit Card" />
-                <p>**** **** **** 1234</p>
-                <button className='buttonB'>Eliminar</button>
-              </div> */}
               {
                 isLoading ? <p>Cargando...</p> : payments.map((payMethod, index) => {
                   return (
@@ -105,7 +92,7 @@ const ProfilePage = () => {
             </div>
             <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('payment')}}>Agregar Método de Pago</button>
             <EditForm type='payment' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
-          </div>
+          </div> */}
 
           <div className="section">
             <button className='buttonB'>Pedir Ayuda</button>
