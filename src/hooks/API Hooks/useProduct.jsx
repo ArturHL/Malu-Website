@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { getProductByCategoryId } from '../api/productMethods';
-import { getImgByProductId } from '../api/imagesMethods';
+import { getProductByCategoryId } from '../../api/productMethods';
+import { getImgByProductId } from '../../api/imagesMethods';
 
 export default function useProduct() {
   const [product, setProduct] = useState([]);

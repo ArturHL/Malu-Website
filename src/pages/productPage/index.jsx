@@ -1,31 +1,17 @@
-import CategoryCard from '../../categoryCard';
-import ProductCard from '../../productCard';
+import CategoryCard from '../../components/categoryCard';
+import ProductCard from '../../components/productCard';
 import { IoIosArrowUp } from "react-icons/io";
 import './index.css'
-import useProduct from '../../../hooks/useProduct';
+import useProduct from '../../hooks/API Hooks/useProduct';
 import { useEffect } from 'react';
 
 const ProductPage = () => {
   const { product, isLoading, getProductsByCategoryId } = useProduct();
-  useEffect(() => {
-    getProductsByCategoryId();
-  }, []);
+
+  useEffect(() => { getProductsByCategoryId(); }, []);
   return (
     <section className='productMenuSection'>
       <CategoryCard click={false} title={JSON.parse(sessionStorage.getItem('category')).title} url={JSON.parse(sessionStorage.getItem('category')).url}/>
-      {/* {
-        products.map((product) => {
-          return (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-            />
-          )
-        })
-      } */}
       {
         isLoading ? 
           <p>Cargando...</p> 

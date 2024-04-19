@@ -1,33 +1,23 @@
 import './index.css';
 
-import { useContext, useEffect, useState } from 'react';
-import { SesionContext } from '../../../context/sesionContext';
+import { useEffect } from 'react';
 import EditForm from '../../editForm';
-import useUser from '../../../hooks/useUser';  
 
 const ProfilePage = () => {
-  const { logout, isUserLogged, loginRedirect } = useContext(SesionContext);
-  const { sesion, user } = isUserLogged();
-  const [ activeEdit, setActiveEdit ] = useState('none');
-  const { getAddressesByUserId, deleteUserAddress, getPaymentsByUserId, deleteUserPayment, isLoading, addresses, payments } = useUser();
-
-  function activeEditForm(form) {
-    if (form === 'none') {
-      setActiveEdit('none');
-    }
-    if (form === 'name') {
-      setActiveEdit('name');
-    }
-    if (form === 'phone') {
-      setActiveEdit('phone');
-    }
-    if (form === 'mail') {
-      setActiveEdit('mail');
-    }
-    if (form === 'password') {
-      setActiveEdit('password');
-    }
-  }
+  const { logout,
+    loginRedirect,
+    sesion,
+    user,
+    activeEdit,
+    setActiveEdit,
+    getAddressesByUserId,
+    deleteUserAddress,
+    getPaymentsByUserId,
+    deleteUserPayment,
+    isLoading,
+    addresses,
+    payments,
+    activeEditForm } = useProfilePage();
 
   useEffect(() => {getAddressesByUserId(user.id); getPaymentsByUserId(user.id)}, [])
 

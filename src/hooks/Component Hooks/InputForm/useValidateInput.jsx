@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { SesionContext } from '../context/sesionContext';
+import { SesionContext } from '../../../context/sesionContext';
 
 function useValidateInput(inputValue, validationType) {
   const [inputV , setInputV] = useState(inputValue)

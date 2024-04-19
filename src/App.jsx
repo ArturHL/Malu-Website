@@ -1,21 +1,21 @@
 import './App.css'
 import { useState } from 'react'
 import Navbar from './components/nav'
-import BookPage from './components/pages/books'
-import EventPage from './components/pages/events'
-import MenuPage from './components/pages/menu'
-import HomePage from './components/pages/home'
-import ProfilePage from './components/pages/profile'
-import ContactPage from './components/pages/contact'
-import ProductPage from './components/pages/productPage'
+import BookPage from './pages/books'
+import EventPage from './pages/events'
+import MenuPage from './pages/menu'
+import HomePage from './pages/home'
+import ProfilePage from './pages/profile'
+import ContactPage from './pages/contact'
+import ProductPage from './pages/productPage'
 import Footer from './components/footer'
-import Login from './components/pages/login'
+import Login from './pages/login'
 import OrderMenu from './components/orderMenu'
 
 import { CartProvider } from './context/cartContext'
 import { SesionProvider } from './context/sesionContext'
-import LoadingPage from './components/pages/loading'
-import Checkout from './components/pages/checkOut'
+// import LoadingPage from './pages/loading'
+import Checkout from './pages/checkOut'
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
       <SesionProvider>
         <Navbar />
         <CartProvider>
-          <LoadingPage />
+          {/* <LoadingPage /> */}
           {path === '/' && <HomePage />}
           {path === '/profile' && <ProfilePage />}
           {path === '/menu' && <MenuPage />}

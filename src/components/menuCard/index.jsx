@@ -1,17 +1,8 @@
 import PropTypes from 'prop-types';
 import './index.css';
 
-import { useContext } from 'react';
-import { CartContext } from '../../context/cartContext';
-import { products } from '../../api/fakeData';
-
 const MenuCard = ({id, name, description, price, image}) => {
-  const {addToCart} = useContext(CartContext);
-
-  function addProduct(id) {
-    const product = products[id]
-    addToCart(product)
-  }
+  const { addProduct } = useMenuCard()
 
   return (
     <>

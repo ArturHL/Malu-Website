@@ -1,26 +1,9 @@
 import './index.css'
 import PropTypes from 'prop-types'
-import { useContext } from 'react';
-import { CartContext } from '../../context/cartContext';
-import { products } from '../../api/fakeData';
+import useProductCard from '../../hooks/useProductCard'
 
 const ProductCard = ({id, name, price, image}) => {
-  const {cart, addToCart, removeFromCart} = useContext(CartContext);
-
-  function addProduct(id) {
-    const product = products[id]
-    addToCart(product)
-  }
-
-  function isInCart(id) {
-    const product = cart.find((product) => product.id === id)
-    return product ? true : false
-  }
-
-  function productQuantity(id) {
-    const product = cart.find((product) => product.id === id)
-    return product ? product.quantity : 0
-  }
+  const {addProduct, isInCart, productQuantity, removeFromCart} = useProductCard()
 
   return (
     <div className='productCard'>

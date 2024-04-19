@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { getUserByEmail, saveNewUser, updateUserById } from '../api/userMethods';
-import { getAllAddressesByUser, createAddress, deleteAddress} from '../api/addressMethods';
-import { getAllPayMethodsByUserId, createPayMethod, deletePayMethod } from '../api/paymentMethods';
-import { getOrderByUserId, saveOrder, updateStatusById } from '../api/orders/orderMethods';
-import { getReservationsByUserId, saveReservation, updateReservationById } from '../api/reserveMethods';
+import { getUserByEmail, saveNewUser, updateUserById } from '../../api/userMethods';
+import { getAllAddressesByUser, createAddress, deleteAddress} from '../../api/addressMethods';
+import { getAllPayMethodsByUserId, createPayMethod, deletePayMethod } from '../../api/paymentMethods';
+import { getOrderByUserId, saveOrder, updateStatusById } from '../../api/orders/orderMethods';
+import { getReservationsByUserId, saveReservation, updateReservationById } from '../../api/reserveMethods';
 
 export default function useUser() {
   const [userDB, setUserDB] = useState(null);

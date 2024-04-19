@@ -1,14 +1,10 @@
 import CategoryCard from '../../categoryCard';
 import WhatsAppBtn from '../../whatsAppBtn';
+import useEventPage from '../../hooks/useEventPage';
 import './index.css';
 
 const EventPage = () => {
-  function dropSubMenu(className){
-    const subMenu = document.querySelector(`.${className}`);
-    subMenu.classList.contains('inactive') ? subMenu.classList.toggle('inactive') 
-    : setTimeout(()=>{subMenu.classList.toggle('inactive')}, 700);
-    setTimeout(()=>{subMenu.classList.toggle('dropSubMenu');}, 1);
-  }
+  const { dropSubMenu } = useEventPage();
 
   return (
     <>

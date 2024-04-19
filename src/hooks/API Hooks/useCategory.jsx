@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Category from "../models/category";
-import { getAllCategories, getCategoryById, getCategorybyName, saveCategory, updateCategory, deleteCategory } from "../api/categoryMethods";
-import { getImgByCategoryId } from "../api/imagesMethods";
+import Category from "../../models/category";
+import { getAllCategories } from "../../api/categoryMethods";
+import { getImgByCategoryId } from "../../api/imagesMethods";
 
 export default function useCategory() {
   const [category, setCategory] = useState([]);

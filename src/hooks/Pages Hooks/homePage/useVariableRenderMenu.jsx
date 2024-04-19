@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-import MenuCard from '../components/menuCard';
-
-import {products} from '../api/fakeData.js'
+import MenuCard from '../../../components/menuCard/index.jsx';
+import {products} from '../../../api/fakeData.js'
 
 const useVariableRenderMenu = () => {
   const [width, setWidth] = useState(window.innerWidth);

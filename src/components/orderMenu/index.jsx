@@ -1,22 +1,15 @@
 import './index.css'
 
-import { useContext, useEffect } from 'react';
-import { CartContext } from '../../context/cartContext';
 import { IoIosArrowUp } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 import ProductCard from '../productCard';
-import useAnimateOrder from '../../hooks/useAnimateOrder';
+import useOrderMenu from '../../hooks/Component Hooks/OrderMenu/useOrderMenu';
 
 function OrderMenu() {
-  const {translate, rotateIcon} = useAnimateOrder(false);
-  const {cart, clearCart, priceTotal} = useContext(CartContext);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {translate('productsMenu', true); cart.length == 0 ? translate('productsMenu', false) : null}, [cart.length]);
+  const {translate, rotateIcon, cart, clearCart, priceTotal, payCart} = useOrderMenu()
 
-  function payCart (cart) {
-    console.log(cart);
-  }
+  useEffect(() => {translate('productsMenu', true); cart.length == 0 ? translate('productsMenu', false) : null}, [cart.length]);
   return (
     <>
       <section className='orderMenu' style={cart.length > 0 ? {display: 'block'} : {display: 'none'}}>
