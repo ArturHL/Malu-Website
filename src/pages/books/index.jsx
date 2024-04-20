@@ -1,7 +1,7 @@
-import CategoryCard from '../../categoryCard';
+import CategoryCard from '../../components/categoryCard';
 import './index.css';
 
-import InputForm from '../../inputForm';
+import InputForm from '../../components/inputForm';
 
 const BookPage = () => {
   return (

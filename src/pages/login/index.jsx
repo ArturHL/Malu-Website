@@ -1,7 +1,8 @@
 import './index.css'
 
 import { IoIosArrowUp } from "react-icons/io";
-import InputForm from '../../inputForm';
+import InputForm from '../../components/inputForm';
+import useLoginPage from '../../hooks/Pages_Hooks/useLoginPage';
 
 const Login = () => {
   const { form, setForm, loginUser, registerUser } = useLoginPage();

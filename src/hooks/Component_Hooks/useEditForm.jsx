@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { SesionContext } from '../../context/sesionContext';
-import useUser from '../../hooks/useUser';
-import InputForm from '../inputForm';
+import useUser from '../../hooks/API_Hooks/useUser';
+import InputForm from '../../components/inputForm';
 
 export default function useEditForm(type) {
   const { updateUserData } = useContext(SesionContext);

@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react';
-import { CartContext } from '../../context/cartContext';
-import useAnimateOrder from '../../hooks/useAnimateOrder';
+import { useContext } from 'react';
+import { CartContext } from '../../../context/cartContext';
+import useAnimateOrder from '../../../hooks/Component_Hooks/OrderMenu/useAnimateOrder';
 
 export default function useOrderMenu() {
   const {translate, rotateIcon} = useAnimateOrder(false);

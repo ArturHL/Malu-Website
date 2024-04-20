@@ -1,12 +1,12 @@
-import useUser from '../../../hooks/useUser';  
+import useUser from '../../hooks/API_Hooks/useUser';  
 import { useContext, useState } from 'react';
-import { SesionContext } from '../../../context/sesionContext';
+import { SesionContext } from '../../context/sesionContext';
 
 export default function useProfilePage() {
+  const { getAddressesByUserId, deleteUserAddress, getPaymentsByUserId, deleteUserPayment, isLoading, addresses, payments } = useUser();
   const { logout, isUserLogged, loginRedirect } = useContext(SesionContext);
   const { sesion, user } = isUserLogged();
   const [ activeEdit, setActiveEdit ] = useState('none');
-  const { getAddressesByUserId, deleteUserAddress, getPaymentsByUserId, deleteUserPayment, isLoading, addresses, payments } = useUser();
 
   function activeEditForm(form) {
     if (form === 'none') {
@@ -33,14 +33,14 @@ export default function useProfilePage() {
     sesion,
     user,
     activeEdit,
+    isLoading,
+    addresses,
+    payments,
     setActiveEdit,
     getAddressesByUserId,
     deleteUserAddress,
     getPaymentsByUserId,
     deleteUserPayment,
-    isLoading,
-    addresses,
-    payments,
     activeEditForm
   }
 }

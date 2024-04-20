@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useContext } from 'react';
-import { SesionContext } from '../../../context/sesionContext';
+import { SesionContext } from '../../context/sesionContext';
 
 export default function useLoginPage() {
   const [form, setForm] = useState('login')

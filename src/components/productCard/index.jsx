@@ -1,6 +1,6 @@
 import './index.css'
 import PropTypes from 'prop-types'
-import useProductCard from '../../hooks/useProductCard'
+import useProductCard from '../../hooks/Component_Hooks/useProductCard'
 
 const ProductCard = ({id, name, price, image}) => {
   const {addProduct, isInCart, productQuantity, removeFromCart} = useProductCard()

@@ -1,10 +1,10 @@
-import CategoryCard from '../../categoryCard';
-import WhatsAppBtn from '../../whatsAppBtn';
-import useEventPage from '../../hooks/useEventPage';
+import CategoryCard from '../../components/categoryCard';
+import WhatsAppBtn from '../../components/whatsAppBtn';
+import useEventsPage from '../../hooks/Pages_Hooks/useEventsPage';
 import './index.css';
 
 const EventPage = () => {
-  const { dropSubMenu } = useEventPage();
+  const { dropSubMenu } = useEventsPage();
 
   return (
     <>

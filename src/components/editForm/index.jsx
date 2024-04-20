@@ -2,7 +2,7 @@ import './index.css';
 
 import PropTypes from 'prop-types';
 import { MdCancelPresentation } from "react-icons/md";
-import useEditForm from '../../hooks/Component Hooks/useEditForm';
+import useEditForm from '../../hooks/Component_Hooks/useEditForm';
 
 const EditForm = ({ type, activeEdit, setActiveEdit }) => {
   const { inputType, handleSaveFunction } = useEditForm(type);

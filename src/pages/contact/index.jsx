@@ -1,5 +1,5 @@
 import './index.css';
-import ContactCard from '../../contactCard';
+import ContactCard from '../../components/contactCard';
 
 const ContactPage = () => {
   return (

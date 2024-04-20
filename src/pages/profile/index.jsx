@@ -1,7 +1,8 @@
 import './index.css';
 
 import { useEffect } from 'react';
-import EditForm from '../../editForm';
+import EditForm from '../../components/editForm';
+import useProfilePage from '../../hooks/Pages_Hooks/useProfilePage';
 
 const ProfilePage = () => {
   const { logout,

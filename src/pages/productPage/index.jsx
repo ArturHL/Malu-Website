@@ -2,7 +2,7 @@ import CategoryCard from '../../components/categoryCard';
 import ProductCard from '../../components/productCard';
 import { IoIosArrowUp } from "react-icons/io";
 import './index.css'
-import useProduct from '../../hooks/API Hooks/useProduct';
+import useProduct from '../../hooks/API_Hooks/useProduct';
 import { useEffect } from 'react';
 
 const ProductPage = () => {

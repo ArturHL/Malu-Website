@@ -1,5 +1,6 @@
 import './index.css'
 import PropTypes from 'prop-types'
+import useCategoryCard from '../../hooks/Component_Hooks/useCategoryCard'
 
 const CategoryCard = ({id, title, url, click}) => {
   const { location, style } = useCategoryCard({id, title, url, click})

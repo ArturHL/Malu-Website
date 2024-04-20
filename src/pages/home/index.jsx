@@ -1,9 +1,8 @@
 import './index.css'
 
 import { PiUserCircleDuotone } from "react-icons/pi";
-import ContactCard from '../../contactCard/index.jsx';
-
-import useVariableRenderMenu from '../../../hooks/useVariableRenderMenu';
+import ContactCard from '../../components/contactCard/';
+import useVariableRenderMenu from '../../hooks/Pages_Hooks/homePage/useVariableRenderMenu';
 
 function HomePage() {
   const {variableRender} = useVariableRenderMenu();

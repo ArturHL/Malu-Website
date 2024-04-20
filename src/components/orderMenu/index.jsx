@@ -4,7 +4,8 @@ import { IoIosArrowUp } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 import ProductCard from '../productCard';
-import useOrderMenu from '../../hooks/Component Hooks/OrderMenu/useOrderMenu';
+import useOrderMenu from '../../hooks/Component_Hooks/OrderMenu/useOrderMenu';
+import { useEffect } from 'react';
 
 function OrderMenu() {
   const {translate, rotateIcon, cart, clearCart, priceTotal, payCart} = useOrderMenu()

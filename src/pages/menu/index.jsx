@@ -1,9 +1,9 @@
 import './index.css';
-import useCategory from '../../../hooks/useCategory';
+import useCategory from '../../hooks/API_Hooks/useCategory';
 import { useEffect } from 'react';
 
 // import MenuCard from '../../menuCard';
-import CategoryCard from '../../categoryCard';
+import CategoryCard from '../../components/categoryCard';
 
 const MenuPage = () => {
   const { category, isLoading, getAllCategoriesData } = useCategory();

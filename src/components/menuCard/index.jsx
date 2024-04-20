@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import './index.css';
+import useMenuCard from '../../hooks/Component_Hooks/useMenuCard';
 
 const MenuCard = ({id, name, description, price, image}) => {
   const { addProduct } = useMenuCard()
