@@ -1,8 +1,11 @@
-# React + Vite
+# React Restaurant App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## An app that receives orders and processes them in real time built with ReactJs.
 
-Currently, two official plugins are available:
+This project is currently operational as part of a restaurant in mexico city, it aims to improve the acquisition of new customers in their location. It provides the functionality for users to place orders online and the restaurant can capture them in real time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Challenges overcome
+
+## Challenges to overcome
+
+++
