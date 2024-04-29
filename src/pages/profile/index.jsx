@@ -66,15 +66,17 @@ const ProfilePage = () => {
             <EditForm type='address' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
           </div>
 
-          {/* <div className="section">
+          <div className="section">
             <h3>Métodos de Pago</h3>
             <div className="payment-methods">
               {
                 isLoading ? <p>Cargando...</p> : payments.map((payMethod, index) => {
                   return (
                     <div className="payment-method" key={index}>
-                      <img src="https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg" alt="Credit Card" />
-                      <p>**** **** **** {payMethod.number}</p>
+                      <img src={payMethod.type == 'visa' ? 'https://cdn.freebiesupply.com/logos/large/2x/visa-5-logo-svg-vector.svg' : 
+                                payMethod.type == 'mastercard' ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1200px-Mastercard-logo.svg.png' : 
+                                'https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg'} alt="Credit Card" />
+                      <p>**** **** **** {payMethod.number.slice(-4)}</p>
                       <button className='buttonB' onClick={()=>{deleteUserPayment(payMethod.id)}}>Eliminar</button>
                     </div>
                   )
@@ -83,7 +85,7 @@ const ProfilePage = () => {
             </div>
             <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('payment')}}>Agregar Método de Pago</button>
             <EditForm type='payment' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
-          </div> */}
+          </div>
 
           <div className="section">
             <button className='buttonB'>Pedir Ayuda</button>

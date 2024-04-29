@@ -4,7 +4,6 @@ async function getAllAddressesByUser(userId) {
   try {
     const response = await fetch(`${url}/${userId}`);
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -59,7 +58,6 @@ async function deleteAddress(addressId) {
       method: 'DELETE',
     });
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);

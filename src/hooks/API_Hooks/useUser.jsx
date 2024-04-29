@@ -92,8 +92,6 @@ export default function useUser() {
   }
 
   async function createNewPayment(payment) {
-    // Retorna 500 Internal Server Error (arreglar manejo de fechas en el backend)
-    console.log(payment);
     setIsLoading(true);
     const newPayment = await createPayMethod(payment);
     setIsLoading(false);

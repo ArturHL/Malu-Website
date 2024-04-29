@@ -94,7 +94,6 @@ export default function useEditForm(type) {
     }
 
    const isOk = await createNewPayment(payment);
-
     if (!isOk) {
       window.alert('Error al guardar el metodo de pago');
       return;
