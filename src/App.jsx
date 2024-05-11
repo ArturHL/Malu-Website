@@ -13,7 +13,7 @@ import Login from './pages/login'
 import OrderMenu from './components/orderMenu'
 
 import { CartProvider } from './context/cartContext'
-import { SesionProvider } from './context/sesionContext'
+import { SessionProvider } from './context/sessionContext'
 // import LoadingPage from './pages/loading'
 import Checkout from './pages/checkOut'
 
@@ -28,7 +28,7 @@ function App() {
   
   return (
     <>
-      <SesionProvider>
+      <SessionProvider>
         <Navbar />
         <CartProvider>
           {/* <LoadingPage /> */}
@@ -44,7 +44,7 @@ function App() {
           <OrderMenu />
         </CartProvider>
         <Footer />
-      </SesionProvider>
+      </SessionProvider>
     </>
   )
 }

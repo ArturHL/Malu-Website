@@ -2,9 +2,9 @@ import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useUser from '../hooks/API_Hooks/useUser';
 
-export const SesionContext = createContext();
+export const SessionContext = createContext();
 
-export function SesionProvider ({children}) {
+export function SessionProvider ({children}) {
   const [sesion, setSesion] = useState(JSON.parse(sessionStorage.getItem('sesion')))
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')))
   const [errors, setErrors] = useState([])
@@ -101,7 +101,7 @@ export function SesionProvider ({children}) {
   }, [sesion, user])
 
   return(
-    <SesionContext.Provider value={{
+    <SessionContext.Provider value={{
       login,
       logout,
       isUserLogged,
@@ -113,10 +113,10 @@ export function SesionProvider ({children}) {
       updateUserData,
     }}>
       {children}
-    </SesionContext.Provider>
+    </SessionContext.Provider>
   )
 }
 
-SesionProvider.propTypes = {
+SessionProvider.propTypes = {
   children: PropTypes.node.isRequired
 }

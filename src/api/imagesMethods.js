@@ -25,9 +25,9 @@ async function getImgByProductId(productId) {
 async function getImgByUserId(userId) {
   try {
     const response = await fetch(`${userUrl}/${userId}`);
-    return response.json();
+    return response;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 

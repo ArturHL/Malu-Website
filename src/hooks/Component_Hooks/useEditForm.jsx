@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { SesionContext } from '../../context/sesionContext';
+import { SessionContext } from '../../context/sessionContext';
 import useUser from '../../hooks/API_Hooks/useUser';
 import InputForm from '../../components/inputForm';
 
 export default function useEditForm(type) {
-  const { updateUserData } = useContext(SesionContext);
+  const { updateUserData } = useContext(SessionContext);
   const { createNewAddress, createNewPayment, getOrdersByUserId, orders, isLoading } = useUser();
 
   function inputType (type) {

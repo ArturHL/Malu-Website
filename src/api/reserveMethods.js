@@ -15,7 +15,7 @@ async function getReservationsByUserId(userId) {
 // Function to save a new reservation
 async function saveReservation(reservation) {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/save`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

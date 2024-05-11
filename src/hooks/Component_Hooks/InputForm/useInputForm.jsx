@@ -66,6 +66,12 @@ export default function useInputForm(type) {
               <input className='input code' type='text' placeholder='Codigo de Regalo' onChange={handleInputText}/>
               </>)
     } 
+    if (inputType === 'time') {
+      return (<>
+              <label className='label'>Horario</label>
+              <input className='input time' type='time' onChange={handleInputText}/>
+              </>)
+    }
     if (inputType === 'addressInput') {
       return (<>
               <label className='label'>Calle</label>

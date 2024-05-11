@@ -4,6 +4,7 @@ import { getAllAddressesByUser, createAddress, deleteAddress} from '../../api/ad
 import { getAllPayMethodsByUserId, createPayMethod, deletePayMethod } from '../../api/paymentMethods';
 import { getOrderByUserId, saveOrder, updateStatusById } from '../../api/orders/orderMethods';
 import { getReservationsByUserId, saveReservation, updateReservationById } from '../../api/reserveMethods';
+import { getImgByUserId } from '../../api/imagesMethods';
 
 export default function useUser() {
   const [userDB, setUserDB] = useState(null);
@@ -16,6 +17,8 @@ export default function useUser() {
   async function logIn(email, password) {
     setIsLoading(true);
     const user = await getUserByEmail(email);
+    const userImg = await getUserImg(user.id);
+    user.img = userImg;
     if (user.password === password) {
       setUserDB(user);
       setIsLoading(false);
@@ -57,6 +60,15 @@ export default function useUser() {
 
   async function deleteUser(id) {
     // Code to delete a user
+  }
+
+  async function getUserImg(id) {
+    const imgDefault = 'https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png';
+    const img = await getImgByUserId(id);
+    if (!img.ok) {
+      return imgDefault;
+    }
+    return img;
   }
 
   // Address methods //
@@ -164,6 +176,7 @@ export default function useUser() {
     signUp,
     updateUser,
     deleteUser,
+    getUserImg,
     getAddressesByUserId,
     createNewAddress,
     deleteUserAddress,

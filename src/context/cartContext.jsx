@@ -1,13 +1,13 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { SesionContext } from './sesionContext';
+import { SessionContext } from './sessionContext';
 
 export const CartContext = createContext();
 
 export function CartProvider ({children}) {
   const [cart, setCart] = useState([])
-  const loginRedirect = useContext(SesionContext);
+  const loginRedirect = useContext(SessionContext);
 
   function addToCart(item) {
     loginRedirect();

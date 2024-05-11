@@ -1,10 +1,10 @@
 import useUser from '../../hooks/API_Hooks/useUser';  
 import { useContext, useState } from 'react';
-import { SesionContext } from '../../context/sesionContext';
+import { SessionContext } from '../../context/sessionContext';
 
 export default function useProfilePage() {
-  const { getAddressesByUserId, deleteUserAddress, getPaymentsByUserId, deleteUserPayment, isLoading, addresses, payments } = useUser();
-  const { logout, isUserLogged, loginRedirect } = useContext(SesionContext);
+  const { getAddressesByUserId, deleteUserAddress, getPaymentsByUserId, deleteUserPayment, getUserImg, isLoading, addresses, payments } = useUser();
+  const { logout, isUserLogged, loginRedirect } = useContext(SessionContext);
   const { sesion, user } = isUserLogged();
   const [ activeEdit, setActiveEdit ] = useState('none');
 
@@ -36,6 +36,7 @@ export default function useProfilePage() {
     isLoading,
     addresses,
     payments,
+    getUserImg,
     setActiveEdit,
     getAddressesByUserId,
     deleteUserAddress,

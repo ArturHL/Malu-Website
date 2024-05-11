@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { SesionContext } from '../../../context/sesionContext';
+import { SessionContext } from '../../../context/sessionContext';
 
 function useValidateInput(inputValue, validationType) {
   const [inputV , setInputV] = useState(inputValue)
   const [isUsed, setIsUsed] = useState(false)
   const [isError, setIsError] = useState(false)
   const [textError, setTextError] = useState('')
-  const { setNewError, clearErrors } = useContext(SesionContext)
+  const { setNewError, clearErrors } = useContext(SessionContext)
 
   function validateInput(inputValue, validationType) {
     if(inputValue === '') {

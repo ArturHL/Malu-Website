@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useContext } from 'react';
-import { SesionContext } from '../../context/sesionContext';
+import { SessionContext } from '../../context/sessionContext';
 
 export default function useLoginPage() {
   const [form, setForm] = useState('login')
 
-  const { login, isFormError, register } = useContext(SesionContext);
+  const { login, isFormError, register } = useContext(SessionContext);
 
   async function loginUser() {
     document.querySelector(".formLogin").addEventListener("submit", function(event) {
