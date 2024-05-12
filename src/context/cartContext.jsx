@@ -1,25 +1,41 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SessionContext } from './sessionContext';
+import useProduct from '../hooks/API_Hooks/useProduct';
 
 export const CartContext = createContext();
 
 export function CartProvider ({children}) {
-  const [cart, setCart] = useState([])
-  const loginRedirect = useContext(SessionContext);
+  localStorage.getItem('cart') === null && localStorage.setItem('cart', JSON.stringify([]));
+
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
+  const [allProducts, setAllProducts] = useState([]);
+  const { loginRedirect } = useContext(SessionContext);
+  const { getProducts } = useProduct();
+
+  useEffect(() => {
+    async function fetchData() {
+      const p = await getProducts();
+      setAllProducts(p);
+    }
+
+    fetchData();
+  }, []);
 
   function addToCart(item) {
     loginRedirect();
     const index = findProductIndex(item.id)
-    console.log(index, 'index');
     if(index >= 0) {
-      const newCart = structuredClone(cart)
+      const newCart = structuredClone(cart);
       newCart[index].quantity++
       setCart(newCart)
+      localStorage.setItem('cart', JSON.stringify(newCart))
       return
     }
+    item.quantity = 1
     setCart([...cart, item])
+    localStorage.setItem('cart', JSON.stringify([...cart, item]))
   }
 
   function removeFromCart(id) {
@@ -27,13 +43,17 @@ export function CartProvider ({children}) {
       const newCart = structuredClone(cart)
       newCart[findProductIndex(id)].quantity--
       setCart(newCart)
+      localStorage.setItem('cart', JSON.stringify(newCart))
       return
     }
     setCart(cart.filter(item => item.id !== id))
+    localStorage.setItem('cart', JSON.stringify(cart.filter(item => item.id !== id))
+    )
   }
 
   function clearCart() {
     setCart([])
+    localStorage.setItem('cart', JSON.stringify([]))
   }
 
   function findProductIndex(id) {
@@ -49,6 +69,7 @@ export function CartProvider ({children}) {
   return(
     <CartContext.Provider value={{
       cart,
+      allProducts,
       addToCart,
       removeFromCart,
       clearCart,

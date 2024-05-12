@@ -1,12 +1,11 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/cartContext';
-import { products } from '../../api/fakeData';
 
 export default function useProductCard() {
-  const {cart, addToCart, removeFromCart} = useContext(CartContext);
+  const {cart, addToCart, removeFromCart, allProducts:products } = useContext(CartContext);
 
   function addProduct(id) {
-    const product = products[id]
+    const product = products.find((product) => product.id === id)
     addToCart(product)
   }
 

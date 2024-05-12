@@ -1,14 +1,15 @@
 import { useState } from 'react';
 
 import MenuCard from '../../../components/menuCard/index.jsx';
-import {products} from '../../../api/fakeData.js'
 
 const useVariableRenderMenu = () => {
   const [width, setWidth] = useState(window.innerWidth);
+
   window.addEventListener('resize', () => {
     setWidth(window.innerWidth);
     width == 768 || width == 1024 ? variableRender() : null; 
   });
+
   function variableRender() {
     if (window.innerWidth <= 767) {
       return (products.slice(0,2).map((product) => { return <MenuCard 
@@ -47,6 +48,7 @@ const useVariableRenderMenu = () => {
           />}))
     }
   }
+
   return {variableRender};
 };
 

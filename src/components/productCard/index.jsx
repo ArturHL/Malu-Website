@@ -3,19 +3,22 @@ import PropTypes from 'prop-types'
 import useProductCard from '../../hooks/Component_Hooks/useProductCard'
 
 const ProductCard = ({id, name, price, image}) => {
-  const {addProduct, isInCart, productQuantity, removeFromCart} = useProductCard()
+  const {addProduct, isInCart, productQuantity, removeProduct} = useProductCard()
 
   return (
     <div className='productCard'>
       <div className='productInfo'>
-        <img src={image} alt="" />
+
+        {/* DESCOMENTAR PARA MOSTRAR IMAGENES EN TARJETAS DE PRODUCTOS */}
+
+        {/* <img src={image} alt="" /> */}
         <div>
           <h4>{name}</h4>
           <p>MX${price}</p>
         </div>
       </div>
       <div className={isInCart(id) ? 'productController' : 'inactive'}>
-        <button onClick={()=>{removeFromCart(id)}}> - </button>
+        <button onClick={()=>{removeProduct(id)}}> - </button>
         <p>{productQuantity(id)}</p>
         <button onClick={()=>{addProduct(id)}}> + </button>
       </div>

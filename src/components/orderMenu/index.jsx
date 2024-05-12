@@ -10,7 +10,12 @@ import { useEffect } from 'react';
 function OrderMenu() {
   const {translate, rotateIcon, cart, clearCart, priceTotal, payCart} = useOrderMenu()
 
-  useEffect(() => {translate('productsMenu', true); cart.length == 0 ? translate('productsMenu', false) : null}, [cart.length]);
+  function resizableMenu() {
+    translate('productsMenu', true);
+    cart.length == 0 ? translate('productsMenu', false) : null
+  }
+
+  useEffect(() => {resizableMenu()}, [cart.length]);
   return (
     <>
       <section className='orderMenu' style={cart.length > 0 ? {display: 'block'} : {display: 'none'}}>

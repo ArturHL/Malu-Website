@@ -17,6 +17,11 @@
   border-radius: 10px;
   margin-right: 10px;
 }
+.productCard .productInfo div{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
 .productCard .productController{
   display: flex;
   align-items: center;

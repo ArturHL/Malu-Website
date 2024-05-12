@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { getProductByCategoryId } from '../../api/productMethods';
 import { getImgByProductId } from '../../api/imagesMethods';
+import { getAllProducts } from '../../api/productMethods';
 
 export default function useProduct() {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   async function getProductsByCategoryId() {
+    setIsLoading(true);
     try {
       const categoryId = JSON.parse(sessionStorage.getItem('category')).id;
       const response = await getProductByCategoryId(categoryId);
@@ -21,9 +23,21 @@ export default function useProduct() {
     }
   }
 
+  async function getProducts() {
+    setIsLoading(true);
+    try {
+      const response = await getAllProducts();
+      setIsLoading(false);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return {
     product,
     isLoading,
     getProductsByCategoryId,
+    getProducts
   };
 }

@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/cartContext';
-import { products } from '../../api/fakeData';
 
 export default function useMenuCard() {
   const {addToCart} = useContext(CartContext);
