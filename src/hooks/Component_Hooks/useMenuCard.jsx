@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/cartContext';
 
 export default function useMenuCard() {
-  const {addToCart} = useContext(CartContext);
+  const {addToCart, allProducts:products} = useContext(CartContext);
 
   function addProduct(id) {
-    const product = products[id]
+    const product = products.find(product => product.id === id);
     addToCart(product)
   }
 

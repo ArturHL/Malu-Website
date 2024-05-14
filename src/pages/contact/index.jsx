@@ -13,9 +13,9 @@ const ContactPage = () => {
                    whastappNumber='5532019274'/>
       <div>
         <h2 className='title'>Buscas algo mas?</h2>
-        <p className='redirection'>Puedes ver nuestro menu completo <span>Aqui</span></p>
-        <button className='buttonB'>Reserva Ahora</button>
-        <button className='buttonA'>Haz un pedido</button>
+        <p className='redirection'>Puedes ver nuestro menu completo <span onClick={()=>{location.href = '/menu'}}>Aqui</span></p>
+        <button className='buttonB' onClick={()=>{location.href = '/reserves'}}>Reserva Ahora</button>
+        <button className='buttonA' onClick={()=>{location.href = '/menu'}}>Haz un pedido</button>
       </div>
     </section>
   );

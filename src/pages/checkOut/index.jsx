@@ -1,9 +1,10 @@
 import './index.css'
 
 import { IoIosArrowUp } from 'react-icons/io'
+import useCheckoutPage from '../../hooks/Pages_Hooks/useCheckoutPage'
 
 const Checkout = () => {
-  const { stepActive, handleStepActive } = useCheckout()
+  const { stepActive, handleStepActive, handleMenu } = useCheckoutPage();
 
   return (
     <div className='checkOut'>

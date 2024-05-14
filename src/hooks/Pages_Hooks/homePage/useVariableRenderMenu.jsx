@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import MenuCard from '../../../components/menuCard/index.jsx';
+import { CartContext } from '../../../context/cartContext.jsx';
 
 const useVariableRenderMenu = () => {
   const [width, setWidth] = useState(window.innerWidth);
+  const { allProducts:products } = useContext(CartContext);
+  console.log(products);
 
   window.addEventListener('resize', () => {
     setWidth(window.innerWidth);
@@ -18,7 +21,6 @@ const useVariableRenderMenu = () => {
             name={product.name}
             description={product.description}
             price={product.price}
-            stock={product.stock}
             category={product.category}
             image={product.image}
           />}))
@@ -30,7 +32,6 @@ const useVariableRenderMenu = () => {
             name={product.name}
             description={product.description}
             price={product.price}
-            stock={product.stock}
             category={product.category}
             image={product.image}
           />}))
@@ -42,7 +43,6 @@ const useVariableRenderMenu = () => {
             name={product.name}
             description={product.description}
             price={product.price}
-            stock={product.stock}
             category={product.category}
             image={product.image}
           />}))

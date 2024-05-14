@@ -4,11 +4,12 @@ import useMenuCard from '../../hooks/Component_Hooks/useMenuCard';
 
 const MenuCard = ({id, name, description, price, image}) => {
   const { addProduct } = useMenuCard()
-
+  // la manera de filtrar productos deberia ser a la hora de hacer
+  // fetch para traer solo los productos que tengan available = true
   return (
     <>
       <div className='menuCard'>
-        <img src={image} alt='menu' />
+        <img src={image} alt={name} />
         <div className='containerUtil'>
           <div className='infoContainer'>
             <h2>{name} <span className='price'>${price}</span></h2>
@@ -29,10 +30,9 @@ const MenuCard = ({id, name, description, price, image}) => {
 MenuCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  description: PropTypes.string,
   image: PropTypes.string.isRequired,
-  stock: PropTypes.number.isRequired,
   category: PropTypes.number.isRequired,
 };
 

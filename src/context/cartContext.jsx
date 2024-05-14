@@ -13,6 +13,7 @@ export function CartProvider ({children}) {
   const [allProducts, setAllProducts] = useState([]);
   const { loginRedirect } = useContext(SessionContext);
   const { getProducts } = useProduct();
+  const [displayModifyMenu, setDisplayModifyMenu] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -22,6 +23,8 @@ export function CartProvider ({children}) {
 
     fetchData();
   }, []);
+
+  // Cart functions
 
   function addToCart(item) {
     loginRedirect();
@@ -56,14 +59,32 @@ export function CartProvider ({children}) {
     localStorage.setItem('cart', JSON.stringify([]))
   }
 
-  function findProductIndex(id) {
-    return cart.findIndex(item => item.id === id)
+  // Modify functions
+
+  function editDescription(id, description) {
+
   }
 
+  // Price functions
+  
   function priceTotal() {
     let total = 0;
     cart.forEach(product => total += parseFloat(product.price * product.quantity));
     return total;
+  }
+  
+  function shippingCost () {
+    return 30;
+  }
+  
+  function finalPrice () {
+    return priceTotal() + shippingCost();
+  }
+  
+  // Logic functions
+
+  function findProductIndex(id) {
+    return cart.findIndex(item => item.id === id)
   }
 
   return(
@@ -73,7 +94,9 @@ export function CartProvider ({children}) {
       addToCart,
       removeFromCart,
       clearCart,
-      priceTotal
+      priceTotal,
+      shippingCost,
+      finalPrice
     }}>
       {children}
     </CartContext.Provider>

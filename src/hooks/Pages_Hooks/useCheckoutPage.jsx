@@ -2,10 +2,13 @@ import { FaAngleDown } from "react-icons/fa6";
 import { FaMotorcycle } from "react-icons/fa";
 import { FaCreditCard } from "react-icons/fa6";
 
-import { useState } from 'react'
+import { CartContext } from "../../context/cartContext";
+
+import { useContext, useState } from 'react'
 
 export default function useCheckoutPage() {
   const [stepActive, setStepActive] = useState('cart')
+  const { priceTotal, shippingCost, finalPrice } = useContext(CartContext)
 
   function handleStepActive(step) {
     setStepActive(step)
@@ -41,37 +44,33 @@ export default function useCheckoutPage() {
         <div>
           <div className='cart'>
             <h2>Carrito</h2>
-            <div className='cartItem'>
-              <img src='https://via.placeholder.com/100' alt='product' />
-              <div>
-                <h3>Producto</h3>
-                <p>Descripcion</p>
-              </div>
-              <p>$0.00</p>
-            </div>
-            <div className='cartItem'>
-              <img src='https://via.placeholder.com/100' alt='product' />
-              <div>
-                <h3>Producto</h3>
-                <p>Descripcion</p>
-              </div>
-              <p>$0.00</p>
-            </div>
+            { localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).map((item, index) => {
+              return (
+                <div className='cartItem' key={index}>
+                  <img src={item.image} alt='product' />
+                  <div>
+                    <span>{`x${item.quantity}`}</span>
+                    <h3>{item.name}</h3>
+                  </div>
+                  <p>${item.price}</p>
+                </div>
+              )
+            }) : <h3>No hay productos en el carrito</h3>}
           </div>
         </div>
       </section>
       <form className='giftCode'>
         <input type="text"  placeholder='Codigo de Descuento'/>
-        <button className='buttonB'>Aplicar</button>
+        <button className='buttonB' onClick={(e)=>{e.preventDefault(); console.log('no jala xd');}}>Aplicar</button>
       </form>
       <section className='totalPrice'>
         <div>
           <h3>Subtotal</h3>
-          <h4>$ 0.00</h4>
+          <h4>{`$ ${priceTotal()}.00`}</h4>
         </div>
         <div>
           <h3>Envio</h3>
-          <h4>$ 0.00</h4>
+          <h4>{`$ ${shippingCost()}.00`}</h4>
         </div>
         <div>
           <h3>Descuento</h3>
@@ -79,7 +78,7 @@ export default function useCheckoutPage() {
         </div>
         <div>
           <h2>Total</h2>
-          <h3>$ 0.00</h3>
+          <h3>{`$ ${finalPrice()}`}</h3>
         </div>
       </section>
       <button className='buttonA comfirmarCompra' onClick={()=>{handleStepActive('sendTo')}}>
@@ -176,6 +175,7 @@ export default function useCheckoutPage() {
   }
 
   return {
+    stepActive,
     handleStepActive,
     handleMenu
   }
