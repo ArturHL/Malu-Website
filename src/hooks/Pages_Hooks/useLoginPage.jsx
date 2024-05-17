@@ -19,7 +19,7 @@ export default function useLoginPage() {
     const password = document.querySelector('.password')
 
     const redirection = await login(mail.value, password.value)
-    redirection ? location.href = '/profile' : console.log('error')
+    redirection ? location.href = '/profile' : console.log(redirection)
   }
 
   async function registerUser() {

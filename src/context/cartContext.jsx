@@ -19,6 +19,7 @@ export function CartProvider ({children}) {
     async function fetchData() {
       const p = await getProducts();
       setAllProducts(p);
+      console.log(p);
     }
 
     fetchData();
@@ -39,6 +40,26 @@ export function CartProvider ({children}) {
     item.quantity = 1
     setCart([...cart, item])
     localStorage.setItem('cart', JSON.stringify([...cart, item]))
+  }
+
+  function addProductsToCart(products) {
+    console.log(products);
+    loginRedirect();
+    const index = findProductIndex(products.id)
+    console.log(index);
+    console.log(products.id);
+    if(index < 0) {
+      console.log('asd');
+      const newCart = [...cart, products];
+      setCart(newCart)
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      return
+    } else {
+      console.log('qwe');
+      const newCart = structuredClone(cart).splice(index, 1, products);
+      setCart(newCart)
+      localStorage.setItem('cart', JSON.stringify(newCart))
+    }
   }
 
   function removeFromCart(id) {
@@ -92,6 +113,7 @@ export function CartProvider ({children}) {
       cart,
       allProducts,
       addToCart,
+      addProductsToCart,
       removeFromCart,
       clearCart,
       priceTotal,

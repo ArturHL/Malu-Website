@@ -1,10 +1,34 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../../context/cartContext';
 
 export default function useProductCard() {
-  const {cart, addToCart, removeFromCart, allProducts:products } = useContext(CartContext);
+  const [editable, setEditable] = useState(true)
+  const {cart, addToCart, addProductsToCart, removeFromCart, allProducts:products } = useContext(CartContext);
 
-  function addProduct(id) {
+  function isEditable(id) {
+    if (id > 4 && id < 12 || id == 14) {
+      return false
+    }
+    return true
+  }
+
+  function handleEditable(id) {
+    if (!isEditable(id)) {
+      addProductById(id)
+      return
+    }
+    setEditable(!editable)
+  }
+
+  function searchProduct(id) {
+    return products.find((product) => product.id === id)
+  }
+
+  function addProducts(product) {
+    addProductsToCart(product)
+  }
+
+  function addProductById(id) {
     const product = products.find((product) => product.id === id)
     addToCart(product)
   }
@@ -24,7 +48,11 @@ export default function useProductCard() {
   }
 
   return {
-    addProduct,
+    editable,
+    handleEditable,
+    searchProduct,
+    addProducts,
+    addProductById,
     isInCart,
     productQuantity,
     removeProduct

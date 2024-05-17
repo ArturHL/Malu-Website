@@ -22,11 +22,11 @@ export default function useUser() {
     if (user.password === password) {
       setUserDB(user);
       setIsLoading(false);
-      return userDB;
+      return user;
     } else {
       setUserDB(null);
       setIsLoading(false);
-      return userDB;
+      return null;
     }
   }
 

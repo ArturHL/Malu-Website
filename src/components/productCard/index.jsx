@@ -1,29 +1,33 @@
 import './index.css'
 import PropTypes from 'prop-types'
 import useProductCard from '../../hooks/Component_Hooks/useProductCard'
+import ProductDescription from '../productDescription';
 
 const ProductCard = ({id, name, price, image}) => {
-  const {addProduct, isInCart, productQuantity, removeProduct} = useProductCard()
+  const {editable, handleEditable, addProduct, isInCart, productQuantity, removeProduct} = useProductCard()
 
   return (
-    <div className='productCard'>
-      <div className='productInfo'>
+    <>
+      <div className='productCard'>
+        <div className='productInfo'>
 
-        {/* DESCOMENTAR PARA MOSTRAR IMAGENES EN TARJETAS DE PRODUCTOS */}
+          {/* DESCOMENTAR PARA MOSTRAR IMAGENES EN TARJETAS DE PRODUCTOS */}
 
-        {/* <img src={image} alt="" /> */}
-        <div>
-          <h4>{name}</h4>
-          <p>MX${price}</p>
+          {/* <img src={image} alt="" /> */}
+          <div>
+            <h4>{name}</h4>
+            <p>MX${price}</p>
+          </div>
         </div>
+        <div className={isInCart(id) ? 'productController' : 'inactive'}>
+          <button onClick={()=>{removeProduct(id)}}> - </button>
+          <p>{productQuantity(id)}</p>
+          <button onClick={()=>{handleEditable(id)}}> + </button>
+        </div>
+        <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{handleEditable(id)}} >Agregar al Carrito</button>
       </div>
-      <div className={isInCart(id) ? 'productController' : 'inactive'}>
-        <button onClick={()=>{removeProduct(id)}}> - </button>
-        <p>{productQuantity(id)}</p>
-        <button onClick={()=>{addProduct(id)}}> + </button>
-      </div>
-      <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{addProduct(id)}} >Agregar al Carrito</button>
-    </div>
+      <ProductDescription editable={editable} handleEditable={handleEditable} productId={id} />
+    </>
   );
 };
 
