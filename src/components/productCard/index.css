@@ -22,6 +22,9 @@
   flex-direction: column;
   align-items: start;
 }
+.productCard > button{
+  min-width: 137px;
+}
 .productCard .productController{
   display: flex;
   align-items: center;
