@@ -6,7 +6,7 @@ export default function useProductCard() {
   const {cart, addToCart, addProductsToCart, removeFromCart, allProducts:products } = useContext(CartContext);
 
   function isEditable(id) {
-    if (id > 4 && id < 12 || id == 14) {
+    if (id > 4 && id < 12 || id == 14 || id > 48) {
       return false
     }
     return true

@@ -2,9 +2,10 @@ import './index.css'
 import PropTypes from 'prop-types'
 import useProductCard from '../../hooks/Component_Hooks/useProductCard'
 import ProductDescription from '../productDescription';
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const ProductCard = ({id, name, price, image}) => {
-  const {editable, handleEditable, addProduct, isInCart, productQuantity, removeProduct} = useProductCard()
+  const {editable, handleEditable, isInCart, productQuantity, removeProduct} = useProductCard()
 
   return (
     <>
@@ -19,11 +20,12 @@ const ProductCard = ({id, name, price, image}) => {
             <p>MX${price}</p>
           </div>
         </div>
-        {/* <div className={isInCart(id) ? 'productController' : 'inactive'}>
-          <button onClick={()=>{removeProduct(id)}}> - </button>
+        <div className={isInCart(id) ? 'productController' : 'inactive'}>
+          {/* <button onClick={()=>{removeProduct(id)}}> - </button>
           <p>{productQuantity(id)}</p>
-          <button onClick={()=>{handleEditable(id)}}> + </button>
-        </div> */}
+          <button onClick={()=>{handleEditable(id)}}> + </button> */}
+          <button><FaRegTrashAlt /></button>
+        </div>
         <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{handleEditable(id)}} >Agregar al Carrito</button>
       </div>
       <ProductDescription editable={editable} handleEditable={handleEditable} productId={id} />

@@ -8,7 +8,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
   const [product, setProduct] = useState({})
   const [descriptionObject, setDescriptionObject] = useState([typeDescription(id)])
   const [activeMenuDescription, setActiveMenuDescription] = useState(-1)
-  const {searchProduct} = useProductCard()
+  const {searchProduct, addProducts} = useProductCard()
 
   function activeMenu(id) {
     activeMenuDescription == id ? setActiveMenuDescription(-1) : setActiveMenuDescription(id)
@@ -108,8 +108,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         }
       })
     }
-    if (product.category == 4){
-      console.log('qwe');
+    if (id > 21 && id < 25){
       return ({
         Frijoles: false,
         Lechuga: false,
@@ -126,19 +125,146 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         }
       })
     }
-    if (product.category == 5) {
+    if (id > 24 && id < 27) {
       return ({
-        Rellenas: {
-          Pollo: false,
-          Res: false,
-          Papa: false,
-          Surtidas: false
+        Relleno: '',
+        Lechuga: false,
+        Crema: false,
+        QuesoRallado: false,
+        Salsa: {
+          Verde: false,
+          Roja: false
         },
-        Verdura: {
-          Lechuga: false,
-          Crema: false,
-          QuesoRallado: false
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id > 26 && id < 31) {
+      return ({
+        Cebolla: false,
+        QuesoRallado: false,
+        Crema: false,
+        Salsa: {
+          Verde: false,
+          Roja: false
         },
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id > 30 && id < 35) {
+      return ({
+        Cebolla: false,
+        Cilantro: false,
+        QuesoRallado: false,
+        Crema: false,
+        Salsa: {
+          Verde: false,
+          Roja: false
+        },
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id == 35 || id == 37) {
+      return ({
+        Coccion: '',
+        Guisado: '',
+        Salsa: {
+          Verde: false,
+          Roja: false
+        },
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id == 36 || id == 38) {
+      return ({
+        Coccion: '',
+        Guisado: '',
+        Guisado2: '',
+        Salsa: {
+          Verde: false,
+          Roja: false
+        },
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id == 39 || id == 41) {
+      return ({
+        Lechuga: false,
+        QuesoRallado: false,
+        Crema: false,
+        Salsa: {
+          Verde: false,
+          Roja: false
+        },
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id == 40 || id == 42) {
+      return ({
+        Guisado: '',
+        Lechuga: false,
+        QuesoRallado: false,
+        Crema: false,
+        Salsa: {
+          Verde: false,
+          Roja: false
+        },
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id > 42 && id < 49 && id != 44 && id != 47) {
+      return ({
+        Frijoles: false,
+        Lechuga: false,
+        Cebolla: false,
+        QuesoRallado: false,
+        Crema: false,
+        Salsa: {
+          Verde: false,
+          Roja: false
+        },
+        Limones: false,
+        Extras: {
+          Servilletas: false,
+          Cubiertos: false
+        }
+      })
+    }
+    if (id == 44 || id == 47) {
+      return ({
+        Guisado: '',
+        Frijoles: false,
+        Lechuga: false,
+        Cebolla: false,
+        QuesoRallado: false,
+        Crema: false,
         Salsa: {
           Verde: false,
           Roja: false
@@ -198,6 +324,24 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     }
     if (type == 'QuesoRallado') {
       newDescription[key].QuesoRallado = e.target.checked
+    }
+    if (type == 'Frijoles') {
+      newDescription[key].Frijoles = e.target.checked
+    }
+    if (type == 'Lechuga') {
+      newDescription[key].Lechuga = e.target.checked
+    }
+    if (type == 'Relleno') {
+      newDescription[key].Relleno = e.target.value
+    }
+    if (type == 'Coccion') {
+      newDescription[key].Coccion = e.target.value
+    }
+    if (type == 'Guisado') {
+      newDescription[key].Guisado = e.target.value
+    }
+    if (type == 'Guisado2') {
+      newDescription[key].Guisado2 = e.target.value
     }
     console.log(newDescription);
     setDescriptionObject(newDescription)
@@ -515,85 +659,702 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
               <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
             </li>
           </ul>
-        </section>
+          </section>
         </>
       )
     }
     // Tostadas Menu
     if (product.category == 4){
       return (
-        <section className='section2'>
-          <h4>¿Que le ponemos? 🥑</h4>
-          <ul>
-            <li>
-              <p>Frijoles</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Lechuga</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Crema</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Queso Rallado</p>
-              <input type="checkbox" />
-            </li>
-          </ul>
-          <br />
-          <h4>¿Salsa y Limones? 🫑🍋</h4>
-          <ul>
-            <li>
-              <p>Verde</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Roja</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Limones</p>
-              <input type="checkbox" />
-            </li>
-          </ul>
-          <br />
-          <h4>Extras 🍴</h4>
-          <ul>
-            <li>
-              <p>Servilletas</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Cubiertos</p>
-              <input type="checkbox" />
-            </li>
-          </ul>
-        </section>
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Tostada {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Que le ponemos? 🥑</h4>
+            <ul>
+              <li>
+                <p>Frijoles</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Frijoles')}}/>
+              </li>
+              <li>
+                <p>Lechuga</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
+              </li>
+              <li>
+                <p>Crema</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
+              </li>
+              <li>
+                <p>Queso Rallado</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
       )
     }
     // Flautas Menu
     if (product.category == 5) {
       return (
-        <section className='section2'>
-          <h4>¿Rellenas de? 🍗</h4>
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Flautas {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Rellenas de? 🍗</h4>
+            <ul>
+              <li>
+                <p>Pollo</p>
+                <input type="radio" name={`relleno${key}`} value={'Pollo'} onChange={(e)=>{descriptionListener(e, key, 'Relleno')}}/>
+              </li>
+              <li>
+                <p>Res</p>
+                <input type="radio" name={`relleno${key}`} value={'Res'} onChange={(e)=>{descriptionListener(e, key, 'Relleno')}}/>
+              </li>
+              <li>
+                <p>Papa</p>
+                <input type="radio" name={`relleno${key}`} value={'Papa'} onChange={(e)=>{descriptionListener(e, key, 'Relleno')}}/>
+              </li>
+              <li>
+                <p>Surtidas</p>
+                <input type="radio" name={`relleno${key}`} value={'Surtidas'} onChange={(e)=>{descriptionListener(e, key, 'Relleno')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Que le ponemos? 🥑</h4>
+            <ul>
+              <li>
+                <p>Lechuga</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
+              </li>
+              <li>
+                <p>Crema</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
+              </li>
+              <li>
+                <p>Queso Rallado</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRroja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Enchiladas Menu
+    if (product.category == 6) {
+      return (
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Enchiladas {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Que le ponemos? 🥑</h4>
+            <ul>
+              <li>
+                <p>Cebolla</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cebolla')}}/>
+              </li>
+              <li>
+                <p>Queso Rallado</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+              </li>
+              <li>
+                <p>Crema</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Chilaquiles Menu
+    if (product.category == 7) {
+      return (
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Chilaquiles {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Que le ponemos? 🥑</h4>
+            <ul>
+              <li>
+                <p>Cebolla</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cebolla')}}/>
+              </li>
+              <li>
+                <p>Cilantro</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cilantro')}}/>
+              </li>
+              <li>
+                <p>Queso Rallado</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+              </li>
+              <li>
+                <p>Crema</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Quesadillas Sencilla Menu
+    if (id == 35 || id == 37) {
+      return (
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Quesadilla {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Frita o Asada? 🥟</h4>
+            <ul>
+              <li>
+                <p>Frita</p>
+                <input type="radio" name={`coccion${key}`} value={'Frita'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+              </li>
+              <li>
+                <p>Asada</p>
+                <input type="radio" name={`coccion${key}`} value={'Asada'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Elige tu guisado? 🥘</h4>
+            <ul>
+              <li>
+                <p>Queso</p>
+                <input type="radio" name={`guisado${key}`} value={'Queso'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Papa C/chorizo</p>
+                <input type="radio" name={`guisado${key}`} value={'Papa C/chorizo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Papa</p>
+                <input type="radio" name={`guisado${key}`} value={'Papa'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Pollo</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Pollo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Res</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Res'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Setas</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Setas'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Hongos</p>
+                <input type="radio" name={`guisado${key}`} value={'Hongos'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Chicharron</p>
+                <input type="radio" name={`guisado${key}`} value={'Chicharron'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Picadillo</p>
+                <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Quesadillas Combinada Menu
+    if (id == 36 || id == 38) {
+      return (
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Quesadilla {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Frita o Asada? 🥟</h4>
+            <ul>
+              <li>
+                <p>Frita</p>
+                <input type="radio" name={`coccion${key}`} value={'Frita'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+              </li>
+              <li>
+                <p>Asada</p>
+                <input type="radio" name={`coccion${key}`} value={'Asada'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Elige tu primer guisado? 🥘</h4>
+            <ul>
+              <li>
+                <p>Queso</p>
+                <input type="radio" name={`guisado${key}`} value={'Queso'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Papa C/chorizo</p>
+                <input type="radio" name={`guisado${key}`} value={'Papa C/chorizo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Papa</p>
+                <input type="radio" name={`guisado${key}`} value={'Papa'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Pollo</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Pollo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Res</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Res'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Setas</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Setas'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Hongos</p>
+                <input type="radio" name={`guisado${key}`} value={'Hongos'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Chicharron</p>
+                <input type="radio" name={`guisado${key}`} value={'Chicharron'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Picadillo</p>
+                <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Elige tu segundo guisado? 🥘</h4>
+            <ul>
+              <li>
+                <p>Queso</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Queso'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Papa C/chorizo</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Papa C/chorizo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Papa</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Papa'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Tinga de Pollo</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Tinga de Pollo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Tinga de Res</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Tinga de Res'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Tinga de Setas</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Tinga de Setas'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Hongos</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Hongos'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Chicharron</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Chicharron'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+              <li>
+                <p>Picadillo</p>
+                <input type="radio" name={`guisado${key + 1}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Pambazos Menu
+    if (id == 39 || id == 41) {
+      return (
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pambazo {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Que le ponemos? 🥑</h4>
+            <ul>
+              <li>
+                <p>Lechuga</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
+              </li>
+              <li>
+                <p>Queso Rallado</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+              </li>
+              <li>
+                <p>Crema</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Pambazos con guisado Menu
+    if (id == 40 || id == 42) {
+      return (
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pambazo {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Elige tu guisado? 🥘</h4>
+            <ul>
+              <li>
+                <p>Papa</p>
+                <input type="radio" name={`guisado${key}`} value={'Papa'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Pollo</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Pollo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Res</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Res'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Tinga de Setas</p>
+                <input type="radio" name={`guisado${key}`} value={'Tinga de Setas'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Hongos</p>
+                <input type="radio" name={`guisado${key}`} value={'Hongos'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Chicharron</p>
+                <input type="radio" name={`guisado${key}`} value={'Chicharron'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+              <li>
+                <p>Picadillo</p>
+                <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Que le ponemos? 🥑</h4>
+            <ul>
+              <li>
+                <p>Lechuga</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
+              </li>
+              <li>
+                <p>Queso Rallado</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+              </li>
+              <li>
+                <p>Crema</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Sopes Menu
+    if (product.category == 10 && id != 44 && id != 47) {
+      return (
+        <>
+          <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Sope {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Que le ponemos? 🥑</h4>
+            <ul>
+              <li>
+                <p>Frijoles</p>
+                <input type="checkbox" />
+              </li>
+              <li>
+                <p>Lechuga</p>
+                <input type="checkbox" />
+              </li>
+              <li>
+                <p>Cebolla</p>
+                <input type="checkbox" />
+              </li>
+              <li>
+                <p>Queso Rallado</p>
+                <input type="checkbox" />
+              </li>
+              <li>
+                <p>Crema</p>
+                <input type="checkbox" />
+              </li>
+            </ul>
+            <br />
+            <h4>¿Salsa y Limones? 🫑🍋</h4>
+            <ul>
+              <li>
+                <p>Verde</p>
+                <input type="checkbox" />
+              </li>
+              <li>
+                <p>Roja</p>
+                <input type="checkbox" />
+              </li>
+              <li>
+                <p>Limones</p>
+                <input type="checkbox" />
+              </li>
+            </ul>
+            <br />
+            <h4>Extras 🍴</h4>
+            <ul>
+              <li>
+                <p>Servilletas</p>
+                <input type="checkbox" />
+              </li>
+              <li>
+                <p>Cubiertos</p>
+                <input type="checkbox" />
+              </li>
+            </ul>
+          </section>
+        </>
+      )
+    }
+    // Sopes con guisado Menu
+    if (id == 44 || id == 47) {
+      return (
+        <>
+        <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pambazo {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+        <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+          <h4>¿Elige tu guisado? 🥘</h4>
           <ul>
             <li>
-              <p>Pollo</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Res</p>
-              <input type="checkbox" />
-            </li>
-            <li>
               <p>Papa</p>
-              <input type="checkbox" />
+              <input type="radio" name={`guisado${key}`} value={'Papa'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
             </li>
             <li>
-              <p>Surtidas</p>
-              <input type="checkbox" />
+              <p>Tinga de Pollo</p>
+              <input type="radio" name={`guisado${key}`} value={'Tinga de Pollo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+            </li>
+            <li>
+              <p>Tinga de Res</p>
+              <input type="radio" name={`guisado${key}`} value={'Tinga de Res'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+            </li>
+            <li>
+              <p>Tinga de Setas</p>
+              <input type="radio" name={`guisado${key}`} value={'Tinga de Setas'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+            </li>
+            <li>
+              <p>Hongos</p>
+              <input type="radio" name={`guisado${key}`} value={'Hongos'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+            </li>
+            <li>
+              <p>Chicharron</p>
+              <input type="radio" name={`guisado${key}`} value={'Chicharron'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+            </li>
+            <li>
+              <p>Picadillo</p>
+              <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
             </li>
           </ul>
           <br />
@@ -601,15 +1362,15 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
           <ul>
             <li>
               <p>Lechuga</p>
-              <input type="checkbox" />
-            </li>
-            <li>
-              <p>Crema</p>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
             </li>
             <li>
               <p>Queso Rallado</p>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+            </li>
+            <li>
+              <p>Crema</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
             </li>
           </ul>
           <br />
@@ -617,15 +1378,15 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
           <ul>
             <li>
               <p>Verde</p>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
             </li>
             <li>
               <p>Roja</p>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
             </li>
             <li>
               <p>Limones</p>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
             </li>
           </ul>
           <br />
@@ -633,14 +1394,15 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
           <ul>
             <li>
               <p>Servilletas</p>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
             </li>
             <li>
               <p>Cubiertos</p>
-              <input type="checkbox" />
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
             </li>
           </ul>
         </section>
+      </>
       )
     }
   }
@@ -674,9 +1436,10 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
 
   function addButton(e) {
     e.preventDefault();
-    typeDescription(id);
-    // addProducts(product);
-    // handleEditable(id);
+    const completeProduct = {...product}
+    completeProduct.description = descriptionObject
+    addProducts(completeProduct);
+    handleEditable(id);
   }
   
   function variableRender() {
@@ -688,7 +1451,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
   }
   
   useEffect(() => {setInitialProduct()}, [])
-  
+
   console.log(descriptionObject);
 
   return (
