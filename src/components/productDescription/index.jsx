@@ -18,11 +18,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     if(id == 1 || id == 3) {
       return ({
         Proteina: '',
-        Verdura: {
-          Lechuga: false,
-          Rabano: false,
-          Cebolla: false
-        },
+        Lechuga: false,
+        Cebolla: false,
+        Rabano: false,
         Extras: {
           Servilletas: false,
           Cubiertos: false
@@ -283,9 +281,6 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     if (type == 'Proteina') {
       newDescription[key].Proteina = e.target.value
     }
-    if (type == 'Verdura') {
-      newDescription[key].Verdura[e.target.previousSibling.textContent] = e.target.checked
-    }
     if (type == 'Extras') {
       newDescription[key].Extras[e.target.previousSibling.textContent] = e.target.checked
     }
@@ -331,6 +326,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     if (type == 'Lechuga') {
       newDescription[key].Lechuga = e.target.checked
     }
+    if (type == 'Rabano') {
+      newDescription[key].Rabano = e.target.checked
+    }
     if (type == 'Relleno') {
       newDescription[key].Relleno = e.target.value
     }
@@ -348,6 +346,178 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
   }
 
   function handleMenu(id, key) {
+
+    function extrasMenu() {
+      return (
+        <>
+          <h4>Extras 🍴</h4>
+          <ul>
+            <li>
+              <p>Servilletas</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+            </li>
+            <li>
+              <p>Cubiertos</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
+            </li>
+          </ul>
+        </>
+      )
+    }
+
+    function salsaMenu() {
+      return (
+        <>
+          <h4>¿Salsa y Limones? 🫑🍋</h4>
+          <ul>
+            <li>
+              <p>Verde</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
+            </li>
+            <li>
+              <p>Roja</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
+            </li>
+            <li>
+              <p>Limones</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
+            </li>
+          </ul>
+        </>
+      )
+    }
+
+    function modificadoresMenu(platillo) {
+      const modificadores = {
+        Lechuga: false,
+        Cebolla: false,
+        Cilantro: false,
+        QuesoRallado: false,
+        Crema: false,
+        Rabano: false,
+        Chile: false,
+        Aguacate: false,
+        Chicharron: false,
+        QuesoManchego: false,
+        Arroz: false,
+        Frijoles: false,
+      }
+      if (platillo == 'Pozole') {
+        modificadores.Lechuga = true
+        modificadores.Cebolla = true
+        modificadores.Rabano = true
+      }
+      if (platillo == 'SopaTortilla') {
+        modificadores.Aguacate = true
+        modificadores.Chile = true
+        modificadores.Chicharron = true
+        modificadores.Crema = true
+        modificadores.QuesoManchego = true
+      }
+      if (platillo == 'Ranchero') {
+        modificadores.Chile = true
+        modificadores.Cilantro = true
+        modificadores.Cebolla = true
+        modificadores.Aguacate = true
+        modificadores.Arroz = true
+      }
+      if (platillo == 'Gorditas') {
+        modificadores.Cebolla = true
+        modificadores.Cilantro = true
+        modificadores.QuesoRallado = true
+        modificadores.Crema = true
+      }
+      if (platillo == 'Tostadas') {
+        modificadores.Frijoles = true
+        modificadores.Lechuga = true
+        modificadores.Crema = true
+        modificadores.QuesoRallado = true
+      }
+      if (platillo == 'Flautas') {
+        modificadores.Lechuga = true
+        modificadores.Crema = true
+        modificadores.QuesoRallado = true
+      }
+      if (platillo == 'Enchiladas') {
+        modificadores.Cebolla = true
+        modificadores.QuesoRallado = true
+        modificadores.Crema = true
+      }
+      if (platillo == 'Chilaquiles') {
+        modificadores.Cebolla = true
+        modificadores.Cilantro = true
+        modificadores.QuesoRallado = true
+        modificadores.Crema = true
+      }
+      if (platillo == 'Pambazo') {
+        modificadores.Lechuga = true
+        modificadores.QuesoRallado = true
+        modificadores.Crema = true
+      }
+      if (platillo == 'Sope') {
+        modificadores.Cebolla = true
+        modificadores.Frijoles = true
+        modificadores.QuesoRallado = true
+        modificadores.Crema = true
+      }
+
+      return (
+        <>
+          <h4>¿Que le ponemos? 🥑</h4>
+          <ul>
+            <li className={modificadores.Lechuga ? '' : 'inactive'}>
+              <p>Lechuga</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
+            </li>
+            <li className={modificadores.Cebolla ? '' : 'inactive'}>
+              <p>Cebolla</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cebolla')}}/>
+            </li>
+            <li className={modificadores.Cilantro ? '' : 'inactive'}>
+              <p>Cilantro</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cilantro')}}/>
+            </li>
+            <li className={modificadores.QuesoRallado ? '' : 'inactive'}>
+              <p>Queso Rallado</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
+            </li>
+            <li className={modificadores.Crema ? '' : 'inactive'}>
+              <p>Crema</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
+            </li>
+            <li className={modificadores.Rabano ? '' : 'inactive'}>
+              <p>Rabano</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Rabano')}}/>
+            </li>
+            <li className={modificadores.Chile ? '' : 'inactive'}>
+              <p>Chile</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Chile')}}/>
+            </li>
+            <li className={modificadores.Aguacate ? '' : 'inactive'}>
+              <p>Aguacate</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Aguacate')}}/>
+            </li>
+            <li className={modificadores.Chicharron ? '' : 'inactive'}>
+              <p>Chicharron</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Chicharron')}}/>
+            </li>
+            <li className={modificadores.QuesoManchego ? '' : 'inactive'}>
+              <p>Queso Manchego</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Manchego')}}/>
+            </li>
+            <li className={modificadores.Arroz ? '' : 'inactive'}>
+              <p>Arroz</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Arroz')}}/>
+            </li>
+            <li className={modificadores.Frijoles ? '' : 'inactive'}>
+              <p>Frijoles</p>
+              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Frijoles')}}/>
+            </li>
+          </ul>
+        </>
+      )
+    }
+
     // Pozole Menu
     if(id == 1 || id == 3) {
       return (
@@ -378,33 +548,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
             </li>
           </ul>
           <br />
-          <h4>¿Verdura? 🥬</h4>
-          <ul>
-            <li>
-              <p>Lechuga</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Verdura')}}/>
-            </li>
-            <li>
-              <p>Rabano</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Verdura')}}/>
-            </li>
-            <li>
-              <p>Cebolla</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Verdura')}}/>
-            </li>
-          </ul>
+          {modificadoresMenu('Pozole')}
           <br />
-          <h4>Extras 🍴</h4>
-          <ul>
-            <li>
-              <p>Servilletas</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-            <li>
-              <p>Cubiertos</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-          </ul>
+          {extrasMenu()}
           </section>
         </>
       )
@@ -415,33 +561,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pozole sin Maiz {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-          <h4>¿Verdura? 🥬</h4>
-          <ul>
-            <li>
-              <p>Lechuga</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Verdura')}}/>
-            </li>
-            <li>
-              <p>Rabano</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Verdura')}}/>
-            </li>
-            <li>
-              <p>Cebolla</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Verdura')}}/>
-            </li>
-          </ul>
+          {modificadoresMenu('Pozole')}
           <br />
-          <h4>Extras 🍴</h4>
-          <ul>
-            <li>
-              <p>Servilletas</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-            <li>
-              <p>Cubiertos</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-          </ul>
+          {extrasMenu()}
           </section>
         </>
       )
@@ -452,57 +574,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Sopa de Tortilla {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Aguacate</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Aguacate')}}/>
-              </li>
-              <li>
-                <p>Chile</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Chile')}}/>
-              </li>
-              <li>
-                <p>Chicharron</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Chicharron')}}/>
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-              </li>
-              <li>
-                <p>Queso Manchego</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Manchego')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('SopaTortilla')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
         
@@ -514,57 +590,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Consome Ranchero {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Chile</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Chile')}}/>
-              </li>
-              <li>
-                <p>Cilantro</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cilantro')}}/>
-              </li>
-              <li>
-                <p>Cebolla</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cebolla')}}/>
-              </li>
-              <li>
-                <p>Aguacate</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Aguacate')}}/>
-              </li>
-              <li>
-                <p>Arroz</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Arroz')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('Ranchero')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -575,33 +605,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Caldo de Pollo {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -612,53 +618,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Gordita {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-          <h4>¿Que le ponemos? 🥑</h4>
-          <ul>
-            <li>
-              <p>Cebolla</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cebolla')}}/>
-            </li>
-            <li>
-              <p>Cilantro</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cilantro')}}/>
-            </li>
-            <li>
-              <p>Queso Rallado</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-            </li>
-            <li>
-              <p>Crema</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-            </li>
-          </ul>
+          {modificadoresMenu('Gorditas')}
           <br />
-          <h4>¿Salsa y Limones? 🫑🍋</h4>
-          <ul>
-            <li>
-              <p>Verde</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-            </li>
-            <li>
-              <p>Roja</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-            </li>
-            <li>
-              <p>Limones</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-            </li>
-          </ul>
+          {salsaMenu()}
           <br />
-          <h4>Extras 🍴</h4>
-          <ul>
-            <li>
-              <p>Servilletas</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-            <li>
-              <p>Cubiertos</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-          </ul>
+          {extrasMenu()}
           </section>
         </>
       )
@@ -669,53 +633,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Tostada {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Frijoles</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Frijoles')}}/>
-              </li>
-              <li>
-                <p>Lechuga</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-              </li>
-              <li>
-                <p>Queso Rallado</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('Tostadas')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -746,49 +668,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
               </li>
             </ul>
             <br />
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Lechuga</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-              </li>
-              <li>
-                <p>Queso Rallado</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('Flautas')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRroja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -799,49 +683,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Enchiladas {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Cebolla</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cebolla')}}/>
-              </li>
-              <li>
-                <p>Queso Rallado</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('Enchiladas')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -852,53 +698,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Chilaquiles {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Cebolla</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cebolla')}}/>
-              </li>
-              <li>
-                <p>Cilantro</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Cilantro')}}/>
-              </li>
-              <li>
-                <p>Queso Rallado</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('Chilaquiles')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -961,33 +765,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
               </li>
             </ul>
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -1090,33 +870,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
               </li>
             </ul>
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -1127,49 +883,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pambazo {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Lechuga</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
-              </li>
-              <li>
-                <p>Queso Rallado</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('Pambazo')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -1212,49 +930,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
               </li>
             </ul>
             <br />
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Lechuga</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
-              </li>
-              <li>
-                <p>Queso Rallado</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-              </li>
-            </ul>
+            {modificadoresMenu('Pambazo')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -1265,57 +945,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Sope {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
-            <h4>¿Que le ponemos? 🥑</h4>
-            <ul>
-              <li>
-                <p>Frijoles</p>
-                <input type="checkbox" />
-              </li>
-              <li>
-                <p>Lechuga</p>
-                <input type="checkbox" />
-              </li>
-              <li>
-                <p>Cebolla</p>
-                <input type="checkbox" />
-              </li>
-              <li>
-                <p>Queso Rallado</p>
-                <input type="checkbox" />
-              </li>
-              <li>
-                <p>Crema</p>
-                <input type="checkbox" />
-              </li>
-            </ul>
+            {modificadoresMenu('Sope')}
             <br />
-            <h4>¿Salsa y Limones? 🫑🍋</h4>
-            <ul>
-              <li>
-                <p>Verde</p>
-                <input type="checkbox" />
-              </li>
-              <li>
-                <p>Roja</p>
-                <input type="checkbox" />
-              </li>
-              <li>
-                <p>Limones</p>
-                <input type="checkbox" />
-              </li>
-            </ul>
+            {salsaMenu()}
             <br />
-            <h4>Extras 🍴</h4>
-            <ul>
-              <li>
-                <p>Servilletas</p>
-                <input type="checkbox" />
-              </li>
-              <li>
-                <p>Cubiertos</p>
-                <input type="checkbox" />
-              </li>
-            </ul>
+            {extrasMenu()}
           </section>
         </>
       )
@@ -1328,6 +962,10 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
         <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
           <h4>¿Elige tu guisado? 🥘</h4>
           <ul>
+            <li>
+              <p>Papa C/chorizo</p>
+              <input type="radio" name={`guisado${key}`} value={'Papa C/chorizo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
+            </li>
             <li>
               <p>Papa</p>
               <input type="radio" name={`guisado${key}`} value={'Papa'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
@@ -1358,49 +996,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
             </li>
           </ul>
           <br />
-          <h4>¿Que le ponemos? 🥑</h4>
-          <ul>
-            <li>
-              <p>Lechuga</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Lechuga')}}/>
-            </li>
-            <li>
-              <p>Queso Rallado</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'QuesoRallado')}}/>
-            </li>
-            <li>
-              <p>Crema</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Crema')}}/>
-            </li>
-          </ul>
+          {modificadoresMenu('Sope')}
           <br />
-          <h4>¿Salsa y Limones? 🫑🍋</h4>
-          <ul>
-            <li>
-              <p>Verde</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaVerde')}}/>
-            </li>
-            <li>
-              <p>Roja</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'SalsaRoja')}}/>
-            </li>
-            <li>
-              <p>Limones</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Limones')}}/>
-            </li>
-          </ul>
+          {salsaMenu()}
           <br />
-          <h4>Extras 🍴</h4>
-          <ul>
-            <li>
-              <p>Servilletas</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-            <li>
-              <p>Cubiertos</p>
-              <input type="checkbox" onChange={(e)=>{descriptionListener(e, key, 'Extras')}}/>
-            </li>
-          </ul>
+          {extrasMenu()}
         </section>
       </>
       )
@@ -1451,8 +1051,6 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
   }
   
   useEffect(() => {setInitialProduct()}, [])
-
-  console.log(descriptionObject);
 
   return (
     <>

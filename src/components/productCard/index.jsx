@@ -5,7 +5,7 @@ import ProductDescription from '../productDescription';
 import { FaRegTrashAlt } from "react-icons/fa";
 
 const ProductCard = ({id, name, price, image}) => {
-  const {editable, handleEditable, isInCart, productQuantity, removeProduct} = useProductCard()
+  const {editable, handleEditable, isInCart, removeProduct, productQuantity} = useProductCard()
 
   return (
     <>
@@ -15,16 +15,16 @@ const ProductCard = ({id, name, price, image}) => {
           {/* DESCOMENTAR PARA MOSTRAR IMAGENES EN TARJETAS DE PRODUCTOS */}
 
           {/* <img src={image} alt="" /> */}
+          <div className={isInCart(id) ? 'quantity' : 'inactive'}>
+            <p>x{productQuantity(id)}</p>
+          </div>
           <div>
             <h4>{name}</h4>
             <p>MX${price}</p>
           </div>
         </div>
         <div className={isInCart(id) ? 'productController' : 'inactive'}>
-          {/* <button onClick={()=>{removeProduct(id)}}> - </button>
-          <p>{productQuantity(id)}</p>
-          <button onClick={()=>{handleEditable(id)}}> + </button> */}
-          <button><FaRegTrashAlt /></button>
+          <button onClick={()=>{removeProduct(id)}}><FaRegTrashAlt /></button>
         </div>
         <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{handleEditable(id)}} >Agregar al Carrito</button>
       </div>

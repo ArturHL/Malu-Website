@@ -17,6 +17,13 @@
   border-radius: 10px;
   margin-right: 10px;
 }
+.productCard .productInfo .quantity{
+  font-size: 20px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .productCard .productInfo div{
   display: flex;
   flex-direction: column;

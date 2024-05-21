@@ -63,27 +63,13 @@ export function CartProvider ({children}) {
   }
 
   function removeFromCart(id) {
-    if(cart.find(item => item.id === id).quantity > 1) {
-      const newCart = structuredClone(cart)
-      newCart[findProductIndex(id)].quantity--
-      setCart(newCart)
-      localStorage.setItem('cart', JSON.stringify(newCart))
-      return
-    }
     setCart(cart.filter(item => item.id !== id))
-    localStorage.setItem('cart', JSON.stringify(cart.filter(item => item.id !== id))
-    )
+    localStorage.setItem('cart', JSON.stringify(cart.filter(item => item.id !== id)))
   }
 
   function clearCart() {
     setCart([])
     localStorage.setItem('cart', JSON.stringify([]))
-  }
-
-  // Modify functions
-
-  function editDescription(id, description) {
-
   }
 
   // Price functions

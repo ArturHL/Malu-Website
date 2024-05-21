@@ -3,28 +3,31 @@ import { useState } from 'react';
 export default function useAnimateOrder() {
   const [menuActive, setMenuActive] = useState(false);
 
-  function translate(menuClass, adjust) {
-    const isActive = menuActive;
+  function translate(menuClass) {
     const menu = document.querySelector(`.${menuClass}`);
     const px = menu.getBoundingClientRect().height - 30;
-    if (adjust) {
-      menu.style.transform = `translateY(-${px}px)`;
-      setMenuActive(true);
-      return
-    }
-    if (isActive) {
+    if (menuActive) {
       menu.style.transform = `translateY(0px)`;
+      rotateIcon('iconDropMenu');
       setMenuActive(false);
     } else {
       menu.style.transform = `translateY(-${px}px)`;
+      rotateIcon('iconDropMenu');
       setMenuActive(true);
     }
   }
 
+  function adjustHeight(menuClass) {
+    if (menuActive) {
+      const menu = document.querySelector(`.${menuClass}`);
+      const px = menu.getBoundingClientRect().height - 30;
+      menu.style.transform = `translateY(-${px}px)`;
+    }
+  }
+
   function rotateIcon(iconClass) {
-    const isActive = menuActive;
     const icon = document.querySelector(`.${iconClass}`);
-    if (isActive) {
+    if (menuActive) {
       icon.style.transform = `rotate(0deg)`;
       setMenuActive(false);
     } else {
@@ -32,5 +35,5 @@ export default function useAnimateOrder() {
       setMenuActive(true);
     }
   }
-  return {translate, rotateIcon}
+  return {translate, adjustHeight}
 }
