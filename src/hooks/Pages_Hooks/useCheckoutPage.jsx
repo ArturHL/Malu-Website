@@ -10,7 +10,7 @@ import { useContext, useState, useEffect } from 'react'
 export default function useCheckoutPage() {
   const [stepActive, setStepActive] = useState('cart')
   const [detailsActive, setDetailsActive] = useState(-1)
-  const { priceTotal, shippingCost, finalPrice } = useContext(CartContext)
+  const { priceTotal, shippingCost, finalPrice, createNewOrder } = useContext(CartContext)
   const {
     user,
     isLoading,
@@ -20,6 +20,15 @@ export default function useCheckoutPage() {
     getPaymentsByUserId,
     deleteUserPayment
   } = useProfilePage();
+  
+  const [order, setOrder] = useState({
+    idUser: user.id,
+    date: new Date().toISOString(),
+    total: finalPrice(),
+    status: 'pendiente',
+    addressId: '',
+    paymentMethodId: '',
+  })
   
   useEffect(() => {getAddressesByUserId(user.id); getPaymentsByUserId(user.id)}, [])
 
@@ -38,7 +47,16 @@ export default function useCheckoutPage() {
     : setTimeout(() => {document.querySelector('.menuAdress').classList.toggle('overflow')}, 500) 
   }
 
-  function payOrder() {
+  function modifyOrder(route, value) {
+    const orderMod = {...order}
+    orderMod[route] = value
+    setOrder(orderMod)
+  }
+
+  async function payOrder() {
+    // .toISOString() convierte la fecha a un string en formato ISO 8601 esto es para que el backend lo convierta a un timestamp de postgres
+    modifyOrder('date', new Date().toISOString())
+    await createNewOrder(order)
     handleStepActive('paying')
   }
 
@@ -108,12 +126,12 @@ export default function useCheckoutPage() {
                       <div>
                         <span>{`x${item.quantity}`}</span>
                         <h3>{item.name}</h3>
-                        <span onClick={()=>{displayDetails(item.id)}}>{detailsActive == item.id ? 'Ocultar' : 'Ver'} Detalles</span>
+                        <span onClick={()=>{displayDetails(item.id)}} className={item.description !== undefined ? '' : 'inactive'}>{detailsActive == item.id ? 'Ocultar' : 'Ver' } Detalles</span>
                       </div>
                       <p>${item.price}</p>
                     </div>
                     <div className={`description${item.id} ${detailsActive == item.id ? '' : 'inactive'}`}>
-                      {formatModifiers(item.description)}
+                      {item.description !== undefined ? formatModifiers(item.description) : ''} 
                     </div>
                   </>
                 )
@@ -155,21 +173,11 @@ export default function useCheckoutPage() {
             <h2>Selecciona la direccion de envio</h2>
             <div className='adressMenu' onClick={dropMenuAdress}><FaAngleDown /></div>
             <div className='menuAdress inactive'>
-              {/* <div className='adress'>
-                <h3>Nombre</h3>
-                <p>Direccion</p>
-                <p>Telefono</p>
-              </div>
-              <div className='adress'>
-                <h3>Nombre</h3>
-                <p>Direccion</p>
-                <p>Telefono</p>
-              </div> */}
               {
                 isLoading ? <p>Cargando...</p> : addresses.map((address, index) => {
                   return (
                     <div className='address' key={index}>
-                      <p>{`${address.street} Int. ${address.number}`}</p> <button className='buttonB' onClick={()=>{console.log('Seleccion');}}>Seleccionar</button>
+                      <p>{`${address.street} Int. ${address.number}`}</p> <button className='buttonB' onClick={()=>{modifyOrder('addressId', address.id)}}>Seleccionar</button>
                     </div>
                   )
                 })
@@ -198,7 +206,7 @@ export default function useCheckoutPage() {
                                 payMethod.type == 'mastercard' ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1200px-Mastercard-logo.svg.png' : 
                                 'https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg'} alt="Credit Card" />
                       <p>**** **** **** {payMethod.number.slice(-4)}</p>
-                      <button className='buttonB' onClick={()=>{deleteUserPayment(payMethod.id)}}>Eliminar</button>
+                      <button className='buttonB' onClick={()=>{modifyOrder('paymentMethodId', payMethod.id)}}>Seleccionar</button>
                     </div>
                   )
                 })

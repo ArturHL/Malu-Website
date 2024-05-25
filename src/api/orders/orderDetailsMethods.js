@@ -29,14 +29,14 @@ async function getOrderProductByOrderId(orderId) {
 
 async function saveOrderProduct(orderProduct) {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/save`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(orderProduct),
     });
-    return response.json();
+    return response
   } catch (error) {
     console.error(error);
   }

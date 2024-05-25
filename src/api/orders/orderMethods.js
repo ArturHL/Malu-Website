@@ -20,7 +20,7 @@ async function getOrderByUserId(userId) {
 
 async function saveOrder(order) {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/save`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

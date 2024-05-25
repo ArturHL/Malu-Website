@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect } from 'react';
 import { SessionContext } from './sessionContext';
 import useProduct from '../hooks/API_Hooks/useProduct';
+import { getAllOrders, getOrderByUserId, saveOrder, updateStatusById } from '../api/orders/orderMethods';
+import { getAllOrderProducts, getOrderProductById, getOrderProductByOrderId, saveOrderProduct, updateOrderProduct, deleteOrderProduct } from '../api/orders/orderDetailsMethods';
 
 export const CartContext = createContext();
 
@@ -13,7 +15,6 @@ export function CartProvider ({children}) {
   const [allProducts, setAllProducts] = useState([]);
   const { loginRedirect } = useContext(SessionContext);
   const { getProducts } = useProduct();
-  const [displayModifyMenu, setDisplayModifyMenu] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -94,6 +95,40 @@ export function CartProvider ({children}) {
     return cart.findIndex(item => item.id === id)
   }
 
+  // Order functions
+
+  // const [isLoading, setIsLoading] = useState(false);
+
+  async function getOrderHistory(userId) {
+    return await getOrderByUserId(userId);
+  }
+
+  async function createNewOrder(order) {
+    const orderDetails = {
+      orderId: '',
+      productId: '',
+      quantity: '',
+      comment: '',
+    }
+
+    const orderStatus = await saveOrder(order);
+    console.log(orderStatus);
+    if (orderStatus) {
+      console.log(orderStatus);
+      cart.forEach(async (product) => {
+        orderDetails.orderId = orderStatus.id;
+        orderDetails.productId = product.id;
+        orderDetails.quantity = product.quantity;
+        orderDetails.comment = product.description ? JSON.stringify(product.description) : '';
+        await createNewOrderProduct(orderDetails);
+      });
+    }
+  }
+
+  async function createNewOrderProduct(orderProduct) {
+    return await saveOrderProduct(orderProduct);
+  }
+
   return(
     <CartContext.Provider value={{
       cart,
@@ -104,7 +139,9 @@ export function CartProvider ({children}) {
       clearCart,
       priceTotal,
       shippingCost,
-      finalPrice
+      finalPrice,
+      getOrderHistory,
+      createNewOrder
     }}>
       {children}
     </CartContext.Provider>
