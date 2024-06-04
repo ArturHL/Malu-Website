@@ -25,10 +25,46 @@ async function getImgByProductId(productId) {
 async function getImgByUserId(userId) {
   try {
     const response = await fetch(`${userUrl}/${userId}`);
-    return response;
+    if (!response.ok) {
+      return false;
+    }
+    return response.json();
   } catch (error) {
     console.log(error);
   }
 }
 
-export { getImgByCategoryId, getImgByProductId, getImgByUserId };
+async function saveNewImage(image) {
+  const response = await getImgByUserId(image.idUser);
+  if (!response) {
+    console.log('post');
+    try {
+      const response = await fetch(`${userUrl}/save`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(image),
+      });
+      return response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    try {
+      console.log('put');
+      const response = await fetch(`${userUrl}/${image.idUser}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(image),
+      });
+      return response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export { getImgByCategoryId, getImgByProductId, getImgByUserId, saveNewImage };

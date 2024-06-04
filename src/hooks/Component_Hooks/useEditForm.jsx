@@ -5,7 +5,7 @@ import InputForm from '../../components/inputForm';
 
 export default function useEditForm(type) {
   const { updateUserData } = useContext(SessionContext);
-  const { createNewAddress, createNewPayment, getOrdersByUserId, orders, isLoading } = useUser();
+  const { createNewImage, createNewAddress, createNewPayment, getOrdersByUserId, orders, isLoading } = useUser();
 
   function inputType (type) {
     switch (type) {
@@ -21,6 +21,8 @@ export default function useEditForm(type) {
         return <InputForm type='addressInput'/>;
       case 'payment':
         return <InputForm type='payment'/>;
+      case 'image':
+        return <InputForm type='image'/>;
       case 'orders':
         return renderOrders();
     }
@@ -102,6 +104,24 @@ export default function useEditForm(type) {
     }
   }
 
+  async function saveNewImage() {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+    const image = {
+      idUser: user.id,
+      url: document.querySelector('.url').value
+    }
+
+    const isOk = await createNewImage(image);
+
+    if (!isOk) {
+      window.alert('Error al guardar la imagen');
+      return;
+    } else {
+      location.reload();
+    }
+  }
+
   async function handleSaveFunction(type) {
     document.querySelector('.editForm').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -113,6 +133,9 @@ export default function useEditForm(type) {
       case 'payment':
         await saveNewPayment();
         break;
+      case 'image':
+        await saveNewImage();
+        break;          
       default:
         await updateUserInfo(type);
         break;

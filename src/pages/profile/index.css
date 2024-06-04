@@ -9,12 +9,34 @@
 }
 .profile-card {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-card > div {
+  position: relative;
+  width: min-content;
+  height: min-content;
 }
 
 .profile-card img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
+}
+.profile-card span{
+  width: min-content;
+  font-size: 25px;
+  border-radius: 50%;
+  background-color: #cfcfcf;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }
 .labelEdit{
   font-size: 12px;

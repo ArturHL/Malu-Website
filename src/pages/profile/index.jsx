@@ -1,4 +1,5 @@
 import './index.css';
+import { TbEdit } from "react-icons/tb";
 
 import { useEffect } from 'react';
 import EditForm from '../../components/editForm';
@@ -13,21 +14,27 @@ const ProfilePage = () => {
     isLoading,
     addresses,
     payments,
+    images,
     setActiveEdit,
     getAddressesByUserId,
     deleteUserAddress,
     getPaymentsByUserId,
     deleteUserPayment,
-    activeEditForm } = useProfilePage();
+    activeEditForm,
+    getUserImg } = useProfilePage();
 
-  useEffect(() => {getAddressesByUserId(user.id); getPaymentsByUserId(user.id)}, [])
+  useEffect(() => {getAddressesByUserId(user.id); getPaymentsByUserId(user.id), getUserImg(user.id)}, [])
 
   return (
     <>
       {sesion ? (
         <section className='profileSection'>
           <div className="section profile-card">
-            <img src={user.img} alt="Profile Picture"/>
+            <div>
+              <img src={images} alt="Profile Picture"/>
+              <span onClick={()=>{activeEditForm('image')}}><TbEdit/></span>
+              <EditForm type='image' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
+            </div>
             <h2>{user.name} <label className='labelEdit' onClick={()=>{activeEditForm('name')}}>Editar</label></h2>
             <EditForm type='name' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
           </div>
@@ -62,7 +69,7 @@ const ProfilePage = () => {
                 })
               }
             </div>
-            <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('address')}}>Agregar Direccion de Envio</button>
+            <button className='buttonA' onClick={(e)=>{e.preventDefault(); activeEditForm('address')}}>Agregar Direccion de Envio</button>
             <EditForm type='address' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
           </div>
 
@@ -83,7 +90,7 @@ const ProfilePage = () => {
                 })
               }
             </div>
-            <button className='buttonA' onClick={(e)=>{e.preventDefault(); setActiveEdit('payment')}}>Agregar Método de Pago</button>
+            <button className='buttonA' onClick={(e)=>{e.preventDefault(); activeEditForm('payment')}}>Agregar Método de Pago</button>
             <EditForm type='payment' activeEdit={activeEdit} setActiveEdit={setActiveEdit} />
           </div>
 

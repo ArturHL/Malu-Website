@@ -4,7 +4,7 @@ import { getAllAddressesByUser, createAddress, deleteAddress} from '../../api/ad
 import { getAllPayMethodsByUserId, createPayMethod, deletePayMethod } from '../../api/paymentMethods';
 import { getOrderByUserId, saveOrder, updateStatusById } from '../../api/orders/orderMethods';
 import { getReservationsByUserId, saveReservation, updateReservationById } from '../../api/reserveMethods';
-import { getImgByUserId } from '../../api/imagesMethods';
+import { getImgByUserId, saveNewImage } from '../../api/imagesMethods';
 
 export default function useUser() {
   const [userDB, setUserDB] = useState(null);
@@ -13,12 +13,11 @@ export default function useUser() {
   const [payments, setPayments] = useState([]);
   const [orders, setOrders] = useState([]);
   const [reserves, setReserves] = useState([]);
+  const [images, setImages] = useState('');
 
   async function logIn(email, password) {
     setIsLoading(true);
     const user = await getUserByEmail(email);
-    const userImg = await getUserImg(user.id);
-    user.img = userImg;
     if (user.password === password) {
       setUserDB(user);
       setIsLoading(false);
@@ -63,12 +62,23 @@ export default function useUser() {
   }
 
   async function getUserImg(id) {
+    setIsLoading(true);
     const imgDefault = 'https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png';
     const img = await getImgByUserId(id);
-    if (!img.ok) {
-      return imgDefault;
+    if (img) {
+      setImages(img.url);
+      setIsLoading(false);
+    } else {
+      setImages(imgDefault);
+      setIsLoading(false);
     }
-    return img;
+  }
+
+  async function createNewImage(image) {
+    setIsLoading(true);
+    const newImage = await saveNewImage(image);
+    setIsLoading(false);
+    return newImage;
   }
 
   // Address methods //
@@ -172,6 +182,7 @@ export default function useUser() {
     payments,
     orders,
     reserves,
+    images,
     logIn,
     signUp,
     updateUser,
@@ -189,5 +200,6 @@ export default function useUser() {
     getReservesByUserId,
     createReserve,
     cancelReserve,
+    createNewImage
   };
 }

@@ -100,6 +100,12 @@ export default function useInputForm(type) {
               <input className='input type' type='text' placeholder='Visa / Mastercard / AMEX' onChange={handleInputText}/>
               </>)
     }
+    if (inputType === 'image') {
+      return (<>
+              <label className='label'>Url de la Imagen</label>
+              <input className='input url' type='text' placeholder='Url' onChange={handleInputText}/>
+              </>)
+    }
   }
 
   return {
