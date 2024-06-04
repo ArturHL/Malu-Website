@@ -6,9 +6,6 @@ export default function useProductCard() {
   const {cart, addToCart, addProductsToCart, removeFromCart, allProducts:products } = useContext(CartContext);
 
   function isEditable(id) {
-    if (id > 4 && id < 12 || id == 14 || id > 48) {
-      return false
-    }
     return true
   }
 
@@ -47,8 +44,13 @@ export default function useProductCard() {
     removeFromCart(id)
   }
 
+  function setOneClickBuy(bool){
+    localStorage.setItem('oneClickBuy', bool)
+  }
+
   return {
     editable,
+    setOneClickBuy,
     handleEditable,
     searchProduct,
     addProducts,

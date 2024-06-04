@@ -29,11 +29,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     }
     if(id == 2 || id == 4) {
       return ({
-        Verdura: {
-          Lechuga: false,
-          Rabano: false,
-          Cebolla: false
-        },
+        Lechuga: false,
+        Rabano: false,
+        Cebolla: false,
         Extras: {
           Servilletas: false,
           Cubiertos: false
@@ -1040,6 +1038,10 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     completeProduct.description = descriptionObject
     addProducts(completeProduct);
     handleEditable(id);
+    const isOneClickBuy = localStorage.getItem('oneClickBuy')
+    if(isOneClickBuy === 'true') {
+      location.href = '/checkout'
+    }
   }
   
   function variableRender() {
@@ -1068,6 +1070,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
           <form className='formDescription'>
             <div>
               {variableRender()}
+              {id > 4 && id < 12 || id === 14 || id > 48 ? (
+                <>
+                  <p style={{fontSize: '25px', position: 'relative', top: '20%', width: '100%', textAlign: 'center'}}>No hay nada que modificar! <br />Elige la cantidad deseada y agregalo a tu carrito 🥛🍮</p>
+                </>
+              ) : null}
             </div>
             <button className='buttonA' onClick={(e)=>{addButton(e)}}>Agregar al Carrito</button>
           </form>
