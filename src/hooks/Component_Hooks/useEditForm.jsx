@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SessionContext } from '../../context/sessionContext';
 import useUser from '../../hooks/API_Hooks/useUser';
 import InputForm from '../../components/inputForm';
@@ -6,6 +6,10 @@ import InputForm from '../../components/inputForm';
 export default function useEditForm(type) {
   const { updateUserData } = useContext(SessionContext);
   const { createNewImage, createNewAddress, createNewPayment, getOrdersByUserId, orders, isLoading } = useUser();
+
+  const user = JSON.parse(sessionStorage.getItem('user'));
+
+  useEffect(() => {getOrdersByUserId(user.id);}, []);
 
   function inputType (type) {
     switch (type) {
@@ -24,7 +28,23 @@ export default function useEditForm(type) {
       case 'image':
         return <InputForm type='image'/>;
       case 'orders':
-        return renderOrders();
+        return  <>
+                  <h3>Historial de Pedidos</h3>
+                  <div className='orders'>
+                    {
+                      isLoading ? <p>Cargando...</p> : orders.map((order, index) => {
+                        return (
+                          <div className='order' key={index}>
+                          <p>{`Pedido #${order.id}`}</p>
+                          <p>{`Fecha: ${new Date(order.date).toLocaleDateString()}`}</p>
+                          <p>{`Total: $${order.total}`}</p>
+                          <p>{`Estado: ${order.status}`}</p>
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                </>;
     }
   }
 
@@ -140,27 +160,6 @@ export default function useEditForm(type) {
         await updateUserInfo(type);
         break;
     }
-  }
-
-  async function renderOrders() {
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    // useEffect(async () => {await getOrdersByUserId(user.id);}, []);
-    return (
-      <div className='orders'>
-        {
-          isLoading ? <p>Cargando...</p> : orders.map((order, index) => {
-            return (
-              <div className='order' key={index}>
-                <p>{`Pedido #${order.id}`}</p>
-                <p>{`Fecha: ${order.date}`}</p>
-                <p>{`Total: $${order.total}`}</p>
-                <p>{`Estado: ${order.status}`}</p>
-              </div>
-            )
-          })
-        }
-      </div>
-    )
   }
 
   return {

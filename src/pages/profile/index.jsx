@@ -50,9 +50,8 @@ const ProfilePage = () => {
           </div>
 
           <div className="section">
-            <button className='buttonB'>Ver Historial de Pedidos</button>
-            {/* Infinite loop */}
-            {/* <EditForm type='orders' activeEdit={activeEdit} setActiveEdit={setActiveEdit}/> */}
+            <button className='buttonB' onClick={()=>{activeEditForm('orders')}}>Ver Historial de Pedidos</button>
+            <EditForm type='orders' activeEdit={activeEdit} setActiveEdit={setActiveEdit}/>
             <button className='buttonA'><a href="/menu">Realizar Nuevo Pedido</a></button>
           </div>
 
@@ -95,7 +94,7 @@ const ProfilePage = () => {
           </div>
 
           <div className="section">
-            <button className='buttonB'>Pedir Ayuda</button>
+            <button className='buttonB'><a href={`https://wa.me/5527473906`} style={{color: 'white'}}>Pedir Ayuda</a></button>
             <button className='buttonA' onClick={logout}>Cerrar Sesión</button>
           </div>
         </section>
