@@ -6,7 +6,6 @@ import { CartContext } from '../../../context/cartContext.jsx';
 const useVariableRenderMenu = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const { allProducts:products } = useContext(CartContext);
-  console.log(products);
 
   window.addEventListener('resize', () => {
     setWidth(window.innerWidth);

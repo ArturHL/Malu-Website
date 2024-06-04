@@ -61,7 +61,6 @@ export default function useCheckoutPage() {
   }
 
   function succesfullPaymentPage() {
-    console.log('succesfullPaymentPage');
     setTimeout(() => {document.querySelector('.paying').classList.toggle('inactive')}, 200)
     setTimeout(() => {document.querySelector('.succesfullPayment').classList.toggle('inactive')}, 300)
   }
@@ -141,7 +140,7 @@ export default function useCheckoutPage() {
         </section>
         <form className='giftCode'>
           <input type="text"  placeholder='Codigo de Descuento'/>
-          <button className='buttonB' onClick={(e)=>{e.preventDefault(); console.log('no jala xd');}}>Aplicar</button>
+          <button className='buttonB' onClick={(e)=>{e.preventDefault()}}>Aplicar</button>
         </form>
         <section className='totalPrice'>
           <div>

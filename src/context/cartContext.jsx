@@ -20,7 +20,6 @@ export function CartProvider ({children}) {
     async function fetchData() {
       const p = await getProducts();
       setAllProducts(p);
-      console.log(p);
     }
 
     fetchData();
@@ -44,19 +43,14 @@ export function CartProvider ({children}) {
   }
 
   function addProductsToCart(products) {
-    console.log(products);
     loginRedirect();
     const index = findProductIndex(products.id)
-    console.log(index);
-    console.log(products.id);
     if(index < 0) {
-      console.log('asd');
       const newCart = [...cart, products];
       setCart(newCart)
       localStorage.setItem('cart', JSON.stringify(newCart))
       return
     } else {
-      console.log('qwe');
       const newCart = structuredClone(cart).splice(index, 1, products);
       setCart(newCart)
       localStorage.setItem('cart', JSON.stringify(newCart))
@@ -112,9 +106,7 @@ export function CartProvider ({children}) {
     }
 
     const orderStatus = await saveOrder(order);
-    console.log(orderStatus);
     if (orderStatus) {
-      console.log(orderStatus);
       cart.forEach(async (product) => {
         orderDetails.orderId = orderStatus.id;
         orderDetails.productId = product.id;

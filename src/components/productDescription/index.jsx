@@ -339,7 +339,6 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     if (type == 'Guisado2') {
       newDescription[key].Guisado2 = e.target.value
     }
-    console.log(newDescription);
     setDescriptionObject(newDescription)
   }
 

@@ -14,7 +14,6 @@ async function getAddressById(addressId) {
   try {
     const response = await fetch(`${url}/search/${addressId}`);
     const data = await response.json();
-    console.log(data);
   } catch (error) {
     console.error(error);
   }
@@ -46,7 +45,6 @@ async function updateAddress(addressId, address) {
       body: JSON.stringify(address),
     });
     const data = await response.json();
-    console.log(data);
   } catch (error) {
     console.error(error);
   }

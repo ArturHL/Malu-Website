@@ -37,7 +37,6 @@ async function getImgByUserId(userId) {
 async function saveNewImage(image) {
   const response = await getImgByUserId(image.idUser);
   if (!response) {
-    console.log('post');
     try {
       const response = await fetch(`${userUrl}/save`, {
         method: 'POST',
@@ -52,7 +51,6 @@ async function saveNewImage(image) {
     }
   } else {
     try {
-      console.log('put');
       const response = await fetch(`${userUrl}/${image.idUser}`, {
         method: 'PUT',
         headers: {
