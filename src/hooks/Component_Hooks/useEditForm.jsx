@@ -12,21 +12,8 @@ export default function useEditForm(type) {
   useEffect(() => {getOrdersByUserId(user.id);}, []);
 
   function inputType (type) {
+    // esta funcion esta mal, no deberia de estar hardcodeado el form, deberia de ser dinamico
     switch (type) {
-      case 'name':
-        return <InputForm type='name'/>;
-      case 'phone':
-        return <InputForm type='phone'/>;
-      case 'mail':
-        return <InputForm type='mail'/>;
-      case 'password':
-        return <InputForm type='password'/>;
-      case 'address':
-        return <InputForm type='addressInput'/>;
-      case 'payment':
-        return <InputForm type='payment'/>;
-      case 'image':
-        return <InputForm type='image'/>;
       case 'orders':
         return  <>
                   <h3>Historial de Pedidos</h3>
@@ -45,6 +32,24 @@ export default function useEditForm(type) {
                     }
                   </div>
                 </>;
+      case 'address':
+        return  <>
+                  <InputForm type='street' form='address'/>
+                  <InputForm type='numExt' form='address'/>
+                  <InputForm type='numInt' form='address'/>
+                  <InputForm type='postalCode' form='address'/>
+                  <InputForm type='city' form='address'/>
+                  <InputForm type='state' form='address'/>
+                </>;
+      case 'payment':
+        return  <>
+                  <InputForm type='type' form='payment'/>
+                  <InputForm type='cardNumber' form='payment'/>
+                  <InputForm type='expiration' form='payment'/>
+                  <InputForm type='cvv' form='payment'/>
+                </>;
+      default:
+        return <InputForm type={type} form={type}/>;
     }
   }
 

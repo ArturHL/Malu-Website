@@ -3,6 +3,7 @@ import './index.css'
 import { IoIosArrowUp } from "react-icons/io";
 import InputForm from '../../components/inputForm';
 import useLoginPage from '../../hooks/Pages_Hooks/useLoginPage';
+import AppButton from '../../components/appButton';
 
 const Login = () => {
   const { form, setForm, loginUser, registerUser } = useLoginPage();
@@ -16,20 +17,20 @@ const Login = () => {
         {
           form === 'login' ? (
             <form className='formLogin'>
-              <InputForm type='mail'/>
-              <InputForm type='password'/>
-              <button className='buttonA' onClick={loginUser}>Iniciar Sesion</button>
+              <InputForm type='mail' form='login'/>
+              <InputForm type='password' form='login'/>
+              <AppButton text='Iniciar Sesion' onClick={loginUser} className='buttonA' form='login'/>
             </form>
             ) : (
             <form className='formRegister'>
               <div>
-              <InputForm type='name'/>
-              <InputForm type='mail'/>
-              <InputForm type='phone'/>
-              <InputForm type='password'/>
-              <InputForm type='confirmPassword'/>
+              <InputForm type='name' form='register'/>
+              <InputForm type='mail' form='register'/>
+              <InputForm type='phone' form='register'/>
+              <InputForm type='password' form='register'/>
+              <InputForm type='confirmPassword' form='register'/>
               </div>
-              <button className='buttonA' onClick={registerUser}>Registrarse</button>
+              <AppButton text='Registrarse' onClick={registerUser} className='buttonA' form='register'/>
             </form>
           )
         }

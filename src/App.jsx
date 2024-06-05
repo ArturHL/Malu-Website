@@ -16,6 +16,7 @@ import { CartProvider } from './context/cartContext'
 import { SessionProvider } from './context/sessionContext'
 // import LoadingPage from './pages/loading'
 import Checkout from './pages/checkOut'
+import { ErrorProvider } from './context/errorContext'
 
 
 function App() {
@@ -28,23 +29,25 @@ function App() {
   
   return (
     <>
-      <SessionProvider>
-        <Navbar />
-        <CartProvider>
-          {/* <LoadingPage /> */}
-          {path === '/' && <HomePage />}
-          {path === '/profile' && <ProfilePage />}
-          {path === '/menu' && <MenuPage />}
-          {path === '/category' && <ProductPage />}
-          {path === '/events' && <EventPage />}
-          {path === '/contact' && <ContactPage />}
-          {path === '/reserves' && <BookPage />}
-          {path === '/login' && <Login />}
-          {path === '/checkout' && <Checkout />}
-          <OrderMenu />
-        </CartProvider>
-        <Footer />
-      </SessionProvider>
+      <ErrorProvider>
+        <SessionProvider>
+          <Navbar />
+          <CartProvider>
+            {/* <LoadingPage /> */}
+            {path === '/' && <HomePage />}
+            {path === '/profile' && <ProfilePage />}
+            {path === '/menu' && <MenuPage />}
+            {path === '/category' && <ProductPage />}
+            {path === '/events' && <EventPage />}
+            {path === '/contact' && <ContactPage />}
+            {path === '/reserves' && <BookPage />}
+            {path === '/login' && <Login />}
+            {path === '/checkout' && <Checkout />}
+            <OrderMenu />
+          </CartProvider>
+          <Footer />
+        </SessionProvider>
+      </ErrorProvider>
     </>
   )
 }

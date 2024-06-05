@@ -7,7 +7,6 @@ export const SessionContext = createContext();
 export function SessionProvider ({children}) {
   const [sesion, setSesion] = useState(JSON.parse(sessionStorage.getItem('sesion')))
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')))
-  const [errors, setErrors] = useState([])
   const {logIn, signUp, updateUser}= useUser()
 
   // User Actions
@@ -76,25 +75,6 @@ export function SessionProvider ({children}) {
     }
   }
 
-  function setNewError() {
-    setErrors([])
-    const listErrors = []
-    listErrors.push('error')
-    setErrors(listErrors)
-  }
-
-  function clearErrors() {
-    setErrors([])
-  }
-
-  function isFormError() {
-    if(errors.length > 0) {
-      return true
-    } else {
-      return false
-    }
-  }
-
   useEffect(() => {
     sessionStorage.setItem('sesion', sesion)
     sessionStorage.setItem('user', JSON.stringify(user))
@@ -107,9 +87,6 @@ export function SessionProvider ({children}) {
       isUserLogged,
       loginRedirect, 
       register, 
-      setNewError,
-      clearErrors,
-      isFormError,
       updateUserData,
     }}>
       {children}

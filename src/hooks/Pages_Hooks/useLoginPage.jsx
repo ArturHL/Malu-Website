@@ -5,15 +5,11 @@ import { SessionContext } from '../../context/sessionContext';
 export default function useLoginPage() {
   const [form, setForm] = useState('login')
 
-  const { login, isFormError, register } = useContext(SessionContext);
+  const { login, register } = useContext(SessionContext);
 
   async function loginUser() {
     document.querySelector(".formLogin").addEventListener("submit", function(event) {
     event.preventDefault()});
-    if(isFormError()) {
-      console.log('error');
-      return 
-    }
 
     const mail = document.querySelector('.mail')
     const password = document.querySelector('.password')
