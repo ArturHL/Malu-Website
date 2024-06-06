@@ -68,6 +68,9 @@ export default function useCheckoutPage() {
   function formatModifiers(modifiers) {
     const objects = modifiers;
 
+    if (objects[0] === null) {
+      return 
+    }
     // Mapea cada objeto a un array de elementos div
     const elements = objects.map(obj => {
         // Crea un array de elementos p para cada propiedad en el objeto
@@ -125,12 +128,12 @@ export default function useCheckoutPage() {
                       <div>
                         <span>{`x${item.quantity}`}</span>
                         <h3>{item.name}</h3>
-                        <span onClick={()=>{displayDetails(item.id)}} className={item.description !== undefined ? '' : 'inactive'}>{detailsActive == item.id ? 'Ocultar' : 'Ver' } Detalles</span>
+                        <span onClick={()=>{displayDetails(item.id)}} className={item.description[0] !== null ? '' : 'inactive'}>{detailsActive == item.id ? 'Ocultar' : 'Ver' } Detalles</span>
                       </div>
                       <p>${item.price}</p>
                     </div>
                     <div className={`description${item.id} ${detailsActive == item.id ? '' : 'inactive'}`}>
-                      {item.description !== undefined ? formatModifiers(item.description) : ''} 
+                      {item.description[0] !== null ? formatModifiers(item.description) : ''} 
                     </div>
                   </>
                 )
