@@ -67,6 +67,12 @@
   justify-content: space-between;
   cursor: pointer;
 }
+.errorMenuFormDescription{
+  font-size: 12px;
+  height: min-content;
+  margin-bottom: 0;
+  padding: 5px 0;
+}
 .productIndividualTitle span{
   transition: all 0.25s ease;
   rotate: 180deg;
@@ -86,6 +92,11 @@
   width: 100%;
   overflow: auto;
 }
+.productDescriptionMenu .section2 .error{
+  margin-top: 10px;
+  font-size: 10px;
+}
+
 .productDescriptionMenu .section2 ul{
   width: 100%;
 }

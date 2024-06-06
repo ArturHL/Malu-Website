@@ -19,6 +19,7 @@ export function CartProvider ({children}) {
   useEffect(() => {
     async function fetchData() {
       const p = await getProducts();
+      console.log(p);
       setAllProducts(p);
     }
 

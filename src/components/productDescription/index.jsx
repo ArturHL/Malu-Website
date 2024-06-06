@@ -3,12 +3,69 @@ import './index.css'
 import useProductCard from '../../hooks/Component_Hooks/useProductCard'
 import { useEffect, useState } from 'react'
 import { IoIosArrowUp } from "react-icons/io";
+import { useContext } from 'react';
+import { ErrorContext } from '../../context/errorContext';
+import AppButton from '../appButton';
+import ErrorTicket from '../errorTicket';
 
 function ProductDescription ({productId: id, editable, handleEditable}) {
+  const [type, setType] = useState('')
   const [product, setProduct] = useState({})
   const [descriptionObject, setDescriptionObject] = useState([typeDescription(id)])
   const [activeMenuDescription, setActiveMenuDescription] = useState(-1)
   const {searchProduct, addProducts} = useProductCard()
+  const { updateValueInput, addInput } = useContext(ErrorContext);
+
+  function setButtonSuscription() {
+    if (id == 1) {
+      setType('pozole')
+    }
+    if (id == 3) {
+      setType('pozoleCh')
+    }
+    if (id == 25) {
+      setType('flautas')
+    }
+    if (id == 26) {
+      setType('flautasAhogadas')
+    }
+    if (id == 35) {
+      setType('quesadillaS')
+    }
+    if (id == 36) {
+      setType('quesadillaC')
+    }
+    if (id == 37) {
+      setType('quesadillaSP')
+    }
+    if (id == 38) {
+      setType('quesadillaCP')
+    }
+    if (id == 40) {
+      setType('pambazoG')
+    }
+    if (id == 42) {
+      setType('pambazoGQ')
+    }
+    if (id == 43) {
+      setType('sopeS')
+    }
+    if (id == 46) {
+      setType('sopeSQ')
+    }
+    if (id == 44) {
+      setType('sopeG')
+    }
+    if (id == 47) {
+      setType('sopeGQ')
+    }
+    if (id == 45) {
+      setType('sopeB')
+    }
+    if (id == 48) {
+      setType('sopeBQ')
+    }
+  }
 
   function activeMenu(id) {
     activeMenuDescription == id ? setActiveMenuDescription(-1) : setActiveMenuDescription(id)
@@ -17,7 +74,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
   function typeDescription(id) {
     if(id == 1 || id == 3) {
       return ({
-        Proteina: '',
+        Proteina: 'Maciza',
         Lechuga: false,
         Cebolla: false,
         Rabano: false,
@@ -237,6 +294,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     }
     if (id > 42 && id < 49 && id != 44 && id != 47) {
       return ({
+        Coccion: '',
         Frijoles: false,
         Lechuga: false,
         Cebolla: false,
@@ -255,6 +313,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     }
     if (id == 44 || id == 47) {
       return ({
+        Coccion: '',
         Guisado: '',
         Frijoles: false,
         Lechuga: false,
@@ -278,6 +337,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     const newDescription = [...descriptionObject]
     if (type == 'Proteina') {
       newDescription[key].Proteina = e.target.value
+      updateValueInput(e.target.value, `requiredDescription${key === 0 ? '' : key}`, 'pozole')
     }
     if (type == 'Extras') {
       newDescription[key].Extras[e.target.previousSibling.textContent] = e.target.checked
@@ -329,17 +389,33 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     }
     if (type == 'Relleno') {
       newDescription[key].Relleno = e.target.value
+      updateValueInput(e.target.value, `requiredDescription${key === 0 ? '' : key}`, `${`flautas${product.id === 25 ? '' : 'Ahogadas'}`}`)
     }
     if (type == 'Coccion') {
       newDescription[key].Coccion = e.target.value
+      updateFunctionsByInput(type, e.target.value, key)
     }
     if (type == 'Guisado') {
       newDescription[key].Guisado = e.target.value
+      updateFunctionsByInput(type, e.target.value, key)
     }
     if (type == 'Guisado2') {
       newDescription[key].Guisado2 = e.target.value
+      updateFunctionsByInput(type, e.target.value, key)
     }
     setDescriptionObject(newDescription)
+  }
+
+  function updateFunctionsByInput(inputType, value, key) {
+    if (inputType == 'Coccion') {
+      updateValueInput(value, `${type}${key === 0 ? '' : key}.coccion`, `${type}`)
+    } 
+    if (inputType == 'Guisado') {
+      updateValueInput(value, `${type}${key === 0 ? '' : key}.relleno`, `${type}`)
+    }
+    if (inputType == 'Guisado2') {
+      updateValueInput(value, `${type}${key === 0 ? '' : key}.relleno2`, `${type}`)
+    }
   }
 
   function handleMenu(id, key) {
@@ -520,6 +596,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
       return (
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pozole {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <div className={`errorMenuFormDescription ${activeMenuDescription == key ? 'inactive' : ''}`}>
+            <ErrorTicket type={`requiredDescription${key === 0 ? '' : key}`} form={id === 1 ? 'pozole' : 'pozoleCh'}/>
+          </div>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
           <h4>Elige tu Proteina 🥩</h4>
           <ul>
@@ -544,6 +623,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
               <input type="radio" name={`proteina${key}`} onChange={(e)=>{descriptionListener(e, key, 'Proteina')}} value={'Mixto'}/>
             </li>
           </ul>
+          <ErrorTicket type={`requiredDescription${key === 0 ? '' : key}`} form={id === 1 ? 'pozole' : 'pozoleCh'}/>
           <br />
           {modificadoresMenu('Pozole')}
           <br />
@@ -610,6 +690,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
       )
     }
     // Gorditas Menu
+
     if (product.category == 3){
       return (
         <>
@@ -644,6 +725,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
       return (
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Flautas {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <div className={`errorMenuFormDescription ${activeMenuDescription == key ? 'inactive' : ''}`}>
+            <ErrorTicket type={`requiredDescription${key === 0 ? '' : key}`} form={id === 25 ? 'flautas' : id === 26 ? 'flautasAhogadas' : ''}/>
+          </div>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
             <h4>¿Rellenas de? 🍗</h4>
             <ul>
@@ -664,6 +748,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 <input type="radio" name={`relleno${key}`} value={'Surtidas'} onChange={(e)=>{descriptionListener(e, key, 'Relleno')}}/>
               </li>
             </ul>
+            <ErrorTicket type={`requiredDescription${key === 0 ? '' : key}`} form={id === 25 ? 'flautas' : id === 26 ? 'flautasAhogadas' : ''}/>
             <br />
             {modificadoresMenu('Flautas')}
             <br />
@@ -709,6 +794,10 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
       return (
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Quesadilla {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <div className={`errorMenuFormDescription ${activeMenuDescription == key ? 'inactive' : ''}`}>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 35 ? 'quesadillaS' : 'quesadillaSP'}/>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 35 ? 'quesadillaS' : 'quesadillaSP'}/>
+          </div>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
             <h4>¿Frita o Asada? 🥟</h4>
             <ul>
@@ -721,6 +810,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 <input type="radio" name={`coccion${key}`} value={'Asada'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
               </li>
             </ul>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 35 ? 'quesadillaS' : 'quesadillaSP'}/>
             <br />
             <h4>¿Elige tu guisado? 🥘</h4>
             <ul>
@@ -761,6 +851,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
               </li>
             </ul>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 35 ? 'quesadillaS' : 'quesadillaSP'}/>
             <br />
             {salsaMenu()}
             <br />
@@ -774,6 +865,11 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
       return (
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Quesadilla {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <div className={`errorMenuFormDescription ${activeMenuDescription == key ? 'inactive' : ''}`}>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 36 ? 'quesadillaC' : 'quesadillaCP'}/>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 36 ? 'quesadillaC' : 'quesadillaCP'}/>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno2`} form={id === 36 ? 'quesadillaC' : 'quesadillaCP'}/>
+          </div>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
             <h4>¿Frita o Asada? 🥟</h4>
             <ul>
@@ -786,6 +882,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 <input type="radio" name={`coccion${key}`} value={'Asada'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
               </li>
             </ul>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 36 ? 'quesadillaC' : 'quesadillaCP'}/>
             <br />
             <h4>¿Elige tu primer guisado? 🥘</h4>
             <ul>
@@ -826,6 +923,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
               </li>
             </ul>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 36 ? 'quesadillaC' : 'quesadillaCP'}/>
             <br />
             <h4>¿Elige tu segundo guisado? 🥘</h4>
             <ul>
@@ -866,6 +964,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 <input type="radio" name={`guisado${key + 1}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado2')}}/>
               </li>
             </ul>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno2`} form={id === 36 ? 'quesadillaC' : 'quesadillaCP'}/>
             <br />
             {salsaMenu()}
             <br />
@@ -894,6 +993,9 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
       return (
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pambazo {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <div className={`errorMenuFormDescription ${activeMenuDescription == key ? 'inactive' : ''}`}>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 40 ? 'pambazoG' : 'pambazoGQ'}/>
+          </div>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
             <h4>¿Elige tu guisado? 🥘</h4>
             <ul>
@@ -926,6 +1028,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
               </li>
             </ul>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 40 ? 'pambazoG' : 'pambazoGQ'}/>
             <br />
             {modificadoresMenu('Pambazo')}
             <br />
@@ -941,7 +1044,23 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
       return (
         <>
           <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Sope {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+          <div className={`errorMenuFormDescription ${activeMenuDescription == key ? 'inactive' : ''}`}>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 43 ? 'sopeS' : id === 45 ? 'sopeB' : id === 46 ? 'sopeSQ' : 'sopeBQ'}/>
+          </div>
           <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+            <h4>¿Frita o Asada? 🥟</h4>
+            <ul>
+              <li>
+                <p>Frita</p>
+                <input type="radio" name={`coccion${key}`} value={'Frita'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+              </li>
+              <li>
+                <p>Asada</p>
+                <input type="radio" name={`coccion${key}`} value={'Asada'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+              </li>
+            </ul>
+            <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 43 ? 'sopeS' : id === 45 ? 'sopeB' : id === 46 ? 'sopeSQ' : 'sopeBQ'}/>
+            <br />
             {modificadoresMenu('Sope')}
             <br />
             {salsaMenu()}
@@ -955,8 +1074,25 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     if (id == 44 || id == 47) {
       return (
         <>
-        <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Pambazo {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+        <p className='productIndividualTitle' onClick={()=>{activeMenu(key)}}>Sope {key + 1}<span className={activeMenuDescription == key ? 'rotate' : ''}><IoIosArrowUp/></span></p>
+        <div className={`errorMenuFormDescription ${activeMenuDescription == key ? 'inactive' : ''}`}>
+          <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 44 ? 'sopeG' : 'sopeGQ'}/>
+          <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 44 ? 'sopeG' : 'sopeGQ'}/>
+        </div>
         <section className={`section2 ${activeMenuDescription == key ? '' : 'inactive'}`} id={key} key={key}>
+          <h4>¿Frito o Asado? 🥟</h4>
+          <ul>
+            <li>
+              <p>Frita</p>
+              <input type="radio" name={`coccion${key}`} value={'Frita'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+            </li>
+            <li>
+              <p>Asada</p>
+              <input type="radio" name={`coccion${key}`} value={'Asada'} onChange={(e)=>{descriptionListener(e, key, 'Coccion')}}/>
+            </li>
+          </ul>
+          <ErrorTicket type={`${type}${key === 0 ? '' : key}.coccion`} form={id === 44 ? 'sopeG' : 'sopeGQ'}/>
+          <br />
           <h4>¿Elige tu guisado? 🥘</h4>
           <ul>
             <li>
@@ -992,6 +1128,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
               <input type="radio" name={`guisado${key}`} value={'Picadillo'} onChange={(e)=>{descriptionListener(e, key, 'Guisado')}}/>
             </li>
           </ul>
+          <ErrorTicket type={`${type}${key === 0 ? '' : key}.relleno`} form={id === 44 ? 'sopeG' : 'sopeGQ'}/>
           <br />
           {modificadoresMenu('Sope')}
           <br />
@@ -1007,6 +1144,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
   function addOrRemoveProduct(plus) {
     if(plus) {
       const copy = {...product}
+      addInput(type, `${id > 34 ? type : 'requiredDescription'}${copy.quantity}`)
       const copyDescription = [...descriptionObject]
       copy.quantity += 1
       copyDescription.push(typeDescription(id))
@@ -1031,8 +1169,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     setProduct(product);
   }
 
-  function addButton(e) {
-    e.preventDefault();
+  function addButton() {
     const completeProduct = {...product}
     completeProduct.description = descriptionObject
     addProducts(completeProduct);
@@ -1051,7 +1188,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
     return elements
   }
   
-  useEffect(() => {setInitialProduct()}, [])
+  useEffect(() => {setInitialProduct(); setButtonSuscription()}, [])
 
   return (
     <>
@@ -1075,7 +1212,7 @@ function ProductDescription ({productId: id, editable, handleEditable}) {
                 </>
               ) : null}
             </div>
-            <button className='buttonA' onClick={(e)=>{addButton(e)}}>Agregar al Carrito</button>
+            <AppButton text='Agregar al Carrito' onClick={()=>{addButton()}} className='buttonA' form={type}/>
           </form>
         </div>
       </div>
