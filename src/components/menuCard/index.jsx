@@ -21,9 +21,10 @@ const MenuCard = ({id, name, description, price, image}) => {
             </p>
           </div>
           <div className='callToAction'>
-            <button className='buttonA' onClick={()=>{setOneClickBuy(true); handleEditable(id)}}>Compra en 1 Click</button>
+            {/* <button className='buttonA' onClick={()=>{setOneClickBuy(true); handleEditable(id)}}>Compra en 1 Click</button>
             <button style={{fontSize: '25px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '14.5px'}} className={isInCart(id) ? 'buttonB' : 'inactive'} onClick={()=>{removeProduct(id)}}><FaRegTrashAlt /></button>
-            <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{setOneClickBuy(false); handleEditable(id)}} >Agregar al Carrito</button>
+            <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{setOneClickBuy(false); handleEditable(id)}} >Agregar al Carrito</button> */}
+            {/* BOTONES PARA AGREGAR AL CARRITO */}
           </div>
         </div>
       </div>

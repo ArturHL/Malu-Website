@@ -23,10 +23,11 @@ const ProductCard = ({id, name, price, image}) => {
             <p>MX${price}</p>
           </div>
         </div>
-        <div className={isInCart(id) ? 'productController' : 'inactive'}>
+        {/* <div className={isInCart(id) ? 'productController' : 'inactive'}>
           <button onClick={()=>{removeProduct(id)}}><FaRegTrashAlt /></button>
         </div>
-        <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{setOneClickBuy(false); handleEditable(id)}} >Agregar al Carrito</button>
+        <button className={isInCart(id) ? 'inactive' : 'buttonB'} onClick={()=>{setOneClickBuy(false); handleEditable(id)}} >Agregar al Carrito</button> */}
+        {/* BOTONES PARA AGREGAR AL CARRITO */}
       </div>
       <ProductDescription editable={editable} handleEditable={handleEditable} productId={id} />
     </>

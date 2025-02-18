@@ -28,9 +28,9 @@ function Navbar() {
         <div className='menuDesktop'>
           <ul>
             <a href="/"><li>Home</li></a>
-            <a href="/profile"><li>Perfil</li></a>
+            {/* <a href="/profile"><li>Perfil</li></a> */}
             <a href="/menu"><li>Menu</li></a>
-            <a href="/reserves"><li>Reservas</li></a>
+            {/* <a href="/reserves"><li>Reservas</li></a> */}
             <a href="/events"><li>Eventos</li></a>
             <a href="/contact"><li>Contactanos</li></a>
           </ul>
@@ -39,9 +39,9 @@ function Navbar() {
       <menu className='dropDownMenu inactive'>
         <ul>
           <a href="/"><li><GoHomeFill />Home</li></a>
-          <a href="/profile"><li><FaUser />Perfil</li></a>
+          {/* <a href="/profile"><li><FaUser />Perfil</li></a> */}
           <a href="/menu"><li><MdRestaurant />Menu</li></a>
-          <a href="/reserves"><li><FaBookBookmark/>Reservas</li></a>
+          {/* <a href="/reserves"><li><FaBookBookmark/>Reservas</li></a> */}
           <a href="/events"><li><FaCalendarAlt/>Eventos</li></a>
           <a href="/contact"><li><PiPhoneFill/>Contactanos</li></a>
         </ul>

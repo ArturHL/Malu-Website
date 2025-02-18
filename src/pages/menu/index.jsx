@@ -7,7 +7,8 @@ import CategoryCard from '../../components/categoryCard';
 
 const MenuPage = () => {
   const { category, isLoading, getAllCategoriesData } = useCategory();
-
+  console.log(category);
+  
   useEffect(() => { getAllCategoriesData(); }, []);
   return (
     <>

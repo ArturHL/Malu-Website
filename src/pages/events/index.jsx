@@ -17,7 +17,7 @@ const EventPage = () => {
         <section className='eventSubMenu guisados inactive'>
           <h2 className='title'>Cazuelas de Guisados</h2>
           <p className='description'>Acompaña tus guisados con nuestras deliciosas cazuelas de guarniciones. Elige entre arroz, frijoles, nopales, ensalada, papas, verduras, y más.</p>
-          <WhatsAppBtn phone='' text={'Consulta mayor informacion'}/>
+          <WhatsAppBtn phone='5532019274' text={'Consulta mayor informacion'}/>
         </section>
       </div>
       <div>
@@ -27,7 +27,7 @@ const EventPage = () => {
         <section className='eventSubMenu guarniciones inactive'>
           <h2 className='title'>Cazuelas de Guarniciones</h2>
           <p className='description'>Acompaña tus guisados con nuestras deliciosas cazuelas de guarniciones. Elige entre arroz, frijoles, nopales, ensalada, papas, verduras, y más.</p>
-          <WhatsAppBtn phone='' text={'Consulta mayor informacion'}/>
+          <WhatsAppBtn phone='5532019274' text={'Consulta mayor informacion'}/>
         </section>
       </div>
       <div>
@@ -37,7 +37,7 @@ const EventPage = () => {
         <section className='eventSubMenu banquetes inactive'>
           <h2 className='title'>Cenas Navideñas</h2>
           <p className='description'>Acompaña tus guisados con nuestras deliciosas cazuelas de guarniciones. Elige entre arroz, frijoles, nopales, ensalada, papas, verduras, y más.</p>
-          <WhatsAppBtn phone='' text={'Consulta mayor informacion'}/>
+          <WhatsAppBtn phone='5532019274' text={'Consulta mayor informacion'}/>
         </section>
       </div>
       <div>
@@ -47,7 +47,7 @@ const EventPage = () => {
         <section className='eventSubMenu terraza inactive'>
           <h2 className='title'>Renta nuestra terraza</h2>
           <p className='description'>Acompaña tus guisados con nuestras deliciosas cazuelas de guarniciones. Elige entre arroz, frijoles, nopales, ensalada, papas, verduras, y más.</p>
-          <WhatsAppBtn phone='' text={'Consulta mayor informacion'}/>
+          <WhatsAppBtn phone='5532019274' text={'Consulta mayor informacion'}/>
         </section>
       </div>
     </div>
